@@ -16,24 +16,25 @@ public class BuildingComplexServiceImpl implements BuildingComplexService {
 
     @Autowired
     BuildingComplexRepository repo;
+    
+    public BuildingComplexServiceImpl(){
+        this.repo = repo;
+    }
+    public BuildingComplexServiceImpl(BuildingComplexRepository repo){
+        this.repo = repo;
+    }
 
     @Override
-    public String createBuildingComplex(String address) {
+    public String createBuildingComplex(BuildingComplex building) {
         /*
          * check for "new building" already exists in DB must be done here
-         */
-        BuildingComplex building = new BuildingComplex();
-        building.setAddress(address);
-        building.setId(UUID.randomUUID().toString());
-        if(repo == null){
-               System.out.println("repo is null");
-        }
+         */      
         repo.saveBuildingComplex(building);
         return building.getId();
     }
 
     @Override
-    public void deleteBuildingComplex(BuildingComplex buildingComplex) {
+    public void removeBuildingComplex(BuildingComplex buildingComplex) {
         repo.removeBuildingComplex(buildingComplex);
     }
 
@@ -51,5 +52,10 @@ public class BuildingComplexServiceImpl implements BuildingComplexService {
     @Override
     public Collection<BuildingComplex> listAll() {
         return repo.listAll();
+    }
+
+    @Override
+    public void removeAllBuildingComplexes() {
+       repo.removeAll();
     }
 }

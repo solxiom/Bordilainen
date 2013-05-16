@@ -10,34 +10,40 @@ import org.springframework.stereotype.Service;
 @Service
 public class CommentServiceImpl implements CommentService {
 
-	@Autowired
-	CommentRepository repo;
-	@Override
-	public String saveComment(Comment comment) {
-		repo.saveComment(comment);
-		return comment.getId();
-	}
+    @Autowired
+    CommentRepository repo;
 
-	@Override
-	public void removeComment(Comment comment) {
-		repo.removeComment(comment);		
-	}
+    public CommentServiceImpl() {
+    }
 
-	@Override
-	public Collection<Comment> listAll() {
-		return repo.listAll();
-	}
+    public CommentServiceImpl(CommentRepository repo) {
+        this.repo = repo;
+    }
 
-	@Override
-	public Collection<Comment> findByStickerId(String stickerId) {
-		return repo.findByStickerId(stickerId);
-	}
+    @Override
+    public String saveComment(Comment comment) {
+        repo.saveComment(comment);
+        return comment.getId();
+    }
 
-	@Override
-	public Comment findById(String commentId) {
-	
-		return repo.findById(commentId);
-	}
+    @Override
+    public void removeComment(Comment comment) {
+        repo.removeComment(comment);
+    }
 
+    @Override
+    public Collection<Comment> listAll() {
+        return repo.listAll();
+    }
 
+    @Override
+    public Collection<Comment> findByStickerId(String stickerId) {
+        return repo.findByStickerId(stickerId);
+    }
+
+    @Override
+    public Comment findById(String commentId) {
+
+        return repo.findById(commentId);
+    }
 }

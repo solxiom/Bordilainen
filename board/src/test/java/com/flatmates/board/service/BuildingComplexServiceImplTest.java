@@ -6,6 +6,7 @@ package com.flatmates.board.service;
 
 import com.flatmates.board.domain.entity.BuildingComplex;
 import com.flatmates.board.domain.service.BuildingComplexService;
+import com.flatmates.board.repository.SimpleBuildingComplexRepository;
 import java.util.Collection;
 import java.util.LinkedList;
 import org.junit.After;
@@ -21,7 +22,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * @author bakharzy
  */
 public class BuildingComplexServiceImplTest {
-    @Autowired
+//    @Autowired
     BuildingComplexService buildingService;
 
     public BuildingComplexServiceImplTest() {
@@ -37,6 +38,7 @@ public class BuildingComplexServiceImplTest {
 
     @Before
     public void setUp() {
+        buildingService = new BuildingComplexServiceImpl(new SimpleBuildingComplexRepository());
     }
 
     @After
@@ -50,20 +52,21 @@ public class BuildingComplexServiceImplTest {
     @Test
     public void testCreateBuildingComplex() {
         System.out.println("createBuildingComplexTest");
-        String id = buildingService.createBuildingComplex("ida");
-        System.out.println("salam");
+        String address = "ida albegin tie 1";
+        buildingService.removeAllBuildingComplexes();
+        assertTrue(buildingService.listAll().size() == 0);
+        String id = buildingService.createBuildingComplex(makeFakeBuildingComplex(address)); 
         Collection<BuildingComplex> actualList = new LinkedList<BuildingComplex>();
-        System.out.println("----id: " + id);
-        actualList = buildingService.listAll();
-        assertFalse(actualList.isEmpty());
+        actualList = buildingService.queryByAddress(address);
+        assertTrue(actualList.size() == 1);
     }
 
 //    @Test
 //    public void testDeleteBuildingComplex() {
-//        System.out.println("deleteBuildingComplex");
+//        System.out.println("removeBuildingComplex");
 //        BuildingComplex buildingComplex = null;
 //        BuildingComplexServiceImpl instance = new BuildingComplexServiceImpl();
-//        instance.deleteBuildingComplex(buildingComplex);
+//        instance.removeBuildingComplex(buildingComplex);
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
@@ -112,4 +115,11 @@ public class BuildingComplexServiceImplTest {
 //        fail("The test case is a prototype.");
 //        
 //    }
+    
+    private BuildingComplex makeFakeBuildingComplex(String address){
+        BuildingComplex building = new BuildingComplex();
+        building.setAddress(address);
+        
+        return building;
+    }
 }

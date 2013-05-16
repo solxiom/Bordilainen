@@ -8,25 +8,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class StickerTypeserviceimpl implements StickerTypeService{
-	@Autowired
-	StickerTypeRepository repo;
+public class StickerTypeserviceimpl implements StickerTypeService {
 
-	@Override
-	public String saveStickerType(StickerType type) {
-		repo.saveStickerType(type);
-		return type.getId();
-	}
+    @Autowired
+    StickerTypeRepository repo;
 
-	@Override
-	public void removeStickerType(StickerType type) {
-		repo.removeStickerType(type);		
-	}
+    public StickerTypeserviceimpl() {
+    }
 
-	@Override
-	public Collection<StickerType> findAll() {
-		return repo.findAll();
-	}
+    public StickerTypeserviceimpl(StickerTypeRepository repo) {
+        this.repo = repo;
+    }
 
+    @Override
+    public String saveStickerType(StickerType type) {
+        repo.saveStickerType(type);
+        return type.getId();
+    }
 
+    @Override
+    public void removeStickerType(StickerType type) {
+        repo.removeStickerType(type);
+    }
+
+    @Override
+    public Collection<StickerType> findAll() {
+        return repo.findAll();
+    }
 }

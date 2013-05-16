@@ -7,13 +7,15 @@ import java.util.Collection;
 
 public interface BuildingComplexService {
 
-		String createBuildingComplex(String address);
+		String createBuildingComplex(BuildingComplex building);
 		
-		void deleteBuildingComplex(BuildingComplex buildingComplex);
+		void removeBuildingComplex(BuildingComplex buildingComplex);
 		
 		Collection<BuildingComplex> queryByAddress(String address);
 		
 		void updateBuildingComplexAddress(String building_id,String address);
 		
 		Collection<BuildingComplex> listAll();
+                
+                void removeAllBuildingComplexes();
 }
