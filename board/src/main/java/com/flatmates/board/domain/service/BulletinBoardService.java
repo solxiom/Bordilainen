@@ -17,10 +17,16 @@ public interface BulletinBoardService {
 	Collection<Sticker> findAllStickers(String bulletin_id);
 		
 	void removeStickerFromBoard(Sticker sticker);
+        
+        void removeAllStickersFromBoard(String board_id);
 	
 	Collection<BulletinBoard> listAllBoards();
 	
 	BulletinBoard findBoardById(String board_id);
+        
+	void removeBoardById(String board_id);
+        
+        
 	
 	
 }

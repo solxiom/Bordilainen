@@ -13,7 +13,6 @@ import org.springframework.stereotype.Repository;
 public class SimpleCommentRepository implements CommentRepository{
 
 	
-	Collection<Sticker> stickerManager = new LinkedList<Sticker>();
 	Collection<Comment> commentManager = new LinkedList<Comment>();
 	
 	@Override

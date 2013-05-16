@@ -24,8 +24,9 @@ public class BuildingComplexRepositoryImpl implements BuildingComplexRepository{
 	}
 
 	@Override
-	public void removeBuildingComplex(BuildingComplex buildingComplex) {
-		dbManager.remove(buildingComplex);		
+	public String removeBuildingComplex(BuildingComplex buildingComplex) {
+		dbManager.remove(buildingComplex);
+                return buildingComplex.getId();
 	}
 
 	@Override

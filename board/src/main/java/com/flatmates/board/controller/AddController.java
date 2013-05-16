@@ -83,7 +83,7 @@ public class AddController {
     public @ResponseBody
     Collection<String> addNewBuilding(@PathVariable String address, WebRequest request) {
         Collection<String> log = new LinkedList<String>();
-        if (setandSaveBuilding(address)) {
+        if (setAndSaveBuilding(address)) {
             log.add("success!");
         } else {
             log.add("failed!");
@@ -91,7 +91,7 @@ public class AddController {
         return log;
     }
 
-    private boolean setandSaveBuilding(String address) {
+    private boolean setAndSaveBuilding(String address) {
         try {
             BuildingComplex building = new BuildingComplex();
             building.setAddress(address);

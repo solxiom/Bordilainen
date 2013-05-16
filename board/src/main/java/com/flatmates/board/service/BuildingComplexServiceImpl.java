@@ -58,4 +58,9 @@ public class BuildingComplexServiceImpl implements BuildingComplexService {
     public void removeAllBuildingComplexes() {
        repo.removeAll();
     }
+
+    @Override
+    public BuildingComplex findBuildingById(String building_id) {
+        return repo.findById(building_id);
+    }
 }

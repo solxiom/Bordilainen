@@ -6,6 +6,7 @@ import com.flatmates.board.domain.entity.Sticker;
 import com.flatmates.board.domain.repository.BulletinBoardRepository;
 import java.util.Collection;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.UUID;
 import org.springframework.stereotype.Repository;
 
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Repository;
 public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
 
 	Collection<BulletinBoard> bbmanager = new LinkedList<BulletinBoard>();
-	Collection<Sticker> stickermanager = new LinkedList<Sticker>();
+	Collection<Sticker> stickerManager = new LinkedList<Sticker>();
 	Collection<Comment> commentManager = new LinkedList<Comment>();
 	
 	@Override
@@ -46,13 +47,13 @@ public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
 				bb.addSticker(sticker);
 			}
 		}
-		stickermanager.add(sticker);
+		stickerManager.add(sticker);
 		
 	}
 
 	@Override
 	public Sticker findStickerById(String bulletin_id, String sticker_id) {
-		for(Sticker sticker: stickermanager ){
+		for(Sticker sticker: stickerManager ){
 			if(sticker.getId().equalsIgnoreCase(sticker_id) && 
 					sticker.getBulletin_id().equalsIgnoreCase(bulletin_id)){
 						return sticker;
@@ -65,7 +66,7 @@ public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
 	@Override
 	public Collection<Sticker> findAllStickers(String board_id) {
 		Collection<Sticker> wantedList = new LinkedList<Sticker>();
-		for(Sticker sticker: stickermanager ){
+		for(Sticker sticker: stickerManager ){
 			if (sticker.getBulletin_id().equalsIgnoreCase(board_id)){
 				wantedList.add(sticker);
 			}
@@ -87,7 +88,33 @@ public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
 				commentManager.remove(cm);
 			}
 		}
-		stickermanager.remove(sticker);
+		stickerManager.remove(sticker);
 	}
+
+    @Override
+    public void removeBoardById(String board_id) {
+        BulletinBoard[] boards = bbmanager.toArray(new BulletinBoard[bbmanager.size()]);
+        BulletinBoard toBeremoved = null;
+        for(BulletinBoard b : boards){
+            if(b.getId().equalsIgnoreCase(board_id)){
+                toBeremoved = b;
+            }
+        }
+        if(toBeremoved != null){
+            bbmanager.remove(toBeremoved);
+        }
+    }
+
+    @Override
+    public void removeAllStickersFromBoard(String board_id) {
+            Sticker[] sts = stickerManager.toArray(new Sticker[stickerManager.size()]);
+            List<Sticker> toBeRemoved = new LinkedList<Sticker>();
+            for(Sticker s : sts){
+                if(s.getBulletin_id().equalsIgnoreCase(board_id)){
+                    toBeRemoved.add(s);
+                }
+            }
+            stickerManager.removeAll(toBeRemoved);
+    }
 
 }

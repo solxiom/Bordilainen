@@ -61,4 +61,14 @@ public class BulletinBoardServiceImpl implements BulletinBoardService {
 
         return repo.findBoardById(board_id);
     }
+
+    @Override
+    public void removeBoardById(String board_id) {
+        repo.removeBoardById(board_id);
+    }
+
+    @Override
+    public void removeAllStickersFromBoard(String board_id) {
+        repo.removeAllStickersFromBoard(board_id);
+    }
 }

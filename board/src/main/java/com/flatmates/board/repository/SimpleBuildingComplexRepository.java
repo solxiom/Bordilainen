@@ -15,10 +15,7 @@ public class SimpleBuildingComplexRepository implements BuildingComplexRepositor
 
 	
 	
-	Collection<BuildingComplex> buildingComplexManager = new LinkedList<BuildingComplex>(); 
-	Collection<BulletinBoard> bulletinBoardManager = new LinkedList<BulletinBoard>();
-	Collection<Sticker> stickerManager = new LinkedList<Sticker>();
-	Collection<Comment> commentManager = new LinkedList<Comment>();
+	Collection<BuildingComplex> buildingComplexManager = new LinkedList<BuildingComplex>(); 	
 	
 	@Override
 	public String saveBuildingComplex(BuildingComplex building) {
@@ -29,27 +26,9 @@ public class SimpleBuildingComplexRepository implements BuildingComplexRepositor
 	}
 
 	@Override
-	public void removeBuildingComplex(BuildingComplex buildingComplex) {
-		String bbToDelete = "";
-		for(BulletinBoard bb : bulletinBoardManager){
-			if(bb.getBuilding_id().equalsIgnoreCase(buildingComplex.getId())){
-				bbToDelete = bb.getId();
-				bulletinBoardManager.remove(bb);
-			}
-		}
-		Collection<String> stickerIdsToDelete = new LinkedList<String>();
-		for(Sticker sticker : stickerManager){
-			if(sticker.getBulletin_id().equalsIgnoreCase(bbToDelete)){
-				stickerIdsToDelete.add(sticker.getId());
-				stickerManager.remove(sticker);
-			}
-		}
-		for(Comment cm : commentManager){
-			if(stickerIdsToDelete.contains(cm.getSticker_id())){
-				commentManager.remove(cm);
-			}
-		}
+	public String removeBuildingComplex(BuildingComplex buildingComplex) {	
 		buildingComplexManager.remove(buildingComplex);
+                return buildingComplex.getId();
 		
 	}
 

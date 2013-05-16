@@ -8,7 +8,7 @@ public interface BuildingComplexRepository {
 
 		String saveBuildingComplex(BuildingComplex building);
 		
-		void removeBuildingComplex(BuildingComplex buildingComplex);
+		String removeBuildingComplex(BuildingComplex buildingComplex);
 		
 		Collection<BuildingComplex> queryByAddress(String address);
 		
