@@ -1,11 +1,11 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package com.flatmates.board.controller;
 
-import com.flatmates.board.domain.entity.BuildingComplex;
-import com.flatmates.board.domain.entity.Comment;
 import com.flatmates.board.domain.entity.Sticker;
-import com.flatmates.board.domain.service.BuildingComplexService;
 import com.flatmates.board.domain.service.BulletinBoardService;
-import com.flatmates.board.domain.service.CommentService;
 import java.util.Collection;
 import java.util.LinkedList;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,44 +16,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+/**
+ *
+ * @author kavansol
+ */
 @Controller
-public class BBController {
-
-	@Autowired
+@RequestMapping(value ="/add")
+public class AddController {
+    
+    @Autowired
 	private BulletinBoardService boardService;
-	@Autowired
-	private BuildingComplexService buildingService;
-	@Autowired
-	private CommentService commentService;
-        
-        
-
-	@RequestMapping(value = "/list" ,method = RequestMethod.GET)
+    
+    @RequestMapping(method = RequestMethod.GET)
 	public @ResponseBody String listRoot() {
-		return "what do you want to list?";
+		return "what do you want to add?";
 	}
-	@RequestMapping(value = "/list/stickers/{board_id}" ,method = RequestMethod.GET)
-	public @ResponseBody Collection<Sticker> listBoardStickers(@PathVariable String board_id) {
-		return boardService.findAllStickers(board_id);
-	}
-	@RequestMapping(value = "/list/buildings" ,method = RequestMethod.GET)
-	public @ResponseBody Collection<BuildingComplex> listBuildingComplex(){
-            Collection<BuildingComplex> res = buildingService.listAll();
-            BuildingComplex nx = new BuildingComplex();
-            nx.setId("232434343");
-            nx.setAddress("Ida Albergin tie 1");
-            res.add(nx);           
-		return res;
-	}
-	@RequestMapping(value = "/list/comments/sticker_id" ,method = RequestMethod.GET)
-	public @ResponseBody Collection<Comment> listStickerComments(@PathVariable String sticker_id){
-		return commentService.findByStickerId(sticker_id);
-	}
-	@RequestMapping(value = "/list/types" ,method = RequestMethod.GET)
-	public @ResponseBody Collection<Comment> listStickerTypes(@PathVariable String sticker_id){
-		return commentService.findByStickerId(sticker_id);
-	}
-	@RequestMapping(value = "/add/sticker/{board_id}" ,method = RequestMethod.POST)
+    @RequestMapping(value = "/sticker/{board_id}" ,method = RequestMethod.POST)
 	public @ResponseBody Collection<String> addStickerToBoard(@PathVariable String board_id, WebRequest request){
 		Collection<String> errors = new LinkedList<String>();
 		Sticker sticker = new Sticker();
@@ -98,6 +76,4 @@ public class BBController {
 			errors.add("type_id must not be null");
 		}				
 	}
-	
-	
 }
