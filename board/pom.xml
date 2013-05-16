@@ -18,6 +18,14 @@
     </properties>
 
     <dependencies>
+        
+        <!-- jackson -->
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-mapper-asl</artifactId>
+            <version>1.9.12</version>
+        </dependency>
+            
         <!-- spring data-->
         <dependency>
             <groupId>org.springframework.data</groupId>
