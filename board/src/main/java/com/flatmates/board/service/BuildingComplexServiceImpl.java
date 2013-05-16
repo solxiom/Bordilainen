@@ -8,6 +8,7 @@ import java.util.UUID;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -25,7 +26,7 @@ public class BuildingComplexServiceImpl implements BuildingComplexService {
         building.setAddress(address);
         building.setId(UUID.randomUUID().toString());
         if(repo == null){
-               System.out.println("454354354");
+               System.out.println("repo is null");
         }
         repo.saveBuildingComplex(building);
         return building.getId();
