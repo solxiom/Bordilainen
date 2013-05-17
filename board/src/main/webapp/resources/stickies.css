@@ -1,0 +1,129 @@
+/* 
+    Document   : stickies
+    Created on : 14-May-2013, 20:23:41
+    Author     : nikkhouy
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.sticker{
+
+    box-shadow:10px 10px 7px rgba(0,0,0,.7);
+    margin-top: 20px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    width:300px;
+    height:200px;
+    background-color: beige;
+    border: solid black 1px;
+    padding: 2px;
+    overflow-style: auto;
+    display:inline-block;
+    font-family:"Reenie Beanie",arial,sans-serif;
+    font-size:100%;
+    overflow:hidden;
+    padding:3em;
+    -webkit-transform: rotate(-5deg);
+    -o-transform: rotate(-5deg);
+    -moz-transform:rotate(-5deg);
+}
+del.sticker{
+    
+    
+    width:0;
+    height:0;
+    
+}
+.sticker:nth-child(even){
+    -o-transform:rotate(4deg);
+    -webkit-transform:rotate(4deg);
+    -moz-transform:rotate(4deg);
+    position:relative;
+    top:5px;
+    background:#cfc;
+}
+.sticker:nth-child(3n){
+    -o-transform:rotate(-3deg);
+    -webkit-transform:rotate(-3deg);
+    -moz-transform:rotate(-3deg);
+    position:relative;
+    top:-5px;
+    background:#ccf;
+}
+.sticker:nth-child(5n) {
+    -o-transform:rotate(5deg);
+    -webkit-transform:rotate(5deg);
+    -moz-transform:rotate(5deg);
+    position:relative;
+    top:-10px;
+}
+.sticker:hover, .sticker:focus{
+    box-shadow:10px 10px 7px rgba(0,0,0,.7);
+    -moz-box-shadow:10px 10px 7px rgba(0,0,0,.7);
+    -webkit-box-shadow: 10px 10px 7px rgba(0,0,0,.7);
+    -webkit-transform: scale(1.25);
+    -moz-transform: scale(1.25);
+    -o-transform: scale(1.25);
+    position:relative;
+    z-index:5;
+}
+
+.reportText {
+    position: fixed;
+    bottom: 5px;
+    right:15px;
+ }
+
+.link {
+    color:#3399FF;
+    text-decoration: none;
+}
+.link:hover {
+    color:#FF0000;
+}
+
+.delSticker{
+    position: fixed;
+    top: 5px;
+    right:15px;
+ }
+ 
+ .commOnSticker {
+     position: fixed;
+     bottom: 5px;
+     left: 20px; 
+ }
+ 
+ div.hidden
+{
+   visibility: hidden;
+}
+
+
+
+
+.commentSticker{
+
+    box-shadow:10px 10px 7px rgba(0,0,0,.7);
+    margin-right: auto;
+    margin-left: auto;
+    width:600px;
+    height:600px;
+    background-color: beige;
+    border: solid black 1px;
+    padding: 2px;
+    overflow-style: auto;
+    
+    font-family:"Reenie Beanie",arial,sans-serif;
+    font-size:100%;
+    overflow:hidden;
+    padding:3em;
+    z-index: 20;
+    alignment-adjust: central;
+    
+    
+}
+
+
+
+

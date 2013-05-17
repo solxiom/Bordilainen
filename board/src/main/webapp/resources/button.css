@@ -1,0 +1,52 @@
+/* 
+    Document   : button
+    Created on : 14-May-2013, 15:46:44
+    Author     : nikkhouy
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.button { background: #d11717;
+          font-weight: bold;
+          border: 2px solid #eee;
+          height: 53px;
+          width: 70px;
+          margin: 50px 0 0 50px;
+          overflow: hidden;
+          display: block;
+          text-align: center;
+          line-height: 38px;
+          -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          border-radius: 10px;
+          font-size:19pt;
+
+          /*Gradient*/
+          background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+          background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+          background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+          background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+          background-image: linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.2));
+
+          /*Shadow*/
+          -webkit-box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
+          -moz-box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
+          -webkit-border-radius: 10px;
+          -moz-border-radius: 10px;
+          border-radius: 10px;
+          -webkit-transition: All 0.5s ease;
+          -moz-transition: All 0.5s ease;
+          -o-transition: All 0.5s ease;
+          -ms-transition: All 0.5s ease;
+          transition: All 0.5s ease;
+          -webkit-transition: All 0.5s ease;
+          -moz-transition: All 0.5s ease;
+          -o-transition: All 0.5s ease;
+          -ms-transition: All 0.5s ease;
+          transition: All 0.5s ease;
+}
+.button:hover{
+    background-color: #ff3434;
+}
+

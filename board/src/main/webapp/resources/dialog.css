@@ -1,0 +1,10 @@
+/* 
+    Document   : dialog
+    Created on : 15-May-2013, 18:45:48
+    Author     : nikkhouy
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.ui-dialog .ui-state-error { padding: .3em; }
+.validateTips { border: 1px solid transparent; padding: 0.3em; }
