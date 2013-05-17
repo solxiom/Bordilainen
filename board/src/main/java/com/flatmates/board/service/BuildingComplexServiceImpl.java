@@ -18,7 +18,6 @@ public class BuildingComplexServiceImpl implements BuildingComplexService {
     BuildingComplexRepository repo;
     
     public BuildingComplexServiceImpl(){
-        this.repo = repo;
     }
     public BuildingComplexServiceImpl(BuildingComplexRepository repo){
         this.repo = repo;
