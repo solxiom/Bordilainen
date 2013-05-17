@@ -16,7 +16,7 @@ public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
 
 	Collection<BulletinBoard> bbmanager = new LinkedList<BulletinBoard>();
 	Collection<Sticker> stickerManager = new LinkedList<Sticker>();
-	Collection<Comment> commentManager = new LinkedList<Comment>();
+
 	
 	@Override
 	public String saveBulletinBoard(BulletinBoard board) {
@@ -82,12 +82,7 @@ public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
 				bb.getStickers().remove(sticker);
 			}
 		}
-		//removing comments related to sticker
-		for(Comment cm : commentManager){
-			if(cm.getSticker_id().equalsIgnoreCase(sticker.getId())){
-				commentManager.remove(cm);
-			}
-		}
+		
 		stickerManager.remove(sticker);
 	}
 
@@ -114,7 +109,11 @@ public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
                     toBeRemoved.add(s);
                 }
             }
-            stickerManager.removeAll(toBeRemoved);
+            for(Sticker s: toBeRemoved){
+                stickerManager.remove(s);
+            }
+            stickerManager.clear();
+         
     }
 
 }
