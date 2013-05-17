@@ -1,6 +1,7 @@
 package com.flatmates.board.controller;
 
 import com.flatmates.board.domain.entity.BuildingComplex;
+import com.flatmates.board.domain.entity.BulletinBoard;
 import com.flatmates.board.domain.entity.Comment;
 import com.flatmates.board.domain.entity.Sticker;
 import com.flatmates.board.domain.service.BuildingComplexService;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.context.request.WebRequest;
 
 @Controller
 @RequestMapping(value ="/list")
@@ -34,11 +34,7 @@ public class ListController {
 	public @ResponseBody String listRoot() {
 		return "what do you want to list?";
 	}
-	@RequestMapping(value = "/stickers/{board_id}" ,method = RequestMethod.GET)
-	public @ResponseBody Collection<Sticker> listBoardStickers(@PathVariable String board_id) {
-		return boardService.findAllStickers(board_id);
-	}
-	@RequestMapping(value = "/buildings" ,method = RequestMethod.GET)
+        @RequestMapping(value = "/buildings" ,method = RequestMethod.GET)
 	public @ResponseBody Collection<BuildingComplex> listBuildingComplex(){
             Collection<BuildingComplex> res = buildingService.listAll();
             BuildingComplex nx = new BuildingComplex();
@@ -47,6 +43,17 @@ public class ListController {
             res.add(nx);           
 		return res;
 	}
+	@RequestMapping(value = "/stickers/{building_id}" ,method = RequestMethod.GET)
+	public @ResponseBody Collection<Sticker> listBuildingStickers(@PathVariable String building_id) {
+                Collection<BulletinBoard> boards = boardService.listAllBoards();
+                for(BulletinBoard board : boards){
+                    if(board.getBuilding_id().equalsIgnoreCase(building_id)){
+                        return boardService.findAllStickers(board.getId());
+                    }
+                }
+                
+		return new LinkedList<Sticker>();
+	}      
 	@RequestMapping(value = "/comments/sticker_id" ,method = RequestMethod.GET)
 	public @ResponseBody Collection<Comment> listStickerComments(@PathVariable String sticker_id){
 		return commentService.findByStickerId(sticker_id);

@@ -42,16 +42,22 @@ public class AddController {
     String listRoot() {
         return "what do you want to add?";
     }
-
-    @RequestMapping(value = "/sticker/{board_id}", method = RequestMethod.POST)
+    /**
+     * 
+     * @param building_id
+     * @param request
+     * @return 
+     */
+    @RequestMapping(value = "/sticker/{building_id}", method = RequestMethod.POST)
     public @ResponseBody
-    Collection<String> addStickerToBoard(@PathVariable String board_id, WebRequest request) {
-        Collection<String> log = new LinkedList<String>();
+    Collection<String> addStickerToBuildingBoard(@PathVariable String building_id, WebRequest request) {
+        Collection<String> log = new LinkedList<String>(); 
+        String boardId = findBoardIdByBuilding(building_id);
         Sticker sticker = new Sticker();
-        sticker.setBulletin_id(board_id);
+        sticker.setBulletin_id(boardId);
         checkAndFillSticker(log, request, sticker);
         if (log.size() == 0) {
-            boardService.addStickerToBoard(board_id, sticker);
+            boardService.addStickerToBoard(boardId, sticker);
             log.add("success!");
         }
         return log;
@@ -73,7 +79,7 @@ public class AddController {
 
     @RequestMapping(value = "/report/{sticker_id}", method = RequestMethod.POST)
     public @ResponseBody
-    Collection<String> addReportToSticker(@PathVariable String sticker_id, WebRequest request) {
+    Collection<String> addReportToSticker(@PathVariable String sticker_id) {
         Collection<String> log = new LinkedList<String>();
         log.add("This feature is not supported yet!");
         return log;
@@ -90,7 +96,15 @@ public class AddController {
         }
         return log;
     }
-
+    private String findBoardIdByBuilding(String building_id){
+         Collection<BulletinBoard> boards =  boardService.listAllBoards();
+        for(BulletinBoard board : boards){
+            if(board.getBuilding_id().equalsIgnoreCase(building_id)){
+                return board.getId();
+            }
+        }
+        return null;
+    }
     private boolean setAndSaveBuilding(String address) {
         try {
             BuildingComplex building = new BuildingComplex();
