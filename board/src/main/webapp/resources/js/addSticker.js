@@ -19,16 +19,17 @@ receivedInfo = {
 $(document).ready(function() {
     console.log("Document is ready");
     try {
-
-        listBuildingStickers('7890');
-        $("#addButton").click(addStickers);
+        listBuildings();
         
-
+        //$("#dialogMain").load("resources/html/dialog.html");
+        //listBuildingStickers('7890');
+        $("#addButton").click(addStickers);
     } catch (e) {
-        console.log("code emad rid: ya loadPreviou... ya inke addStickers ride sharhe dastan: " );
+        console.log("code emad rid: ya loadPreviou... ya inke addStickers" );
     }
 
 });
+
 
 function addStickers() {
     //moved
@@ -36,14 +37,16 @@ function addStickers() {
         try {
             $("#dialogMain").load("resources/html/dialog.html");
             showDialog();
-              $("#dialog").dialog("open");
+            $("#dialog").dialog("open");
         } catch (e) {
             console.log("code javad rid: showDialog() ride sharhe dastan: ");
         }
         
-        //addSticker();
+    //addSticker();
     });
 }
+
+
 
 
 stickerId = 1;
@@ -51,10 +54,10 @@ function createSticker(jsonNewSticker) {     // receives json from dialogJS.js
 
 
     str = "<b>Email:</b> " + jsonNewSticker.email +
-            "</br> <b>Title:</b> " + jsonNewSticker.title +
-            "</br> <b>Summary:</b> " + jsonNewSticker.summary +
-            "</br> <b>Description:</b> " + jsonNewSticker.description +
-            "</br> <b>Entry expires: </b>" + jsonNewSticker.expiration_date;
+    "</br> <b>Title:</b> " + jsonNewSticker.title +
+    "</br> <b>Summary:</b> " + jsonNewSticker.summary +
+    "</br> <b>Description:</b> " + jsonNewSticker.description +
+    "</br> <b>Entry expires: </b>" + jsonNewSticker.expiration_date;
 
     $("#mainForSticks").prepend("<div id= seq-" + stickerId + " ></div>"); // Received Information from the user
     $("#seq-" + stickerId).attr("class", "sticker");
@@ -80,7 +83,11 @@ function reportCounter(ID) {
     //console.log(reportCount);
     console.log(reportCount);
     if (reportCount == 5) {
-        deleteSticker(ID)
+        try{
+            deleteSticker(ID)
+        }catch (e){
+            console.log("Could not use deleteSticker()")
+        }
     }
 }
 

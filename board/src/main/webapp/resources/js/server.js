@@ -8,7 +8,7 @@
 
 function listBuildings() {
     $.getJSON('/board/list/buildings', function(data) {
-        putBuldingsDataInUi(data);
+        loadBuildings(data);
     });
 //    $.ajax({
 //        type: "GET",
@@ -19,12 +19,7 @@ function listBuildings() {
 //    });
 }
 //--- put below method to somewhere else
-function putBuldingsDataInUi(data) {
 
-    for (var i = 0; i < data.length; i++) {
-        console.log("osoitelainen: " + data[i].address + " id "+data[i].id);
-    }
-}
 
 function listBuildingStickers(buildingId) {
     $.getJSON('/board/list/stickers/' + buildingId, function(data) {
