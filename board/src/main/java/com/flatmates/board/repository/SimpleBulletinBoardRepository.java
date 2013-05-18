@@ -20,7 +20,9 @@ public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
 	
 	@Override
 	public String saveBulletinBoard(BulletinBoard board) {
-		board.setId(UUID.randomUUID().toString());
+            String board_id = UUID.randomUUID().toString();
+            board_id = board_id.replace("-", "xxx");
+		board.setId(board_id);
 		bbmanager.add(board);
 		return board.getId();
 	}

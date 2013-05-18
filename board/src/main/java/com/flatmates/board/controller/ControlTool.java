@@ -41,9 +41,7 @@ public class ControlTool {
         addFewFakeStickerToTheCollection(sts);
         for(Sticker st :sts){
             service.addStickerToBoard(board_id, st);
-            System.out.println("Board id  " + st.getBulletin_id());
-            System.out.println("Sticker title:" + st.getTitle());
-            System.out.println("Sticker id:  " + st.getId());
+          
         }
     }
     public static void putFakeBuildingsToService(BuildingComplexService service){
