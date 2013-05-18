@@ -8,10 +8,10 @@
 
 function listBuildings() {
     $.getJSON('/board/list/buildings', function(data) {
-        loadBuildings(data);
+        addBuildingsToCombo(data);
     });
 }
-//--- put below method to somewhere else
+
 
 
 function listBuildingStickers(buildingId) {
@@ -19,18 +19,15 @@ function listBuildingStickers(buildingId) {
         putStickersDataInUi(data);
     });
 }
-//--- put below method to somewhere else
-function putStickersDataInUi(data) {
-    for (var i = 0; i < data.length; i++) {
-        console.log(" sticker-id" + data[i].id);
-        console.log(" email: " + data[i].email);
-        console.log(" password: " + data[i].password);
-    }
-    loadPreviousStickers(data);
-}
-function listStickersComments(stickerId) {
 
+
+function listStickersComments(stickerId) {
+    $.getJSON('/board/list/stickers/' + stickerId, function(data) {
+        showStickerDataWithComments(data);
+    });
 }
+
+
 
 function listStickersTypes() {
 

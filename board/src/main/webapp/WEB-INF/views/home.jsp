@@ -18,7 +18,7 @@
         <script src="resources/js/dialogJS.js"></script>
         <script src="resources/js/previousStickers.js"></script>
         <script src="resources/js/addSticker.js"></script>
-        <script src="resources/js/building.js"></script>
+        <script src="resources/js/callbacks.js"></script>
         <script src="resources/js/commenting.js"></script>
         <script src="resources/js/server.js"></script>
 

@@ -16,21 +16,6 @@ receivedInfo = {
     typeId: 1
 };
 
-$(document).ready(function() {
-    console.log("Document is ready");
-    try {
-        listBuildings();
-        
-        //$("#dialogMain").load("resources/html/dialog.html");
-        //listBuildingStickers('7890');
-        $("#addButton").click(addStickers);
-    } catch (e) {
-        console.log("code emad rid: ya loadPreviou... ya inke addStickers" );
-    }
-
-});
-
-
 function addStickers() {
     //moved
     $("button").click(function() {
