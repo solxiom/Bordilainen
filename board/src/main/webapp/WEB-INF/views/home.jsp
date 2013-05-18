@@ -10,22 +10,22 @@
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
-        <link rel="stylesheet" type="text/css" href="resources/button.css" />
-        <link rel="stylesheet" type="text/css" href="resources/stickies.css" />
-        <link rel="stylesheet" type="text/css" href="resources/dialog.css" />
+        <link rel="stylesheet" type="text/css" href="resources/css/button.css" />
+        <link rel="stylesheet" type="text/css" href="resources/css/stickies.css" />
+        <link rel="stylesheet" type="text/css" href="resources/css/dialog.css" />
 
-        <script src="resources/dialogJS.js"></script>
-        <script src="resources/previousStickers.js"></script>
-        <script src="resources/addSticker.js"></script>
-        <script src="resources/building.js"></script>
-        <script src="resources/commenting.js"></script>
+        <script src="resources/js/dialogJS.js"></script>
+        <script src="resources/js/previousStickers.js"></script>
+        <script src="resources/js/addSticker.js"></script>
+        <script src="resources/js/building.js"></script>
+        <script src="resources/js/commenting.js"></script>
 
         <title>Bulletin Board</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
 
 
-    <body background="resources/BulletinBoard.jpg">
+    <body background="resources/img/BulletinBoard.jpg">
         <table width="100%" cellspacing="0">
 
             <tr>
@@ -61,49 +61,7 @@
 
 
 
-        <div id="dialog"  title="Add a Sticker">
-            <p class="validateTips"> <font size="4"> All fields are required except the summary.</font> </p>
-            <table>
-
-                <tr>
-                    <td>Type of the Sticker*:</td>
-                    <td>
-                        <font size="3">
-                        <select id="typeId"></select>
-                        </font>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Email Address*:</td>
-                    <td> <input type="text" id="email"> </td>
-                </tr>
-                <tr>
-                    <td>Set a Password (For This Sticker)*:</td>
-                    <td> <input type="password" id="pwd"> </td>
-                </tr>
-                <tr>
-                    <td>Retype the Password*:</td>
-                    <td> <input type="password" id="pwdConf"> </td>
-                </tr>
-                <tr>
-                    <td>Title*:</td>
-                    <td> <input type="text" id="title"> </td>
-                </tr>
-                <tr>
-                    <td>Summary:</td>
-                    <td> <textarea id="summary" rows="3" cols="20"></textarea> </td>
-                </tr>
-                <tr>
-                    <td>Full Description*:</td>
-                    <td> <textarea id="desc" rows="5" cols="20"></textarea> </td>
-                </tr>
-                <tr>
-                    <td>Validity duration (days)*:</td>
-                    <td> <input type="text" id="expiration"> </td>
-                </tr>
-            </table>
-
-        </div>
+        <div id="dialogMain"> </div>
 
 
         <div id="Comm"  title="Add Comment" class="hidden">
