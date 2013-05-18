@@ -76,6 +76,7 @@ public class BuildingComplexRepositoryTest {
 	public void testListAll() {
 		BuildingComplex expected = createBuildingComplex();
 		BuildingComplex expected2 = createBuildingComplex();
+                expected2.setAddress("ida 2");
 		String id = buildingRepo.saveBuildingComplex(expected);
 		String id2 = buildingRepo.saveBuildingComplex(expected2);
 		Collection<BuildingComplex> actualList = new LinkedList<BuildingComplex>();
