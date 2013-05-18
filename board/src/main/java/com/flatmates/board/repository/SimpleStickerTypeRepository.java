@@ -13,6 +13,7 @@ public class SimpleStickerTypeRepository implements StickerTypeRepository {
 
 	
 	Collection<StickerType> stManager = new LinkedList<StickerType>();
+//	Collection<StickerType> stManager = RepoTool.STICKER_TYPE_REPO;
 	
 	@Override
 	public String saveStickerType(StickerType type) {

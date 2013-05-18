@@ -10,13 +10,6 @@ function listBuildings() {
     $.getJSON('/board/list/buildings', function(data) {
         putBuldingsDataInUi(data);
     });
-//    $.ajax({
-//        type: "GET",
-//        url: url,
-//        data: data,
-//        success: success,
-//        dataType: dataType
-//    });
 }
 //--- put below method to somewhere else
 function putBuldingsDataInUi(data) {

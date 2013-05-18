@@ -15,13 +15,15 @@ import org.springframework.stereotype.Repository;
 public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
 
 	Collection<BulletinBoard> bbmanager = new LinkedList<BulletinBoard>();
+//	Collection<BulletinBoard> bbmanager = RepoTool.BOARD_REPO;
 	Collection<Sticker> stickerManager = new LinkedList<Sticker>();
+//	Collection<Sticker> stickerManager = RepoTool.STICKER_REPO;
 
 	
 	@Override
 	public String saveBulletinBoard(BulletinBoard board) {
             String board_id = UUID.randomUUID().toString();
-            board_id = board_id.replace("-", "xxx");
+            board_id = board_id.replace('-', 'x');
 		board.setId(board_id);
 		bbmanager.add(board);
 		return board.getId();
@@ -43,7 +45,8 @@ public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
 	@Override
 	public void addStickerToBoard(String board_id, Sticker sticker) {
 		sticker.setBulletin_id(board_id);
-		sticker.setId(UUID.randomUUID().toString());
+                String sticker_id = UUID.randomUUID().toString().replace('-', 'x');
+		sticker.setId(sticker_id);
 		for(BulletinBoard bb : bbmanager){
 			if(bb.getId().equalsIgnoreCase(board_id)){
 				bb.addSticker(sticker);
@@ -114,7 +117,7 @@ public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
             for(Sticker s: toBeRemoved){
                 stickerManager.remove(s);
             }
-            stickerManager.clear();
+          
          
     }
 

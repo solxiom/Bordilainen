@@ -14,11 +14,12 @@ import org.springframework.stereotype.Repository;
 public class SimpleBuildingComplexRepository implements BuildingComplexRepository {
 
     Collection<BuildingComplex> buildingComplexManager = new LinkedList<BuildingComplex>();
+//    Collection<BuildingComplex> buildingComplexManager = RepoTool.BUILDING_REPO;
 
     @Override
     public String saveBuildingComplex(BuildingComplex building) {
 
-        building.setId(UUID.randomUUID().toString());
+        building.setId(UUID.randomUUID().toString().replace('-', 'x'));
         if (!RepoTool.buildingExistInRepo(building, this)) {
             buildingComplexManager.add(building);
             return building.getId();
