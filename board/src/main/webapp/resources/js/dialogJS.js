@@ -32,7 +32,7 @@ function showDialog() {
             allFields.val("").removeClass("ui-state-error");
         }
     });
-    $("#dialog").dialog("open");
+  
 
 
 }

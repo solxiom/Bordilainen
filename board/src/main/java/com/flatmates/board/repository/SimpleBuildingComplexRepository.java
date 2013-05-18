@@ -13,64 +13,65 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class SimpleBuildingComplexRepository implements BuildingComplexRepository {
 
-	
-	
-	Collection<BuildingComplex> buildingComplexManager = new LinkedList<BuildingComplex>(); 	
-	
-	@Override
-	public String saveBuildingComplex(BuildingComplex building) {
-		
-		building.setId(UUID.randomUUID().toString());
-		buildingComplexManager.add(building);
-		return building.getId();
-	}
+    Collection<BuildingComplex> buildingComplexManager = new LinkedList<BuildingComplex>();
 
-	@Override
-	public String removeBuildingComplex(BuildingComplex buildingComplex) {	
-		buildingComplexManager.remove(buildingComplex);
-                return buildingComplex.getId();
-		
-	}
+    @Override
+    public String saveBuildingComplex(BuildingComplex building) {
 
-	@Override
-	public Collection<BuildingComplex> queryByAddress(String address) {
-		Collection<BuildingComplex> list = new LinkedList<BuildingComplex>();
-		for(BuildingComplex bc : buildingComplexManager ){
-			if(bc.getAddress().equalsIgnoreCase(address)){
-				list.add(bc);
-			}
-		}
-		return list;
-	}
+        building.setId(UUID.randomUUID().toString());
+        if (!RepoTool.buildingExistInRepo(building, this)) {
+            buildingComplexManager.add(building);
+            return building.getId();
+        }
+        return "Building already exist!";
+        
+    }
 
-	@Override
-	public BuildingComplex findById(String id) {
-		for(BuildingComplex bc : buildingComplexManager ){
-			if(bc.getId().equalsIgnoreCase(id)){ 
-					return bc;
-			}
-		}
-		return null;
-	}
+    @Override
+    public String removeBuildingComplex(BuildingComplex buildingComplex) {
+        buildingComplexManager.remove(buildingComplex);
+        return buildingComplex.getId();
 
-	@Override
-	public void updateBuildingComplexAddress(String building_id, String address) {
-		for(BuildingComplex bc : buildingComplexManager ){
-			if(bc.getId().equalsIgnoreCase(building_id)){
-				bc.setAddress(address);
-			}
-		}
-	}
+    }
 
-	@Override
-	public Collection<BuildingComplex> listAll() {
-		return buildingComplexManager;
-	}
+    @Override
+    public Collection<BuildingComplex> queryByAddress(String address) {
+        Collection<BuildingComplex> list = new LinkedList<BuildingComplex>();
+        for (BuildingComplex bc : buildingComplexManager) {
+            if (bc.getAddress().equalsIgnoreCase(address)) {
+                list.add(bc);
+            }
+        }
+        return list;
+    }
 
-	@Override
-	public void removeAll() {
-		buildingComplexManager.clear();
+    @Override
+    public BuildingComplex findById(String id) {
+        for (BuildingComplex bc : buildingComplexManager) {
+            if (bc.getId().equalsIgnoreCase(id)) {
+                return bc;
+            }
+        }
+        return null;
+    }
 
-	}
+    @Override
+    public void updateBuildingComplexAddress(String building_id, String address) {
+        for (BuildingComplex bc : buildingComplexManager) {
+            if (bc.getId().equalsIgnoreCase(building_id)) {
+                bc.setAddress(address);
+            }
+        }
+    }
 
+    @Override
+    public Collection<BuildingComplex> listAll() {
+        return buildingComplexManager;
+    }
+
+    @Override
+    public void removeAll() {
+        buildingComplexManager.clear();
+
+    }
 }

@@ -20,12 +20,12 @@ $(document).ready(function() {
     console.log("Document is ready");
     try {
 
-        loadPreviousStickers();
+        listBuildingStickers('7890');
         $("#addButton").click(addStickers);
         
 
     } catch (e) {
-        console.log("code emad rid: ya loadPreviou... ya inke addStickers ride sharhe dastan: " + e.message());
+        console.log("code emad rid: ya loadPreviou... ya inke addStickers ride sharhe dastan: " );
     }
 
 });
@@ -38,7 +38,7 @@ function addStickers() {
             showDialog();
               $("#dialog").dialog("open");
         } catch (e) {
-            console.log("code javad rid: showDialog() ride sharhe dastan: " + e.message());
+            console.log("code javad rid: showDialog() ride sharhe dastan: ");
         }
         
         //addSticker();
