@@ -26,8 +26,8 @@ public class BulletinBoardRepositoryTest {
         String buildingId = "some id";
         BulletinBoard expected = createBulletinBoard();
         assertEquals(0, boardRepo.listAllBoards().size());
-        String id = boardRepo.saveBulletinBoard(expected);
-        BulletinBoard actual = boardRepo.findBoardById(id);
+        String board_id = boardRepo.saveBulletinBoard(expected);
+        BulletinBoard actual = boardRepo.findBoardById(board_id);
         assertEquals(1, boardRepo.listAllBoards().size());
         assertNotNull(expected.getBuilding_id());
         assertEquals(expected.getBuilding_id(), actual.getBuilding_id());
@@ -67,10 +67,10 @@ public class BulletinBoardRepositoryTest {
         BulletinBoard expected2 = createBulletinBoard();
         expected.setBuilding_id(buildingId);
         expected2.setBuilding_id(buildingId);
-        String id = boardRepo.saveBulletinBoard(expected);
-        String id2 = boardRepo.saveBulletinBoard(expected2);
-        BulletinBoard actual = boardRepo.findBoardById(id);
-        assertNull(id2);
+        String board_id = boardRepo.saveBulletinBoard(expected);
+        String board_id2 = boardRepo.saveBulletinBoard(expected2);
+        BulletinBoard actual = boardRepo.findBoardById(board_id);
+        assertNull(board_id2);
         assertEquals(1, boardRepo.listAllBoards().size());
         assertNotNull(expected.getBuilding_id());
         assertEquals(expected.getBuilding_id(), actual.getBuilding_id());
@@ -86,11 +86,11 @@ public class BulletinBoardRepositoryTest {
         BulletinBoard expected = createBulletinBoard();
         expected.setBuilding_id(buildingId);
         String expectedBuildingId = expected.getBuilding_id();
-        String id = boardRepo.saveBulletinBoard(expected);
+        String board_id = boardRepo.saveBulletinBoard(expected);
         assertEquals(1, boardRepo.listAllBoards().size());
         BulletinBoard actual = (BulletinBoard) boardRepo.listAllBoards().toArray()[0];
         assertEquals(expectedBuildingId, actual.getBuilding_id());
-        boardRepo.removeBoardById(id);
+        boardRepo.removeBoardById(board_id);
         assertEquals(0, boardRepo.listAllBoards().size());
     }
 
@@ -106,9 +106,9 @@ public class BulletinBoardRepositoryTest {
         expected2.setBuilding_id(someBuildingId);
         expected.setId(expectedId);
         assertNull(boardRepo.findBoardById(expectedId));
-        String id = boardRepo.saveBulletinBoard(expected);
-        String id2 = boardRepo.saveBulletinBoard(expected2);
-        BulletinBoard foundBoard = boardRepo.findBoardById(id);
+        String board_id = boardRepo.saveBulletinBoard(expected);
+        String board_id2 = boardRepo.saveBulletinBoard(expected2);
+        BulletinBoard foundBoard = boardRepo.findBoardById(board_id);
         assertNotNull(foundBoard);
         assertEquals(expected.getBuilding_id(), foundBoard.getBuilding_id());
         assertNotSame(expected2.getBuilding_id(), foundBoard.getBuilding_id());
@@ -165,9 +165,9 @@ public class BulletinBoardRepositoryTest {
         BulletinBoard expected = createBulletinBoard();
         expected.setBuilding_id(buildingId);
         Sticker sticker = createSticker();
-        String id = boardRepo.saveBulletinBoard(expected);
-        boardRepo.addStickerToBoard(id, sticker);
-        Sticker actual = boardRepo.findStickerById(id, sticker.getId());
+        String board_id = boardRepo.saveBulletinBoard(expected);
+        boardRepo.addStickerToBoard(board_id, sticker);
+        Sticker actual = boardRepo.findStickerById(board_id, sticker.getId());
         assertEquals(sticker.getPassword(), actual.getPassword());
         assertEquals(sticker.getBulletin_id(), actual.getBulletin_id());
 
@@ -181,11 +181,11 @@ public class BulletinBoardRepositoryTest {
         expected.setBuilding_id(buildingId);
         Sticker sticker = createSticker();
         Sticker sticker2 = createSticker();
-        String id = boardRepo.saveBulletinBoard(expected);
-        boardRepo.addStickerToBoard(id, sticker);
-        boardRepo.addStickerToBoard(id, sticker2);
-        assertEquals(2, boardRepo.findAllStickers(id).size());
-        assertEquals(2, boardRepo.findBoardById(id).getStickers().size());
+        String board_id = boardRepo.saveBulletinBoard(expected);
+        boardRepo.addStickerToBoard(board_id, sticker);
+        boardRepo.addStickerToBoard(board_id, sticker2);
+        assertEquals(2, boardRepo.findAllStickers(board_id).size());
+        assertEquals(2, boardRepo.findBoardById(board_id).getStickers().size());
     }
 
     @Test
@@ -195,11 +195,11 @@ public class BulletinBoardRepositoryTest {
         BulletinBoard expected = createBulletinBoard();
         expected.setBuilding_id(buildingId);
         Sticker sticker = createSticker();
-        String id = boardRepo.saveBulletinBoard(expected);
-        boardRepo.addStickerToBoard(id, sticker);
-        assertTrue(boardRepo.findAllStickers(id).contains(sticker));
+        String board_id = boardRepo.saveBulletinBoard(expected);
+        boardRepo.addStickerToBoard(board_id, sticker);
+        assertTrue(boardRepo.findAllStickers(board_id).contains(sticker));
         boardRepo.removeStickerFromBoard(sticker);
-        BulletinBoard actual = boardRepo.findBoardById(id);
+        BulletinBoard actual = boardRepo.findBoardById(board_id);
         assertFalse(actual.getStickers().contains(sticker));
     }
 
@@ -212,15 +212,15 @@ public class BulletinBoardRepositoryTest {
         BulletinBoard expected2 = createBulletinBoard();
         expected.setBuilding_id(buildingId1);
         expected2.setBuilding_id(buildingId2);
-        String id = boardRepo.saveBulletinBoard(expected);
-        String id2 = boardRepo.saveBulletinBoard(expected2);
+        String board_id = boardRepo.saveBulletinBoard(expected);
+        String board_id2 = boardRepo.saveBulletinBoard(expected2);
         assertEquals(2, boardRepo.listAllBoards().size());
-        assertNotNull(boardRepo.findBoardById(id));
-        assertNotNull(boardRepo.findBoardById(id2));
-        boardRepo.removeBoardById(id);
+        assertNotNull(boardRepo.findBoardById(board_id));
+        assertNotNull(boardRepo.findBoardById(board_id2));
+        boardRepo.removeBoardById(board_id);
         assertEquals(1, boardRepo.listAllBoards().size());
-        assertNull(boardRepo.findBoardById(id));
-        assertNotNull(boardRepo.findBoardById(id2));
+        assertNull(boardRepo.findBoardById(board_id));
+        assertNotNull(boardRepo.findBoardById(board_id2));
     }
 
     @Test
@@ -229,15 +229,15 @@ public class BulletinBoardRepositoryTest {
         String buildingId1 = "some id";
         BulletinBoard expected = createBulletinBoard();
         expected.setBuilding_id(buildingId1);
-        String id = boardRepo.saveBulletinBoard(expected);
+        String board_id = boardRepo.saveBulletinBoard(expected);
         Sticker sticker = createSticker();
         Sticker sticker2 = createSticker();
-        assertEquals(0, boardRepo.findAllStickers(id).size());
-        boardRepo.addStickerToBoard(id, sticker);
-        boardRepo.addStickerToBoard(id, sticker2);
-        assertEquals(2, boardRepo.findAllStickers(id).size());
-        boardRepo.removeAllStickersFromBoard(id);
-        assertEquals(0, boardRepo.findAllStickers(id).size());
+        assertEquals(0, boardRepo.findAllStickers(board_id).size());
+        boardRepo.addStickerToBoard(board_id, sticker);
+        boardRepo.addStickerToBoard(board_id, sticker2);
+        assertEquals(2, boardRepo.findAllStickers(board_id).size());
+        boardRepo.removeAllStickersFromBoard(board_id);
+        assertEquals(0, boardRepo.findAllStickers(board_id).size());
 
     }
 
