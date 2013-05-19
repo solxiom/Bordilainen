@@ -34,32 +34,32 @@ function addStickers() {
 
 
 
-stickerId = 1;
-function createSticker(jsonNewSticker) {     // receives json from dialogJS.js
-
-
-    str = "<b>Email:</b> " + jsonNewSticker.email +
-    "</br> <b>Title:</b> " + jsonNewSticker.title +
-    "</br> <b>Summary:</b> " + jsonNewSticker.summary +
-    "</br> <b>Description:</b> " + jsonNewSticker.description +
-    "</br> <b>Entry expires: </b>" + jsonNewSticker.expiration_date;
-
-    $("#mainForSticks").prepend("<div id= seq-" + stickerId + " ></div>"); // Received Information from the user
-    $("#seq-" + stickerId).attr("class", "sticker");
-    $("#seq-" + stickerId).html(str);
-
-    $("#seq-" + stickerId).append("<div id=report><a class=link href=javascript:reportCounter(" + stickerId + ")>Report</a></div>"); // report  
-    $("#report").attr("class", "reportText");
-
-    $("#seq-" + stickerId).append("<div id=deleteSticker><a class=link href=javascript:deleteSticker(" + stickerId + ")><b>X</b></a></div>"); // delete 
-    $("#deleteSticker").attr("class", "delSticker");
-
-    $("#seq-" + stickerId).append("<div id=comment><a id:commentLink class=link href=javascript:commentOnSticker(" + stickerId + ")><b>Comment</b></a></div>"); // delete 
-    $("#comment").attr("class", "commOnSticker");
-    //currentId = $(this).attr('id');
-    stickerId++;
-
-}
+//stickerId = 1;
+//function createSticker(jsonNewSticker) {     // receives json from dialogJS.js
+//
+//
+//    str = "<b>Email:</b> " + jsonNewSticker.email +
+//    "</br> <b>Title:</b> " + jsonNewSticker.title +
+//    "</br> <b>Summary:</b> " + jsonNewSticker.summary +
+//    "</br> <b>Description:</b> " + jsonNewSticker.description +
+//    "</br> <b>Entry expires: </b>" + jsonNewSticker.expiration_date;
+//
+//    $("#mainForSticks").prepend("<div id= seq-" + stickerId + " ></div>"); // Received Information from the user
+//    $("#seq-" + stickerId).attr("class", "sticker");
+//    $("#seq-" + stickerId).html(str);
+//
+//    $("#seq-" + stickerId).append("<div id=report><a class=link href=javascript:reportCounter(" + stickerId + ")>Report</a></div>"); // report  
+//    $("#report").attr("class", "reportText");
+//
+//    $("#seq-" + stickerId).append("<div id=deleteSticker><a class=link href=javascript:deleteSticker(" + stickerId + ")><b>X</b></a></div>"); // delete 
+//    $("#deleteSticker").attr("class", "delSticker");
+//
+//    $("#seq-" + stickerId).append("<div id=comment><a id:commentLink class=link href=javascript:commentOnSticker(" + stickerId + ")><b>Comment</b></a></div>"); // comment
+//    $("#comment").attr("class", "commOnSticker");
+//    //currentId = $(this).attr('id');
+//    stickerId++;
+//
+//}
 
 reportCount = 0;
 function reportCounter(ID) {
@@ -77,7 +77,7 @@ function reportCounter(ID) {
 }
 
 function deleteSticker(ID) {
-    console.log(ID);
-    $("#seq-" + ID).remove()
+    console.log("inside delete sticker");   
+    //$("#seq-" + ID).load("resources/html/deleteSticker.html")
 
 }

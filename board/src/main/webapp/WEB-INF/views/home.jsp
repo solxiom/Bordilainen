@@ -26,16 +26,16 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
 
-<!--     background="resources/img/BulletinBoard.jpg"-->
+    <!--     background="resources/img/BulletinBoard.jpg"-->
     <body>
 
-
+        
         <div id="header"></div>
         <div id="chooseBuilding"></div>
         <div id="mainForSticks"></div>
         <div id="buildings"  title="Add a Sticker"></div>
         <div id="dialogMain"> </div>
-
+        <div id="bilbilak"></div>
 
         <!--        <div id="Comm"  title="Add Comment" class="hidden">
                     <p>Please insert your comment:</p>

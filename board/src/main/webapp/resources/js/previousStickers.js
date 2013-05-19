@@ -5,56 +5,56 @@
 
 
 exampleData = [{
-        "id": 1, 
-        "bulletin_id": 1,
-        "type_id": 1,
-        "email": "1@gmail.com",
-        "password":"123",
-        "report_count": 0,
-        "summary": "something",
-        "tilte": "something also",
-        "description": "something",
-        "expire_date": "17/05/2013"
-    },
+    "id": 1, 
+    "bulletin_id": 1,
+    "type_id": 1,
+    "email": "1@gmail.com",
+    "password":"123",
+    "report_count": 0,
+    "summary": "something",
+    "tilte": "something also",
+    "description": "something",
+    "expire_date": "17/05/2013"
+},
 
-    {
-        "id": 2, 
-        "bulletin_id": 2,
-        "type_id": 2,
-        "email": "2@gmail.com",
-        "password":"123",
-        "report_count": 0,
-        "summary": "something",
-        "tilte": "something also",
-        "description": "something",
-        "expire_date": "17/05/2013"
-    },
+{
+    "id": 2, 
+    "bulletin_id": 2,
+    "type_id": 2,
+    "email": "2@gmail.com",
+    "password":"123",
+    "report_count": 0,
+    "summary": "something",
+    "tilte": "something also",
+    "description": "something",
+    "expire_date": "17/05/2013"
+},
 
-    {
-        "id": 3, 
-        "bulletin_id": 3,
-        "type_id": 3,
-        "email": "3@gmail.com",
-        "password":"123",
-        "report_count": 0,
-        "summary": "something",
-        "tilte": "something also",
-        "description": "something",
-        "expire_date": "17/05/2013"
-    },
+{
+    "id": 3, 
+    "bulletin_id": 3,
+    "type_id": 3,
+    "email": "3@gmail.com",
+    "password":"123",
+    "report_count": 0,
+    "summary": "something",
+    "tilte": "something also",
+    "description": "something",
+    "expire_date": "17/05/2013"
+},
 
-    {
-        "id": 4, 
-        "bulletin_id": 4,
-        "type_id": 4,
-        "email": "4@gmail.com",
-        "password":"123",
-        "report_count": 0,
-        "summary": "something",
-        "tilte": "something also",
-        "description": "something",
-        "expire_date": "17/05/2013"
-    }
+{
+    "id": 4, 
+    "bulletin_id": 4,
+    "type_id": 4,
+    "email": "4@gmail.com",
+    "password":"123",
+    "report_count": 0,
+    "summary": "something",
+    "tilte": "something also",
+    "description": "something",
+    "expire_date": "17/05/2013"
+}
 ]
 
 
@@ -88,7 +88,7 @@ function loadPreviousStickers(data){
         $("#seq-"+ data[i].id).append("<div id=deleteSticker><a class=link href=javascript:deleteSticker(" + data[i].id +")><b>X</b></a></div>"); // delete 
         $("#deleteSticker").attr("class","delSticker");
         
-        $("#seq-"+ data[i].id).append("<div id=comment><a id=commentLink class=link href=javascript:void(0); onclick=commentOnSticker("+data[i].id+")><b>Comment</b></a></div>"); // comment 
+        $("#seq-"+ data[i].id).append("<div id=comment><a id=commentLink class=link href=javascript:void(0); onclick=commentOnSticker(" +data[i].id+ ")><b>Comment</b></a></div>"); // comment 
         $("#comment").attr("class","commOnSticker");
         
         
