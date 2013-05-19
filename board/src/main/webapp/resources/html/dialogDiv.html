@@ -1,0 +1,63 @@
+<html>
+
+    <head> 
+        <link rel="stylesheet" type="text/css" href="resources/css/newSticker.css" />
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+        <script src="resources/js/addSticker.js"></script>
+        
+    </head>
+    <body>
+        <div id="innerDivNewSticker" class="newSticker" title="New Sticker">
+            <p class="validateTips"> <font size="4"> All fields are required except the summary.</font> </p>
+            <table>
+
+<!--                <tr>
+                    <td>Type of the Sticker*:</td>
+                    <td>
+                        <font size="3">
+                        <select id="typeId"></select>
+                        </font>
+                    </td>
+                </tr>-->
+                <tr>
+                    <td>Email Address*:</td>
+                    <td> <input type="text" id="email"> </td>
+                </tr>
+
+                <tr>
+                    <td>Set a Password (For This Sticker)*:</td>
+                    <td> <input type="password" id="pwd"> </td>
+                </tr>
+                <tr>
+                    <td>Retype the Password*:</td>
+                    <td> <input type="password" id="pwdConf"> </td>
+                </tr>
+                <tr>
+                    <td>Title*:</td>
+                    <td> <input type="text" id="title"> </td>
+                </tr>
+                <tr>
+                    <td>Summary:</td>
+                    <td> <textarea id="summary" rows="3" cols="20"></textarea> </td>
+                </tr>
+                <tr>
+                    <td>Full Description*:</td>
+                    <td> <textarea id="desc" rows="5" cols="20"></textarea> </td>
+                </tr>
+                <tr>
+                    <td>Validity duration (days)*:</td>
+                    <td> <input type="text" id="expiration"> </td>
+                </tr>
+            </table>
+
+            <table class="buttonsCentered">
+                
+                <tr>
+                    <td> <button  onclick="addSticker();"> Add Sticker </button> </td>
+                    <td> <button  onclick="closeDialog();"> Cancel </button> </td>
+                </tr>
+            </table>
+
+        </div>
+    </body>
+</html>

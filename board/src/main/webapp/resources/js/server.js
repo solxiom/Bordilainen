@@ -38,14 +38,17 @@ function addStickerToBuilding(buildingId, stickerDetails) {
 //buildingId part of URL
 //stickerDetails part of parameters 
 
-
+console.log("hello from addStickerToBuilding()...");
 // receives log object
     $.ajax({
         type: "POST",
-        url: url,
-        data: data,
-        success: success,
-        dataType: dataType
+        url: "add/sticker/"+buildingId+"?email=fdsgdfsg@dghg&password=jhakjh",
+        data: JSON.stringify(stickerDetails),
+        contentType: 'application/json; charset=utf-8',
+        dataType: 'json',
+        success: function(msg){
+            console.log(msg);
+        }
     });
 
 }
