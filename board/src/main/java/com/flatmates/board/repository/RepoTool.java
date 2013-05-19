@@ -18,27 +18,38 @@ import java.util.LinkedList;
  * @author kavansol
  */
 public class RepoTool {
- 
+
     public static Collection<BuildingComplex> BUILDING_REPO = new LinkedList<BuildingComplex>();
     public static Collection<Sticker> STICKER_REPO = new LinkedList<Sticker>();
     public static Collection<BulletinBoard> BOARD_REPO = new LinkedList<BulletinBoard>();
     public static Collection<Comment> COMMENT_REPO = new LinkedList<Comment>();
     public static Collection<StickerType> STICKER_TYPE_REPO = new LinkedList<StickerType>();
-    
-    public static boolean buildingExistInRepo(BuildingComplex building,BuildingComplexRepository repo){
+
+    public static boolean buildingExistInRepo(BuildingComplex building, BuildingComplexRepository repo) {
         Collection<BuildingComplex> buildings = repo.listAll();
-        for(BuildingComplex b : buildings){
-            if(b.getAddress().equalsIgnoreCase(building.getAddress()) || 
-                    b.getId().equalsIgnoreCase(building.getId())){
+        for (BuildingComplex b : buildings) {
+            if (b.getAddress().equalsIgnoreCase(building.getAddress())
+                    || b.getId().equalsIgnoreCase(building.getId())) {
                 return true;
             }
         }
         return false;
     }
+
     public static boolean addressExistForOtherBuildingObject(String address,
-            String exclude__building_id, Collection<BuildingComplex> buildings){
-        for(BuildingComplex b: buildings){
-            if(b.getId() != exclude__building_id && b.getAddress().equalsIgnoreCase(address)){
+            String exclude__building_id, Collection<BuildingComplex> buildings) {
+        for (BuildingComplex b : buildings) {
+            if (b.getId() != exclude__building_id && b.getAddress().equalsIgnoreCase(address)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public static boolean otherBoardHasSameBuildingId(String building_id,
+            String exclude_board_id, Collection<BulletinBoard> boards) {
+        for (BulletinBoard board : boards) {
+            if (board.getId() != exclude_board_id && board.getBuilding_id().equalsIgnoreCase(building_id)) {
                 return true;
             }
         }
