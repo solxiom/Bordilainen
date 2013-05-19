@@ -79,6 +79,28 @@ public class BulletinBoardRepositoryTest {
 
     }
 
+
+//    @Test
+//    public void testAddStickerToBoardCaseAddStickerWithUniqueId() {
+//        System.out.println("testAddStickerToBoardCaseAddStickerWithUniqueIdTest");
+//        String buildingId = "some id";
+//        BulletinBoard expected = createBulletinBoard();
+//        expected.setBuilding_id(buildingId);
+//        
+//        Sticker sticker = createSticker();
+//        Sticker sticker2 = createSticker();
+//        String board_id = boardRepo.saveBulletinBoard(expected);
+//        boardRepo.removeAllStickersFromBoard(board_id);
+//        boardRepo.addStickerToBoard(board_id, sticker);
+//        boardRepo.addStickerToBoard(board_id, sticker2);
+//        assertEquals(1, boardRepo.findAllStickers(board_id).size());
+////        BulletinBoard actual = boardRepo.findBoardById(board_id);
+////        assertTrue(actual.getStickers().contains(sticker));
+////        assertFalse(actual.getStickers().contains(sticker2));
+////        assertTrue(boardRepo.findAllStickers(board_id).contains(sticker));
+////        assertFalse(boardRepo.findAllStickers(board_id).contains(sticker2));
+//    }
+
     @Test
     public void testAddStickerToBoardCaseStickerMustHaveEmailAndPassword() {
         System.out.println("AddStickerToBoardCaseStickerMustHaveEmailAndPasswordTest");

@@ -50,7 +50,8 @@ public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
         sticker.setBulletin_id(board_id);
         String sticker_id = UUID.randomUUID().toString().replace('-', 'x');
         sticker.setId(sticker_id);
-        if (RepoTool.isStickerAuthenticationDataOk(sticker)) {
+        if (RepoTool.isStickerAuthenticationDataOk(sticker) &&
+                !RepoTool.stickerIdExistInRepo(sticker.getId(), stickerManager)) {
             for (BulletinBoard bb : bbmanager) {
                 if (bb.getId().equalsIgnoreCase(board_id)) {
                     bb.addSticker(sticker);
