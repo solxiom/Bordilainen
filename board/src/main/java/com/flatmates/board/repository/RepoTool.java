@@ -28,7 +28,17 @@ public class RepoTool {
     public static boolean buildingExistInRepo(BuildingComplex building,BuildingComplexRepository repo){
         Collection<BuildingComplex> buildings = repo.listAll();
         for(BuildingComplex b : buildings){
-            if(b.getAddress().equalsIgnoreCase(building.getAddress())){
+            if(b.getAddress().equalsIgnoreCase(building.getAddress()) || 
+                    b.getId().equalsIgnoreCase(building.getId())){
+                return true;
+            }
+        }
+        return false;
+    }
+    public static boolean addressExistForOtherBuildingObject(String address,
+            String exclude__building_id, Collection<BuildingComplex> buildings){
+        for(BuildingComplex b: buildings){
+            if(b.getId() != exclude__building_id && b.getAddress().equalsIgnoreCase(address)){
                 return true;
             }
         }

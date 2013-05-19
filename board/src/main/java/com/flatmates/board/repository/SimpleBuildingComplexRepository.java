@@ -25,7 +25,7 @@ public class SimpleBuildingComplexRepository implements BuildingComplexRepositor
             return building.getId();
         }
         return "Building already exist!";
-        
+
     }
 
     @Override
@@ -57,12 +57,19 @@ public class SimpleBuildingComplexRepository implements BuildingComplexRepositor
     }
 
     @Override
-    public void updateBuildingComplexAddress(String building_id, String address) {
+    public boolean updateBuildingComplexAddress(String building_id, String address) {
+        
+        boolean found = false;
+        if (RepoTool.addressExistForOtherBuildingObject(address, building_id, buildingComplexManager)) {
+            return false;
+        }
         for (BuildingComplex bc : buildingComplexManager) {
             if (bc.getId().equalsIgnoreCase(building_id)) {
                 bc.setAddress(address);
+                found = true;
             }
         }
+        return found;
     }
 
     @Override
