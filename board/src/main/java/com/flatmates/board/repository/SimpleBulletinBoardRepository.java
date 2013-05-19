@@ -22,13 +22,12 @@ public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
         String board_id = UUID.randomUUID().toString();
         board_id = board_id.replace('-', 'x');
         board.setId(board_id);
-        if (board.getBuilding_id() != null && !RepoTool.otherBoardHasSameBuildingId(board.getBuilding_id()
-                , board_id, bbmanager)) {
+        if (board.getBuilding_id() != null && !RepoTool.otherBoardHasSameBuildingId(board.getBuilding_id(), board_id, bbmanager)) {
             bbmanager.add(board);
             return board.getId();
         }
         return null;
-        
+
     }
 
     @Override
@@ -51,12 +50,14 @@ public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
         sticker.setBulletin_id(board_id);
         String sticker_id = UUID.randomUUID().toString().replace('-', 'x');
         sticker.setId(sticker_id);
-        for (BulletinBoard bb : bbmanager) {
-            if (bb.getId().equalsIgnoreCase(board_id)) {
-                bb.addSticker(sticker);
+        if (RepoTool.isStickerAuthenticationDataOk(sticker)) {
+            for (BulletinBoard bb : bbmanager) {
+                if (bb.getId().equalsIgnoreCase(board_id)) {
+                    bb.addSticker(sticker);
+                }
             }
+            stickerManager.add(sticker);
         }
-        stickerManager.add(sticker);
 
     }
 

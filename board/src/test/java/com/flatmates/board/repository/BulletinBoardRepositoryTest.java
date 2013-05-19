@@ -105,11 +105,20 @@ public class BulletinBoardRepositoryTest {
         BulletinBoard expected = createBulletinBoard();
         expected.setBuilding_id(buildingId);
         Sticker sticker = createSticker();
-        String id = boardRepo.saveBulletinBoard(expected);
-        boardRepo.addStickerToBoard(id, sticker);
-        for (Sticker s : boardRepo.findAllStickers(id)) {
+        sticker.setEmail(null);
+        sticker.setPassword(null);
+        String board_id = boardRepo.saveBulletinBoard(expected);
+        boardRepo.addStickerToBoard(board_id, sticker);
+        for (Sticker s : boardRepo.findAllStickers(board_id)) {
             assertNotNull(s.getEmail());
             assertNotNull(s.getPassword());
+        }
+        sticker.setEmail("");
+        sticker.setPassword("");
+        boardRepo.addStickerToBoard(board_id, sticker);
+        for (Sticker s : boardRepo.findAllStickers(board_id)) {
+            assertNotSame("",s.getEmail());
+            assertNotSame("",s.getPassword());
         }
     }
 
@@ -203,8 +212,8 @@ public class BulletinBoardRepositoryTest {
 
     private Sticker createSticker() {
         Sticker sticker = new Sticker();
-//        sticker.setEmail("test@mail.com");
-//        sticker.setPassword("myPass");
+        sticker.setEmail("test@mail.com");
+        sticker.setPassword("myPass");
         sticker.setTitle("myTitle");
         sticker.setExpiration_date("01.01.2015");
         sticker.setDescription("someDescription");
