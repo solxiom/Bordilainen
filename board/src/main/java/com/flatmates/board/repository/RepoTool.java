@@ -55,4 +55,11 @@ public class RepoTool {
         }
         return false;
     }
+    public static boolean isStickerAuthenticationDataOk(Sticker sticker){
+        if( (sticker.getEmail() != null && !sticker.getEmail().equalsIgnoreCase(""))
+                && ( sticker.getPassword() != null && !sticker.getPassword().equalsIgnoreCase("") )){
+            return true;
+        }
+        return false;
+    }
 }
