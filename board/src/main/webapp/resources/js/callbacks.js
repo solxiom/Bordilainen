@@ -1,6 +1,5 @@
 /* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+ * Author: Emad Nikkhouy    
  */
 
 
@@ -21,11 +20,13 @@ function addBuildingsToCombo(data) {
 
     var listBuildings = "";
     var select = $("#buidlingComboBox");
-    listBuildings += "<option value= >Select Your Building</option>";
-        for (var i = 0; i < data.length; i++) {
-            listBuildings += "<option value="+data[i].id+" >" + data[i].address + "</option>";
+    listBuildings += "<option value=Nothing >Select Your Building</option>";
+    for (var i = 0; i < data.length; i++) {
+        listBuildings += "<option value="+data[i].id+" >" + data[i].address + "</option>";
 
-        }
+    }
+    
     $(select).html(listBuildings);
+    addhandlerToCombo();
 
 }

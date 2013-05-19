@@ -1,9 +1,5 @@
 /* 
-    Document   : stickies
-    Created on : 14-May-2013, 20:23:41
-    Author     : nikkhouy
-    Description:
-        Purpose of the stylesheet follows.
+    Author: Emad Nikkhouy
 */
 
 .sticker{
@@ -12,6 +8,7 @@
     margin-top: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
+    margin-left: 17px;
     width:300px;
     height:200px;
     background-color: beige;
@@ -28,11 +25,11 @@
     -moz-transform:rotate(-5deg);
 }
 del.sticker{
-    
-    
+
+
     width:0;
     height:0;
-    
+
 }
 .sticker:nth-child(even){
     -o-transform:rotate(4deg);
@@ -72,7 +69,7 @@ del.sticker{
     position: fixed;
     bottom: 5px;
     right:15px;
- }
+}
 
 .link {
     color:#3399FF;
@@ -86,17 +83,17 @@ del.sticker{
     position: fixed;
     top: 5px;
     right:15px;
- }
- 
- .commOnSticker {
-     position: fixed;
-     bottom: 5px;
-     left: 20px; 
- }
- 
- div.hidden
+}
+
+.commOnSticker {
+    position: fixed;
+    bottom: 5px;
+    left: 20px; 
+}
+
+div.hidden
 {
-   visibility: hidden;
+    visibility: hidden;
 }
 
 
@@ -113,17 +110,48 @@ del.sticker{
     border: solid black 1px;
     padding: 2px;
     overflow-style: auto;
-    
+
     font-family:"Reenie Beanie",arial,sans-serif;
     font-size:100%;
     overflow:hidden;
     padding:3em;
     z-index: 20;
     alignment-adjust: central;
-    
+
+
+}
+
+body{
+    background-image:url("/board/resources/img/BulletinBoard.jpg");
+
+}
+
+.headerTitle{
+    font-family: cursive;
+    font-size: xx-large;
+    font-weight: bold;
+    color: blue;
     
 }
 
+.deleteSticker{
+
+    box-shadow:10px 10px 7px rgba(0,0,0,.7);
+    margin-right: auto;
+    margin-left: auto;
+    width:350px;
+    height:200px;
+    background-color: beige;
+    border: solid black 1px;
+    padding: 2px;
+    overflow-style: auto;
+
+    font-family:"Reenie Beanie",arial,sans-serif;
+    font-size:100%;
+    overflow:hidden;
+    padding:3em;
+    z-index: 20;
+    alignment-adjust: central;
 
 
-
+}
