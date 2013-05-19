@@ -3,14 +3,15 @@ package com.flatmates.board.repository;
 import com.flatmates.board.domain.entity.StickerType;
 import com.flatmates.board.domain.repository.StickerTypeRepository;
 import static org.junit.Assert.assertEquals;
-
 import java.util.Collection;
 import java.util.LinkedList;
-
 import org.junit.Before;
 import org.junit.Test;
 
-
+/**
+ *
+ * @author bakharzy
+ */
 public class StickerTypeRepositoryTest {
 
 	StickerTypeRepository stickerTypeRepo = new SimpleStickerTypeRepository();

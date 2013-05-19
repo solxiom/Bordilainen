@@ -197,8 +197,13 @@ public class BulletinBoardServiceImplTest {
 
     private Sticker createSticker() {
         Sticker sticker = new Sticker();
-        sticker.setId(createUniqueId());
-        sticker.setBulletin_id(createUniqueId());
+        sticker.setEmail("test@mail.com");
+        sticker.setPassword("myPass");
+        sticker.setTitle("myTitle");
+        sticker.setExpiration_date("01.01.2015");
+        sticker.setDescription("someDescription");
+        sticker.setType_Id("sell");
+        sticker.setBulletin_id("old id");
         return sticker;
     }
 }
