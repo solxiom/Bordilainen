@@ -27,7 +27,7 @@ function addStickers() {
             console.log("code javad rid: showDialog() ride sharhe dastan: ");
         }
         
-    //addSticker();
+        //addSticker();
     });
 }
 
@@ -76,8 +76,34 @@ function reportCounter(ID) {
     }
 }
 
-function deleteSticker(ID) {
+function loadDeleteStickerUI(sticker_id) {
     console.log("inside delete sticker");   
-    //$("#seq-" + ID).load("resources/html/deleteSticker.html")
+    $("#seq-" + sticker_id).load("resources/html/deleteSticker2.html",function(){
+        $("#seq-"+sticker_id).attr("class","deleteSticker");
+        console.log("size --- " + $("#seq-"+sticker_id+" #delete_btn").length);
+        $("#seq-"+sticker_id+" #delete_btn").click(function(){
+            sendDeletedSticker(sticker_id);
+        });
+         
+        $("#seq-"+sticker_id+" #cancel_btn").click(function(){
+            cancelDeleteSticker(sticker_id); 
+        });
+         
+    });
+    
 
+}
+
+function sendDeletedSticker(sticker_id){
+    console.log("Inside sendDeleteSticker()");
+    var username = $("#seq-"+sticker_id+" #delete_username").val();
+    var password = $("#seq-"+sticker_id+" #delete_password").val();
+    console.log($("#seq-"+sticker_id+" #delete_username").val());
+    $("#seq-" + sticker_id).remove();
+    
+}
+
+function cancelDeleteSticker(sticker_id){
+    console.log("Inside cancelDeleteSticker()");
+    
 }

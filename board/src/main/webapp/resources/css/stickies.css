@@ -137,21 +137,14 @@ body{
 .deleteSticker{
 
     box-shadow:10px 10px 7px rgba(0,0,0,.7);
-    margin-right: auto;
-    margin-left: auto;
-    width:350px;
-    height:200px;
-    background-color: beige;
-    border: solid black 1px;
-    padding: 2px;
+    min-width:300px;
+    min-height:200px;
     overflow-style: auto;
-
+    background-color: beige;
     font-family:"Reenie Beanie",arial,sans-serif;
     font-size:100%;
-    overflow:hidden;
-    padding:3em;
-    z-index: 20;
-    alignment-adjust: central;
-
-
+    overflow: hidden;
+    display:inline-block;
+  
+  
 }

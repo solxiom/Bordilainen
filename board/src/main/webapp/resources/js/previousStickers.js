@@ -85,7 +85,7 @@ function loadPreviousStickers(data){
         $("#seq-"+ data[i].id).append("<div id=report><a class=link href=javascript:reportCounter("+ data[i].id +")>Report</a></div>"); // report  
         $("#report").attr("class","reportText");
         
-        $("#seq-"+ data[i].id).append("<div id=deleteSticker><a class=link href=javascript:deleteSticker(" + data[i].id +")><b>X</b></a></div>"); // delete 
+        $("#seq-"+ data[i].id).append("<div id=deleteSticker><a class=link href=javascript:void(0); onclick=loadDeleteStickerUI('" +data[i].id+ "')><b>X</b></a></div>"); // delete 
         $("#deleteSticker").attr("class","delSticker");
         
         $("#seq-"+ data[i].id).append("<div id=comment><a id=commentLink class=link href=javascript:void(0); onclick=commentOnSticker(" +data[i].id+ ")><b>Comment</b></a></div>"); // comment 
