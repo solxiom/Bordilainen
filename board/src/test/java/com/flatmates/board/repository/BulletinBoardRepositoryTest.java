@@ -80,26 +80,37 @@ public class BulletinBoardRepositoryTest {
     }
 
     @Test
-    public void testAddStickerToBoard() {
-        System.out.println("AddStickerToBoardTest");
+    public void testAddStickerToBoardCaseAddStickerWithUniqueId() {
+        System.out.println("testAddStickerToBoardCaseAddStickerWithUniqueIdTest");
         String buildingId = "some id";
         BulletinBoard expected = createBulletinBoard();
         expected.setBuilding_id(buildingId);
         Sticker sticker = createSticker();
         Sticker sticker2 = createSticker();
-        String id = boardRepo.saveBulletinBoard(expected);   
+        String id = boardRepo.saveBulletinBoard(expected);
         boardRepo.addStickerToBoard(id, sticker);
         boardRepo.addStickerToBoard(id, sticker2);
-        for (Sticker s : boardRepo.findAllStickers(id)){  
-                assertNotNull(s.getEmail());
-                assertNotNull(s.getPassword());       
-        }
         assertEquals(1, boardRepo.findAllStickers(id).size());
         BulletinBoard actual = boardRepo.findBoardById(id);
         assertTrue(actual.getStickers().contains(sticker));
         assertFalse(actual.getStickers().contains(sticker2));
         assertTrue(boardRepo.findAllStickers(id).contains(sticker));
         assertFalse(boardRepo.findAllStickers(id).contains(sticker2));
+    }
+
+    @Test
+    public void testAddStickerToBoardCaseStickerMustHaveEmailAndPassword() {
+        System.out.println("AddStickerToBoardCaseStickerMustHaveEmailAndPasswordTest");
+        String buildingId = "some id";
+        BulletinBoard expected = createBulletinBoard();
+        expected.setBuilding_id(buildingId);
+        Sticker sticker = createSticker();
+        String id = boardRepo.saveBulletinBoard(expected);
+        boardRepo.addStickerToBoard(id, sticker);
+        for (Sticker s : boardRepo.findAllStickers(id)) {
+            assertNotNull(s.getEmail());
+            assertNotNull(s.getPassword());
+        }
     }
 
     @Test
