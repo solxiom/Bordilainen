@@ -3,6 +3,7 @@ package com.flatmates.board.repository;
 import com.flatmates.board.domain.entity.BulletinBoard;
 import com.flatmates.board.domain.entity.Sticker;
 import com.flatmates.board.domain.repository.BulletinBoardRepository;
+import java.util.UUID;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,20 +21,56 @@ public class BulletinBoardRepositoryTest {
     }
 
     @Test
-    public void testSaveBulletinBoardCase() {
-        System.out.println("SaveBulletinBoardTest");
+    public void testSaveBulletinBoardCaseSuccessfulAddWithBuildingIdSet() {
+        System.out.println("SaveBulletinBoardCaseSuccessfulAddWithBuildingIdSetTest");
+        String buildingId = "some id";
+        BulletinBoard expected = createBulletinBoard();
+        assertEquals(0, boardRepo.listAllBoards().size());
+        String id = boardRepo.saveBulletinBoard(expected);
+        BulletinBoard actual = boardRepo.findBoardById(id);
+        assertEquals(1, boardRepo.listAllBoards().size());
+        assertNotNull(expected.getBuilding_id());
+        assertEquals(expected.getBuilding_id(), actual.getBuilding_id());
+        assertEquals(expected.getId(), actual.getId());
+        assertNotNull(actual.getId());
+    }
+
+    @Test
+    public void testSaveBulletinBoardCaseFailedAddWithBuildingIdNotSet() {
+        System.out.println("SaveBulletinBoardCaseFailedAddWithBuildingIdNotSetTest");
+        String buildingId = "some id";
+        BulletinBoard expected = createBulletinBoard();
+        expected.setBuilding_id(null);
+        assertEquals(0, boardRepo.listAllBoards().size());
+        String board_id = boardRepo.saveBulletinBoard(expected);
+        assertNotNull(board_id);
+        assertEquals(0, boardRepo.listAllBoards().size());
+    }
+
+    @Test
+    public void testSaveBulletinBoardCaseFailedAddWithBuildingIdEmpty() {
+        System.out.println("SaveBulletinBoardCaseFailedAddWithBuildingIdEmptyTest");
+        String buildingId = "some id";
+        BulletinBoard expected = createBulletinBoard();
+        expected.setBuilding_id("");
+        assertEquals(0, boardRepo.listAllBoards().size());
+        String board_id = boardRepo.saveBulletinBoard(expected);
+        assertNotNull(board_id);
+        assertEquals(0, boardRepo.listAllBoards().size());
+    }
+
+    @Test
+    public void testSaveBulletinBoardCaseFailedAddWithBuildingIdAlreadySetForAnotherBoard() {
+        System.out.println("testSaveBulletinBoardCaseFailedAddWithBuildingIdAlreadySetForAnotherBoardTest");
         String buildingId = "some id";
         BulletinBoard expected = createBulletinBoard();
         BulletinBoard expected2 = createBulletinBoard();
-        BulletinBoard expected3 = createBulletinBoard();
         expected.setBuilding_id(buildingId);
-        expected3.setBuilding_id(buildingId);
+        expected2.setBuilding_id(buildingId);
         String id = boardRepo.saveBulletinBoard(expected);
         String id2 = boardRepo.saveBulletinBoard(expected2);
-        String id3 = boardRepo.saveBulletinBoard(expected3);
         BulletinBoard actual = boardRepo.findBoardById(id);
         assertNull(id2);
-        assertNull(id3);
         assertEquals(1, boardRepo.listAllBoards().size());
         assertNotNull(expected.getBuilding_id());
         assertEquals(expected.getBuilding_id(), actual.getBuilding_id());
@@ -84,7 +121,7 @@ public class BulletinBoardRepositoryTest {
         String buildingId = "some id";
         String sameStickerId = "sticker test id";
         BulletinBoard expected = createBulletinBoard();
-        expected.setBuilding_id(buildingId);       
+        expected.setBuilding_id(buildingId);
         Sticker sticker = createSticker();
         Sticker sticker2 = createSticker();
         sticker.setId(sameStickerId);
@@ -96,7 +133,6 @@ public class BulletinBoardRepositoryTest {
         Sticker[] ar = boardRepo.findAllStickers(board_id).toArray(new Sticker[boardRepo.findAllStickers(board_id).size()]);
         assertNotSame(ar[0].getId(), ar[1].getId());
     }
-
 
     @Test
     public void testAddStickerToBoardCaseStickerMustHaveEmailAndPassword() {
@@ -117,8 +153,8 @@ public class BulletinBoardRepositoryTest {
         sticker.setPassword("");
         boardRepo.addStickerToBoard(board_id, sticker);
         for (Sticker s : boardRepo.findAllStickers(board_id)) {
-            assertNotSame("",s.getEmail());
-            assertNotSame("",s.getPassword());
+            assertNotSame("", s.getEmail());
+            assertNotSame("", s.getPassword());
         }
     }
 
@@ -207,6 +243,8 @@ public class BulletinBoardRepositoryTest {
 
     private BulletinBoard createBulletinBoard() {
         BulletinBoard board = new BulletinBoard();
+        board.setBuilding_id(UUID.randomUUID().toString());
+        board.setId(UUID.randomUUID().toString());
         return board;
     }
 
