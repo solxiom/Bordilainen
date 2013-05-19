@@ -4,13 +4,14 @@ import com.flatmates.board.domain.entity.Comment;
 import com.flatmates.board.domain.repository.CommentRepository;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-
 import java.util.Collection;
 import java.util.LinkedList;
-
 import org.junit.Test;
 
-
+/**
+ *
+ * @author bakharzy
+ */
 public class CommentRepositoryTest {
 
 	CommentRepository cmRepo = new SimpleCommentRepository();

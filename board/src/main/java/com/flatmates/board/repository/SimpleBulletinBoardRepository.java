@@ -1,7 +1,6 @@
 package com.flatmates.board.repository;
 
 import com.flatmates.board.domain.entity.BulletinBoard;
-import com.flatmates.board.domain.entity.Comment;
 import com.flatmates.board.domain.entity.Sticker;
 import com.flatmates.board.domain.repository.BulletinBoardRepository;
 import java.util.Collection;

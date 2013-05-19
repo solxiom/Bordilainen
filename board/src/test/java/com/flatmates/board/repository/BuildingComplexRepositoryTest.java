@@ -9,6 +9,10 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ *
+ * @author bakharzy
+ */
 public class BuildingComplexRepositoryTest {
 
     BuildingComplexRepository buildingRepo = new SimpleBuildingComplexRepository();
@@ -51,7 +55,9 @@ public class BuildingComplexRepositoryTest {
     public void testQueryByAddress() {
         System.out.println("QueryByAddressTest");
         BuildingComplex expected = createBuildingComplex();
+        BuildingComplex expected2 = createBuildingComplex();
         String id = buildingRepo.saveBuildingComplex(expected);
+        String id2 = buildingRepo.saveBuildingComplex(expected2);
         Collection<BuildingComplex> actualList = buildingRepo.queryByAddress(expected.getAddress());
         assertFalse(actualList.size() > 1);
         BuildingComplex actual = (BuildingComplex) actualList.toArray()[0];
@@ -83,8 +89,8 @@ public class BuildingComplexRepositoryTest {
         String id = buildingRepo.saveBuildingComplex(expected);
         String oldAddress = expected.getAddress();
         buildingRepo.updateBuildingComplexAddress(id, newAddress);
-        for(BuildingComplex bc : buildingRepo.listAll()){
-            if (bc.getAddress().contains(newAddress)){
+        for (BuildingComplex bc : buildingRepo.listAll()) {
+            if (bc.getAddress().contains(newAddress)) {
                 cntr++;
             }
         }
@@ -96,8 +102,8 @@ public class BuildingComplexRepositoryTest {
 
     @Test
     public void testListAll() {
-        System.out.println("ListAllTest");            
-        assertEquals(0,buildingRepo.listAll().size());
+        System.out.println("ListAllTest");
+        assertEquals(0, buildingRepo.listAll().size());
         BuildingComplex expected = createBuildingComplex();
         BuildingComplex expected2 = createBuildingComplex();
         expected2.setAddress("ida 2");
@@ -118,6 +124,7 @@ public class BuildingComplexRepositoryTest {
         actualList = buildingRepo.listAll();
         assertEquals(0, actualList.size());
     }
+
     private BuildingComplex createBuildingComplex() {
         BuildingComplex building = new BuildingComplex();
         building.setAddress(UUID.randomUUID().toString());
