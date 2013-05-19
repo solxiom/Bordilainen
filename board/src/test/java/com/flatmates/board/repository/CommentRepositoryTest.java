@@ -70,18 +70,18 @@ public class CommentRepositoryTest {
 
     @Test
     public void testFindByStickerId() {
+        String sticker_id = "test sticker id";
         Comment expected = createComment();
         Comment expected2 = createComment();
         String id = cmRepo.saveComment(expected);
         String id2 = cmRepo.saveComment(expected2);
         Collection<Comment> list = new LinkedList<Comment>();
         for (Comment cm : cmRepo.listAll()) {
-            if (cm.getSticker_id().equalsIgnoreCase("test sticker id")) {
+            if (cm.getSticker_id().equalsIgnoreCase(sticker_id)) {
                 list.add(cm);
             }
         }
         assertEquals(2, list.size());
-
     }
 
     @Test

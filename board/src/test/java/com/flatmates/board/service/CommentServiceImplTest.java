@@ -119,7 +119,7 @@ public class CommentServiceImplTest {
     
     private Comment createComment() {
         Comment comment = new Comment();
-        comment.setId(createUniqueId());
+        comment.setSticker_id("id");
         return comment;
     }
 }
