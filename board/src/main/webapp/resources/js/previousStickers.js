@@ -76,8 +76,6 @@ function loadPreviousStickers(data){
         "</br> <b>description:</b> "+data[i].description +
         "</br> <b>expire_date:</b> "+data[i].expire_date;
         
-        
-        
         $("#mainForSticks").prepend("<div id= seq-"+ data[i].id +" ></div>"); // Received Information from the user
         $("#seq-"+ data[i].id).attr("class","sticker");      
         $("#seq-"+ data[i].id).html(existingStickers[i]);
@@ -90,9 +88,7 @@ function loadPreviousStickers(data){
         
         $("#seq-"+ data[i].id).append("<div id=comment><a id=commentLink class=link href=javascript:void(0); onclick=commentOnSticker(" +data[i].id+ ")><b>Comment</b></a></div>"); // comment 
         $("#comment").attr("class","commOnSticker");
-        
-        
-        
+               
     }
     
 }

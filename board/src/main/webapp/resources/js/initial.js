@@ -21,6 +21,7 @@ $(document).ready(function() {
     }
 
 });
+
 function addhandlerToCombo(){
     
     $('#buidlingComboBox').change( function(){
@@ -30,7 +31,7 @@ function addhandlerToCombo(){
         $('#header').load("resources/html/header.html", function() {
             $('#headerTitle').text(selectedBuildingName); 
         });
-     
+        building_id = $('#buidlingComboBox').val();
         listBuildingStickers($('#buidlingComboBox').val());
         
         $("#chooseBuilding").remove();
