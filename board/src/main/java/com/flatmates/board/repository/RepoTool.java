@@ -62,4 +62,13 @@ public class RepoTool {
         }
         return false;
     }
+    public static boolean stickerIdExistInRepo(String id, Collection<Sticker> stickers){
+        for(Sticker s : stickers){
+            if(s.getId().equalsIgnoreCase(id)){
+                return true;
+                
+            }
+        }
+        return false;
+    }
 }
