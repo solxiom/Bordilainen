@@ -3,7 +3,6 @@ package com.flatmates.board.repository;
 import com.flatmates.board.domain.entity.BulletinBoard;
 import com.flatmates.board.domain.entity.Sticker;
 import com.flatmates.board.domain.repository.BulletinBoardRepository;
-import java.util.Collection;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +20,7 @@ public class BulletinBoardRepositoryTest {
     }
 
     @Test
-    public void testSaveBulletinBoard() {
+    public void testSaveBulletinBoardCase() {
         System.out.println("SaveBulletinBoardTest");
         String buildingId = "some id";
         BulletinBoard expected = createBulletinBoard();
@@ -79,51 +78,25 @@ public class BulletinBoardRepositoryTest {
 
     }
 
-<<<<<<< HEAD
     @Test
     public void testAddStickerToBoardCaseAddStickerWithUniqueId() {
         System.out.println("testAddStickerToBoardCaseAddStickerWithUniqueIdTest");
         String buildingId = "some id";
+        String sameStickerId = "sticker test id";
         BulletinBoard expected = createBulletinBoard();
-        expected.setBuilding_id(buildingId);
-        
+        expected.setBuilding_id(buildingId);       
         Sticker sticker = createSticker();
         Sticker sticker2 = createSticker();
+        sticker.setId(sameStickerId);
+        sticker2.setId(sameStickerId);
         String board_id = boardRepo.saveBulletinBoard(expected);
         boardRepo.removeAllStickersFromBoard(board_id);
         boardRepo.addStickerToBoard(board_id, sticker);
         boardRepo.addStickerToBoard(board_id, sticker2);
         Sticker[] ar = boardRepo.findAllStickers(board_id).toArray(new Sticker[boardRepo.findAllStickers(board_id).size()]);
-                
-//        BulletinBoard actual = boardRepo.findBoardById(board_id);
-//        assertTrue(actual.getStickers().contains(sticker));
-//        assertFalse(actual.getStickers().contains(sticker2));
-//        assertTrue(boardRepo.findAllStickers(board_id).contains(sticker));
-//        assertFalse(boardRepo.findAllStickers(board_id).contains(sticker2));
+        assertNotSame(ar[0].getId(), ar[1].getId());
     }
-=======
 
-//    @Test
-//    public void testAddStickerToBoardCaseAddStickerWithUniqueId() {
-//        System.out.println("testAddStickerToBoardCaseAddStickerWithUniqueIdTest");
-//        String buildingId = "some id";
-//        BulletinBoard expected = createBulletinBoard();
-//        expected.setBuilding_id(buildingId);
-//        
-//        Sticker sticker = createSticker();
-//        Sticker sticker2 = createSticker();
-//        String board_id = boardRepo.saveBulletinBoard(expected);
-//        boardRepo.removeAllStickersFromBoard(board_id);
-//        boardRepo.addStickerToBoard(board_id, sticker);
-//        boardRepo.addStickerToBoard(board_id, sticker2);
-//        assertEquals(1, boardRepo.findAllStickers(board_id).size());
-////        BulletinBoard actual = boardRepo.findBoardById(board_id);
-////        assertTrue(actual.getStickers().contains(sticker));
-////        assertFalse(actual.getStickers().contains(sticker2));
-////        assertTrue(boardRepo.findAllStickers(board_id).contains(sticker));
-////        assertFalse(boardRepo.findAllStickers(board_id).contains(sticker2));
-//    }
->>>>>>> 2970d9403131426b48801ecdd8cc01975d6c991a
 
     @Test
     public void testAddStickerToBoardCaseStickerMustHaveEmailAndPassword() {
