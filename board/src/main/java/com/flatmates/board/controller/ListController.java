@@ -45,7 +45,6 @@ public class ListController{
     public @ResponseBody
     Collection<Sticker> listBuildingStickers(@PathVariable String building_id) {
         Collection<BulletinBoard> boards = boardService.listAllBoards();
-        boards.clear();
         String boardId = ControlTool.findBoardIdByBuilding(boards, building_id);
         Collection<Sticker> res = boardService.findAllStickers(boardId);
         ControlTool.clearAuthenticationDataFromStickers(res);

@@ -36,9 +36,10 @@ public class BuildingComplexRepositoryImpl implements BuildingComplexRepository{
 	}
 
 	@Override
-	public void updateBuildingComplexAddress(String id,String address) {				
+	public boolean updateBuildingComplexAddress(String id,String address) {				
 		Query query = new Query(Criteria.where("id").is(id));		
 		dbManager.findAndModify(query, Update.update("address", address), BuildingComplex.class);
+                return true;
 	}
 
 	@Override

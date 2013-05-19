@@ -14,17 +14,18 @@ import org.springframework.stereotype.Repository;
 public class SimpleBuildingComplexRepository implements BuildingComplexRepository {
 
     Collection<BuildingComplex> buildingComplexManager = new LinkedList<BuildingComplex>();
+//    Collection<BuildingComplex> buildingComplexManager = RepoTool.BUILDING_REPO;
 
     @Override
     public String saveBuildingComplex(BuildingComplex building) {
 
-        building.setId(UUID.randomUUID().toString());
+        building.setId(UUID.randomUUID().toString().replace('-', 'x'));
         if (!RepoTool.buildingExistInRepo(building, this)) {
             buildingComplexManager.add(building);
             return building.getId();
         }
         return "Building already exist!";
-        
+
     }
 
     @Override
@@ -56,12 +57,19 @@ public class SimpleBuildingComplexRepository implements BuildingComplexRepositor
     }
 
     @Override
-    public void updateBuildingComplexAddress(String building_id, String address) {
+    public boolean updateBuildingComplexAddress(String building_id, String address) {
+        
+        boolean found = false;
+        if (RepoTool.addressExistForOtherBuildingObject(address, building_id, buildingComplexManager)) {
+            return false;
+        }
         for (BuildingComplex bc : buildingComplexManager) {
             if (bc.getId().equalsIgnoreCase(building_id)) {
                 bc.setAddress(address);
+                found = true;
             }
         }
+        return found;
     }
 
     @Override

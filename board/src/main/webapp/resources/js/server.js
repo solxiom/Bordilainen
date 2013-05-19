@@ -8,41 +8,26 @@
 
 function listBuildings() {
     $.getJSON('/board/list/buildings', function(data) {
-        putBuldingsDataInUi(data);
+        addBuildingsToCombo(data);
     });
-//    $.ajax({
-//        type: "GET",
-//        url: url,
-//        data: data,
-//        success: success,
-//        dataType: dataType
-//    });
 }
-//--- put below method to somewhere else
-function putBuldingsDataInUi(data) {
 
-    for (var i = 0; i < data.length; i++) {
-        console.log("osoitelainen: " + data[i].address + " id "+data[i].id);
-    }
-}
+
 
 function listBuildingStickers(buildingId) {
     $.getJSON('/board/list/stickers/' + buildingId, function(data) {
         putStickersDataInUi(data);
     });
 }
-//--- put below method to somewhere else
-function putStickersDataInUi(data) {
-    for (var i = 0; i < data.length; i++) {
-        console.log(" sticker-id" + data[i].id);
-        console.log(" email: " + data[i].email);
-        console.log(" password: " + data[i].password);
-    }
-    loadPreviousStickers(data);
-}
-function listStickersComments(stickerId) {
 
+
+function listStickersComments(stickerId) {
+    $.getJSON('/board/list/stickers/' + stickerId, function(data) {
+        showStickerDataWithComments(data);
+    });
 }
+
+
 
 function listStickersTypes() {
 
