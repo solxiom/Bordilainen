@@ -87,7 +87,7 @@ function sendDeletedSticker(sticker_id){
 
 function cancelDeleteSticker(sticker_id){
     console.log("Inside cancelDeleteSticker()");
-    
+}   
 
 
 function showDialog() {
