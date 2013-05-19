@@ -43,7 +43,7 @@ public class BulletinBoardRepositoryTest {
         expected.setBuilding_id(null);
         assertEquals(0, boardRepo.listAllBoards().size());
         String board_id = boardRepo.saveBulletinBoard(expected);
-        assertNotNull(board_id);
+        assertNull(board_id);
         assertEquals(0, boardRepo.listAllBoards().size());
     }
 
@@ -55,7 +55,7 @@ public class BulletinBoardRepositoryTest {
         expected.setBuilding_id("");
         assertEquals(0, boardRepo.listAllBoards().size());
         String board_id = boardRepo.saveBulletinBoard(expected);
-        assertNotNull(board_id);
+        assertNull(board_id);
         assertEquals(0, boardRepo.listAllBoards().size());
     }
 
