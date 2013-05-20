@@ -1,0 +1,41 @@
+/* 
+    Document   : footer_header
+    Created on : 20-May-2013, 18:38:54
+    Author     : kavansol
+    Description:
+        Purpose of the stylesheet follows.
+*/
+html,body,footer{
+    overflow-x: hidden;
+    min-width: 101%;
+    margin-left: -5%;
+}
+html,body{
+    height:100%;
+    padding:0;
+    margin:0;
+    background-color: black;
+}
+#container{
+    min-height:100%;
+    position:relative;
+}
+#mainBody{
+    overflow-x: hidden;
+    min-height:80%;
+    background-color: white;
+border-bottom-right-radius: 1200px;
+    padding-bottom: 38%;
+}
+footer{
+    position:absolute;
+    margin-bottom: 0;
+    background-color: black;
+    /*height: 30%;*/
+    min-width: 101%;
+    /*border-top: 5px solid silver;*/
+    color:white;
+    /*border-top-right-radius: 16px;*/
+    
+}
+
