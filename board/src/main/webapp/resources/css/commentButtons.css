@@ -1,0 +1,27 @@
+/* 
+    Document   : commentButtons
+    Created on : 20-May-2013, 20:15:46
+    Author     : sadeqzad
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+.commentButtonsCentered {
+    position: fixed;
+/*    top: 50%;
+    left: 50%;*/
+    margin-top: 20px;
+    margin-left: 170px;
+}
+
+.commentsTextBoxes {
+/*    margin-right: auto;
+    margin-left: auto;
+    alignment-adjust: central;
+    overflow-style: auto;*/
+}
+
+#commentsNameTextBox {
+/*    position: fixed;*/
+    margin-left: 30px;
+}

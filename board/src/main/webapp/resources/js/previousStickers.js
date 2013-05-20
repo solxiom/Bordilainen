@@ -62,8 +62,8 @@ stickerId = 1;
 existingStickers = new Array();
 function loadPreviousStickers(data){
     
-    
     for (i = 0; i < data.length; i++) {
+        
         existingStickers[i] =  
         
         // "</br> <b>Bulletin Id:</b> "+ReceivedStickers.allStickers[i].bulletin_id +
@@ -87,9 +87,8 @@ function loadPreviousStickers(data){
         $("#seq-"+ data[i].id).append("<div id=deleteSticker><a class=link href=javascript:void(0); onclick=loadDeleteStickerUI('" +data[i].id+ "')><b>X</b></a></div>"); // delete 
         $("#deleteSticker").attr("class","delSticker");
         
-        $("#seq-"+ data[i].id).append("<div id=comment><a id=commentLink class=link href=javascript:void(0); onclick=insertComment('" +data[i].id+ "')><b>Comment</b></a></div>"); // comment 
+        $("#seq-"+ data[i].id).append("<div id=comment><a id=commentLink class=link href=javascript:insertComment('" +data[i].id+ "')><b>Comment</b></a></div>"); // comment 
         $("#comment").attr("class","commOnSticker");
                
     }
-    
 }
