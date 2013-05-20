@@ -15,6 +15,10 @@
         <spring.version>3.1.0.RELEASE</spring.version>
         <cglib.version>2.2.2</cglib.version>
         <netbeans.hint.deploy.server>Tomcat</netbeans.hint.deploy.server>
+        <bas1.host>ec2-176-34-197-177.eu-west-1.compute.amazonaws.com</bas1.host>
+        <sp.keyfile>/cs/fs/home/bakharzy/codecamp/cc17-ssh.key</sp.keyfile>
+        <bas.deployDir>/opt/openinfinity/2.0.0/tomcat/webapps</bas.deployDir>
+        <org.slf4j-version>1.5.10</org.slf4j-version>
     </properties>
 
     <dependencies>
@@ -140,12 +144,6 @@
             <version>4.10</version>
             <scope>test</scope>
         </dependency>
-        <!-- mongo db 
-        <dependency>
-            <groupId>org.mongodb</groupId>
-            <artifactId>mongo-java-driver</artifactId>
-            <version>2.10.1</version>
-        </dependency>-->
     </dependencies>
 
     <repositories>
@@ -161,6 +159,51 @@
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <!-- 					<warName>shoppinglist</warName> -->
+                    <warName>mywebapp</warName>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>deploy-war</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <target>
+                        <!-- 						<scp -->
+                        <!-- 							localFile="${project.build.directory}/shoppinglist.war" -->
+                        <!-- 							remoteTodir="ec2-user@${bas1.host}:${bas.deployDir}" trust="true" -->
+                        <!-- 							keyfile="${sp.keyfile}" />							 -->
+                        <scp
+                            localFile="${project.build.directory}/mywebapp.war"
+                            remoteTodir="ec2-user@${bas1.host}:${bas.deployDir}" trust="true"
+                                                                                 keyfile="${sp.keyfile}" />
+                    </target>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.jcraft</groupId>
+                        <artifactId>jsch</artifactId>
+                        <version>0.1.42</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.ant</groupId>
+                        <artifactId>ant-jsch</artifactId>
+                        <version>1.8.2</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.0.2</version>
                 <configuration>
@@ -171,3 +214,4 @@
         </plugins>
     </build>
 </project>
+

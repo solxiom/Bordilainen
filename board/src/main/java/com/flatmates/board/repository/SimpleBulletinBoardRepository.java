@@ -19,7 +19,11 @@ public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
 //	Collection<BulletinBoard> bbmanager = RepoTool.BOARD_REPO;
     Collection<Sticker> stickerManager = new LinkedList<Sticker>();
 //	Collection<Sticker> stickerManager = RepoTool.STICKER_REPO;
-
+/**
+ * 
+ * @param board
+ * @return 
+ */
     @Override
     public String saveBulletinBoard(BulletinBoard board) {
         String board_id = UUID.randomUUID().toString();
@@ -33,12 +37,19 @@ public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
         return null;
 
     }
-
+/**
+ * 
+ * @return 
+ */
     @Override
     public Collection<BulletinBoard> listAllBoards() {
         return bbmanager;
     }
-
+/**
+ * 
+ * @param board_id
+ * @return 
+ */
     @Override
     public BulletinBoard findBoardById(String board_id) {
         for (BulletinBoard bb : bbmanager) {
@@ -48,7 +59,11 @@ public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
         }
         return null;
     }
-
+/**
+ * 
+ * @param board_id
+ * @param sticker 
+ */
     @Override
     public void addStickerToBoard(String board_id, Sticker sticker) {
         sticker.setBulletin_id(board_id);
@@ -65,7 +80,12 @@ public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
         }
 
     }
-
+/**
+ * 
+ * @param bulletin_id
+ * @param sticker_id
+ * @return 
+ */
     @Override
     public Sticker findStickerById(String bulletin_id, String sticker_id) {
         for (Sticker sticker : stickerManager) {
@@ -77,7 +97,11 @@ public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
         }
         return null;
     }
-
+/**
+ * 
+ * @param board_id
+ * @return 
+ */
     @Override
     public Collection<Sticker> findAllStickers(String board_id) {
         Collection<Sticker> wantedList = new LinkedList<Sticker>();
@@ -88,7 +112,10 @@ public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
         }
         return wantedList;
     }
-
+/**
+ * 
+ * @param sticker 
+ */
     @Override
     public void removeStickerFromBoard(Sticker sticker) {
         String id = sticker.getBulletin_id();
@@ -100,7 +127,10 @@ public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
 
         stickerManager.remove(sticker);
     }
-
+/**
+ * 
+ * @param board_id 
+ */
     @Override
     public void removeBoardById(String board_id) {
         BulletinBoard[] boards = bbmanager.toArray(new BulletinBoard[bbmanager.size()]);
@@ -114,7 +144,10 @@ public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
             bbmanager.remove(toBeremoved);
         }
     }
-
+/**
+ * 
+ * @param board_id 
+ */
     @Override
     public void removeAllStickersFromBoard(String board_id) {
         Sticker[] sts = stickerManager.toArray(new Sticker[stickerManager.size()]);
