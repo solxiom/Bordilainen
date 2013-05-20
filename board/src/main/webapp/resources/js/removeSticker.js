@@ -51,7 +51,7 @@ function cancelDeleteSticker(sticker_id){
     
     console.log("Inside cancelDeleteSticker()");
     console.log(sticker_values[sticker_id]);
-    
+    $('#mainForSticks div').remove();
     listBuildingStickers(building_id);
     
   
