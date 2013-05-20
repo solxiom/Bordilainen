@@ -54,11 +54,10 @@ public class AddController {
 
         Collection<String> log = new LinkedList<String>();
         String boardId = ControlTool.findBoardIdByBuilding(boardService.listAllBoards(), building_id);
-        Sticker sticker = new Sticker();
-        sticker.setBulletin_id(boardId);
+        req_sticker.setBulletin_id(boardId);
 
         if (ControlTool.checkRequestSticker(log, req_sticker)) {
-            boardService.addStickerToBoard(boardId, sticker);
+            boardService.addStickerToBoard(boardId, req_sticker);
             log.add("success!");
         }
         return log;
