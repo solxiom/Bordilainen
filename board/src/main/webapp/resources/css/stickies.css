@@ -132,30 +132,30 @@ body{
     font-size: xx-large;
     font-weight: bold;
     color: blue;
-    
+
 }
 
 .deleteSticker{
 
-/*    box-shadow:10px 10px 7px rgba(0,0,0,.7);
-    min-width:250px;
-    min-height:200px;
-    margin-left: 22px;
-    margin-top: 20px;
-    overflow-style: auto;
-    background-color: beige;
-    font-family:"Reenie Beanie",arial,sans-serif;
-    font-size:100%;
-    overflow: hidden;
-    display:inline-block;*/
+    /*    box-shadow:10px 10px 7px rgba(0,0,0,.7);
+        min-width:250px;
+        min-height:200px;
+        margin-left: 22px;
+        margin-top: 20px;
+        overflow-style: auto;
+        background-color: beige;
+        font-family:"Reenie Beanie",arial,sans-serif;
+        font-size:100%;
+        overflow: hidden;
+        display:inline-block;*/
     box-shadow:10px 10px 7px rgba(0,0,0,.7);
     margin-left: 20px;
-    
+
     text-align: center;
     width:300px;
     height:200px;
     background-color:transparent;
-    
+
     overflow-style: auto;
     display:inline-block;
     font-family:"Reenie Beanie",arial,sans-serif;
@@ -163,15 +163,15 @@ body{
     overflow:hidden;
     padding:3em;
     z-index: 5;
-    
-  
+
+
 }
 .deleteSticker:nth-child(even){
-    
+
     background:#cfc;
 }
 .deleteSticker:nth-child(3n){
-    
+
     background:#ccf;
 }
 
@@ -181,59 +181,59 @@ body{
 }
 
 .deleteButton {
-   border-top: 1px solid #96d1f8;
-   background: #65a9d7;
-   background: -webkit-gradient(linear, left top, left bottom, from(#ced9e0), to(#65a9d7));
-   background: -webkit-linear-gradient(top, #ced9e0, #65a9d7);
-   background: -moz-linear-gradient(top, #ced9e0, #65a9d7);
-   background: -ms-linear-gradient(top, #ced9e0, #65a9d7);
-   background: -o-linear-gradient(top, #ced9e0, #65a9d7);
-   padding: 5px 10px;
-   -webkit-border-radius: 8px;
-   -moz-border-radius: 8px;
-   border-radius: 8px;
-   -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
-   -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
-   box-shadow: rgba(0,0,0,1) 0 1px 0;
-   text-shadow: rgba(0,0,0,.4) 0 1px 0;
-   color: white;
-   font-size: 14px;
-   font-family: Georgia, serif;
-   text-decoration: none;
-   vertical-align: middle;
-   }
+    border-top: 1px solid #96d1f8;
+    background: #65a9d7;
+    background: -webkit-gradient(linear, left top, left bottom, from(#ced9e0), to(#65a9d7));
+    background: -webkit-linear-gradient(top, #ced9e0, #65a9d7);
+    background: -moz-linear-gradient(top, #ced9e0, #65a9d7);
+    background: -ms-linear-gradient(top, #ced9e0, #65a9d7);
+    background: -o-linear-gradient(top, #ced9e0, #65a9d7);
+    padding: 5px 10px;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+    -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+    box-shadow: rgba(0,0,0,1) 0 1px 0;
+    text-shadow: rgba(0,0,0,.4) 0 1px 0;
+    color: white;
+    font-size: 14px;
+    font-family: Georgia, serif;
+    text-decoration: none;
+    vertical-align: middle;
+}
 .deleteButton:hover {
-   border-top-color: #60b6f0;
-   background: #60b6f0;
-   color: #291f29;
-   }
+    border-top-color: #60b6f0;
+    background: #60b6f0;
+    color: #291f29;
+}
 .deleteButton:active {
-   border-top-color: #307bad;
-   background: #307bad;
-   }
-   
- .textBox {
-	background: white;
-	border: 1px solid #ffa853;
-	border-radius: 5px;
-	box-shadow: 0 0 5px 3px #ffa853;
-	color: #666;
-	float: left;
-	padding: 5px 10px;
-	width: 165px;
-	outline: none;
+    border-top-color: #307bad;
+    background: #307bad;
+}
+
+.textBox {
+    background: white;
+    border: 1px solid #ffa853;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 3px #ffa853;
+    color: #666;
+    float: left;
+    padding: 5px 10px;
+    width: 165px;
+    outline: none;
 }
 
 .firsPageBackground{
-    background: url("/board/resources/img/bulletin_board2.jpg");
+/*    background: url("/board/resources/img/bulletin_board2.jpg");
     background-repeat: no-repeat;
     background-attachment:fixed;
-    background-position: center;
-    
+    background-position: center;*/
+    background: none;
 }
 
 .centerOfPage {
-    
+
     left: 0;
     line-height: 200px;
     margin: auto;
