@@ -5,7 +5,10 @@ import java.util.Collection;
 import java.util.Collections;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
+/**
+ *
+ * @author kavan soleimanbeigi
+ */
 @Document
 public class BulletinBoard {
 

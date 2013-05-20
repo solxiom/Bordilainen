@@ -22,7 +22,7 @@ import org.springframework.web.context.request.WebRequest;
 
 /**
  *
- * @author kavansol
+ * @author kavan soleimanbeigi
  */
 @Controller
 @RequestMapping(value = "/remove")

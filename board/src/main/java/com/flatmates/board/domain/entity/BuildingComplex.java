@@ -1,8 +1,8 @@
 package com.flatmates.board.domain.entity;
-
-
-
-
+/**
+ *
+ * @author kavan soleimanbeigi
+ */
 
 import org.springframework.data.annotation.Id;
 

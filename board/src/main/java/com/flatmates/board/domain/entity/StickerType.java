@@ -3,6 +3,10 @@ package com.flatmates.board.domain.entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+/**
+ *
+ * @author kavan soleimanbeigi
+ */
 
 @Document
 public class StickerType {

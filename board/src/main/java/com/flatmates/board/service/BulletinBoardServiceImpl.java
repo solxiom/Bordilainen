@@ -7,7 +7,10 @@ import com.flatmates.board.domain.service.BulletinBoardService;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+/**
+ *
+ * @author kavan soleimanbeigi
+ */
 @Service
 public class BulletinBoardServiceImpl implements BulletinBoardService {
 

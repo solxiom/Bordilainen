@@ -6,7 +6,10 @@ import com.flatmates.board.domain.service.StickerTypeService;
 import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+/**
+ *
+ * @author kavan soleimanbeigi
+ */
 @Service
 public class StickerTypeserviceimpl implements StickerTypeService {
 
