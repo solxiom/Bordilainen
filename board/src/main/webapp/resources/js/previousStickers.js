@@ -1,10 +1,10 @@
 /* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+    Author: Emad Nikkhouy
+    Email: emad.nikkhouy@gmail.com
  */
 
 
-exampleData = [{
+sampleData = [{
     "id": 1, 
     "bulletin_id": 1,
     "type_id": 1,
@@ -57,7 +57,7 @@ exampleData = [{
 }
 ]
 
-
+var sticker_values = new Object();
 stickerId = 1;
 existingStickers = new Array();
 function loadPreviousStickers(data){
@@ -76,7 +76,9 @@ function loadPreviousStickers(data){
         "</br> <b>description:</b> "+data[i].description +
         "</br> <b>expire_date:</b> "+data[i].expire_date;
         
-        $("#mainForSticks").prepend("<div id= seq-"+ data[i].id +" ></div>"); // Received Information from the user
+        sticker_values [data[i].id] = existingStickers[i];
+        
+        $("#mainForSticks").prepend("<div id= seq-"+ data[i].id +" ></div>"); 
         $("#seq-"+ data[i].id).attr("class","sticker");      
         $("#seq-"+ data[i].id).html(existingStickers[i]);
         
@@ -86,7 +88,7 @@ function loadPreviousStickers(data){
         $("#seq-"+ data[i].id).append("<div id=deleteSticker><a class=link href=javascript:void(0); onclick=loadDeleteStickerUI('" +data[i].id+ "')><b>X</b></a></div>"); // delete 
         $("#deleteSticker").attr("class","delSticker");
         
-        $("#seq-"+ data[i].id).append("<div id=comment><a id=commentLink class=link href=javascript:void(0); onclick=commentOnSticker(" +data[i].id+ ")><b>Comment</b></a></div>"); // comment 
+        $("#seq-"+ data[i].id).append("<div id=comment><a id=commentLink class=link href=javascript:void(0); onclick=insertComment('" +data[i].id+ "')><b>Comment</b></a></div>"); // comment 
         $("#comment").attr("class","commOnSticker");
                
     }

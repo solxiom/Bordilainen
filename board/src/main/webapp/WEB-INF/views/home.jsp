@@ -21,6 +21,7 @@
         <script src="resources/js/addSticker.js"></script>
         <script src="resources/js/callbacks.js"></script>
         <script src="resources/js/commenting.js"></script>
+        <script src="resources/js/removeSticker.js"></script>
         <script src="resources/js/server.js"></script>
         <script src="resources/js/addSticker.js"></script>
 
@@ -38,7 +39,7 @@
         <div id="mainForSticks"></div>
         <div id="buildings"  title="Add a Sticker"></div>
         <div id="dialogMain"> </div>
-        <div id="bilbilak"></div>
+        
 
         <!--        <div id="Comm"  title="Add Comment" class="hidden">
                     <p>Please insert your comment:</p>

@@ -1,5 +1,6 @@
 /* 
     Author: Emad Nikkhouy
+    Email: emad.nikkhouy@gmail.com
 */
 
 .sticker{
@@ -137,8 +138,10 @@ body{
 .deleteSticker{
 
     box-shadow:10px 10px 7px rgba(0,0,0,.7);
-    min-width:300px;
+    min-width:250px;
     min-height:200px;
+    margin-left: 22px;
+    margin-top: 20px;
     overflow-style: auto;
     background-color: beige;
     font-family:"Reenie Beanie",arial,sans-serif;
