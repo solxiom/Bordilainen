@@ -14,7 +14,7 @@ html,body{
     height:100%;
     padding:0;
     margin:0;
-    background-color: black;
+    background-color:#60b6f0;;
 }
 #container{
     min-height:100%;
@@ -22,20 +22,34 @@ html,body{
 }
 #mainBody{
     overflow-x: hidden;
+   
     min-height:80%;
     background-color: white;
 border-bottom-right-radius: 1200px;
     padding-bottom: 38%;
+    
+}
+#body_wr{
+     margin-left: 5%;
+    margin-right: 5%;
 }
 footer{
     position:absolute;
     margin-bottom: 0;
-    background-color: black;
+    background-color:#60b6f0;
     /*height: 30%;*/
     min-width: 101%;
     /*border-top: 5px solid silver;*/
     color:white;
     /*border-top-right-radius: 16px;*/
     
+}
+#footer_info{
+    margin-top: 20px;
+  
+}
+#footer_info span{
+    display: block;
+    margin-top: 2px;
 }
 

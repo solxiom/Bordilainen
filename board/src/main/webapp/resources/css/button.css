@@ -7,8 +7,8 @@
           border: 2px solid #eee;
           height: 53px;
           width: 70px;
-          margin: 50px 0 0 50px;
-          overflow: hidden;
+          margin: 50px 100px 0 50px;
+          overflow: visible;
           display: block;
           text-align: center;
           line-height: 38px;

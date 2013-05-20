@@ -40,11 +40,13 @@
         <div id="container">
             <div id="header"></div>
             <div id="mainBody">
-                <div id="chooseBuilding"></div>
-                <div id="newSticker">  </div>
-                <div id="mainForSticks"></div>
-                <div id="buildings"  title="Add a Sticker"></div>
-                <div id="dialogMain"> </div>
+                <div id="body_wr">
+                    <div id="chooseBuilding"></div>
+                    <div id="newSticker">  </div>
+                    <div id="mainForSticks"></div>
+                    <div id="buildings"  title="Add a Sticker"></div>
+                    <div id="dialogMain"> </div>
+                </div>
             </div>
             <footer></footer>
         </div>
