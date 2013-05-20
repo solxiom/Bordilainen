@@ -6,21 +6,15 @@
 
 <html>
     <head>
-
-
-
-
-        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-
-
         <link rel="stylesheet" type="text/css" href="resources/css/button.css" />
         <link rel="stylesheet" type="text/css" href="resources/css/stickies.css" />
         <link rel="stylesheet" type="text/css" href="resources/css/dialog.css" />
         <link rel="stylesheet" type="text/css" href="resources/css/newSticker.css" />
+        <link rel="stylesheet" type="text/css" href="resources/css/commentButtons.css" />
         <link rel="stylesheet" type="text/css" href="resources/css/footer_header.css" />
 
+        <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
         <script src="resources/js/initial.js"></script>
-
         <script src="resources/js/previousStickers.js"></script>
         <script src="resources/js/addSticker.js"></script>
         <script src="resources/js/callbacks.js"></script>

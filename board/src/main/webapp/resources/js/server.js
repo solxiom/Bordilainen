@@ -22,8 +22,8 @@ function listBuildingStickers(buildingId) {
 
 
 function listStickersComments(stickerId) {
-    $.getJSON('/board/list/stickers/' + stickerId, function(data) {
-        showStickerDataWithComments(data);
+    $.getJSON('/board/list/comments/' + stickerId, function(data) {
+        showComments(stickerId, data);
     });
 }
 
