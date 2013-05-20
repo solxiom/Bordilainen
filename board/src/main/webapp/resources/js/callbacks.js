@@ -1,30 +1,6 @@
 /* 
- * Author: Emad Nikkhouy    
+ * Author: Emad Nikkhouy and Javad Sadeqzadeh Boroujeni 
  */
-
-
-function insertComment(stickerId) {
-    console.log("within insertComment(); stickerID=" + stickerId);
-    content = sticker_values [stickerId];
-//    console.log(content);
-
-    $('#mainForSticks div').remove();
-    $("#mainForSticks").prepend("<div id= seq-" + stickerId + " ></div>");
-    $("#mainForSticks div").attr("class", "newSticker");
-    $("#seq-" + stickerId).html(content);
-
-    insertCommentInputForm(stickerId);
-
-    try {
-        listStickersComments(stickerId);
-    } catch (e) {
-        console.log("no comments received from the server.");
-    }
-
-
-}
-
-
 
 function putStickersDataInUi(data) {
     for (var i = 0; i < data.length; i++) {

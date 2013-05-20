@@ -7,7 +7,10 @@ import java.util.Collection;
 import java.util.LinkedList;
 import java.util.UUID;
 import org.springframework.stereotype.Repository;
-
+/**
+ *
+ * @author kavan soleimanbeigi
+ */
 @Repository
 public class SimpleCommentRepository implements CommentRepository {
 

@@ -8,7 +8,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.stereotype.Repository;
-
+/**
+ *
+ * @author kavan soleimanbeigi
+ */
 @Repository
 public class SimpleBulletinBoardRepository implements BulletinBoardRepository {
 

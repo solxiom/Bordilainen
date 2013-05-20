@@ -1,16 +1,8 @@
 
-receivedInfo = {
-    Id: 1,
-    BBId: 1,
-    email: "emad.nikkhouy@gmail.com",
-    summuary: "Nothing",
-    title: "sell",
-    description: "want to sell my bycicle",
-    expirationDate: 3,
-    typeId: 1
-};
-
-
+/*
+ *
+ * @author Javad Sadeqzadeh Boroujeni
+ */
 
 function showDialog() {
     console.log("inside here");

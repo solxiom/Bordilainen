@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-
+/**
+ *
+ * @author kavan soleimanbeigi
+ */
 public class CommentRepositoryImpl implements CommentRepository {
 
 	@Autowired 

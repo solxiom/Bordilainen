@@ -1,3 +1,9 @@
+
+/*
+ *
+ * @author Javad Sadeqzadeh Boroujeni
+ */
+
 function insertCommentInputForm(stickerId) {
         
     $("#seq-" + stickerId).append("<br> <br> <div commentsTextBoxes> <table>\n\
