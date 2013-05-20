@@ -33,19 +33,19 @@ function listStickersTypes() {
 
 }
 
-function addStickerToBuilding(buildingId, stickerDetails) {
+function addStickerToBuilding(buildingId,sticker) {
 //should be post method
 //buildingId part of URL
 //stickerDetails part of parameters 
-
+//$.param(sticker)
 console.log("hello from addStickerToBuilding()...");
 // receives log object
     $.ajax({
         type: "POST",
-        url: "add/sticker/"+buildingId+"?email=fdsgdfsg@dghg&password=jhakjh",
-        data: JSON.stringify(stickerDetails),
+        url: "add/sticker/"+buildingId,
+        data: JSON.stringify(sticker),
+        dataType: "json",
         contentType: 'application/json; charset=utf-8',
-        dataType: 'json',
         success: function(msg){
             console.log(msg);
         }

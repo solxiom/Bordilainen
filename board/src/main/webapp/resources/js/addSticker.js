@@ -28,15 +28,18 @@ function addSticker() {
     console.log("within addSticker()...");
     var valid = UIvalidation();
     if (valid) {
-        json1 = createJSON($("#email").val(), $("#pwd").val(), $("#pwdConf").val(), $("#title").val(), $("#summary").val(), $("#desc").val(), $("#expiration").val());
-        
-        addStickerToBuilding(building_id, json1);
-        
+
+
+        sticker = {id: "", email: $("#email").val(), password: $("#pwd").val(), type_Id: "general",
+            reportCount: "", summary: $("#summary").val(), title: $("#title").val(),
+            description: $("#desc").val(), expiration_date: $("#expiration").val()};
+        addStickerToBuilding(building_id, sticker);
+
         $("#innerDivNewSticker").remove();
-        
-        console.log(json1);
+
+        console.log(sticker);
         console.log("addStickerToBuilding() called...");
-        
+
     }
 }
 

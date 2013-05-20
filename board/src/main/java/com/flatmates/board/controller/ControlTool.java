@@ -12,6 +12,7 @@ import com.flatmates.board.domain.service.BuildingComplexService;
 import com.flatmates.board.domain.service.BulletinBoardService;
 import java.util.Collection;
 import java.util.LinkedList;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.context.request.WebRequest;
 
 /**
@@ -28,67 +29,66 @@ public class ControlTool {
         }
         return null;
     }
-    public static void clearAuthenticationDataFromStickers(Collection<Sticker> sts){
-        
-        for(Sticker st: sts){
+
+    public static void clearAuthenticationDataFromStickers(Collection<Sticker> sts) {
+
+        for (Sticker st : sts) {
             st.setEmail("secured");
             st.setPassword("secured");
         }
     }
+
     public static void putFakeStickersToService(BulletinBoardService service,
-             String board_id){
+            String board_id) {
         Collection<Sticker> sts = new LinkedList<Sticker>();
         addFewFakeStickerToTheCollection(sts);
-        for(Sticker st :sts){
+        for (Sticker st : sts) {
             service.addStickerToBoard(board_id, st);
-          
-        }
-    }
-    public static void putFakeBuildingsToService(BuildingComplexService service){
-        Collection<BuildingComplex> buildings = new LinkedList<BuildingComplex>();
-        addFewBuildingToTheCollection(buildings);
-        for(BuildingComplex bc: buildings){
-            service.createBuildingComplex(bc);
-        }
-    }
-    public static void checkAndFillSticker(Collection<String> log, WebRequest request, Sticker sticker) {
-        if (request.getParameter("email") != null) {
-            sticker.setEmail(request.getParameter("email"));
-        } else {
-            log.add("email must not be null");
-        }
-        if (request.getParameter("password") != null) {
-            sticker.setPassword(request.getParameter("passwod"));
-        } else {
-            log.add("password must not be null");
-        }
-        if (request.getParameter("summary") != null) {
-            sticker.setSummary(request.getParameter("summary"));
-        } else {
-            //summary can be null!!
-        }
-        if (request.getParameter("title") != null) {
-            sticker.setTitle(request.getParameter("title"));
-        } else {
-            log.add("title must not be null");
-        }
-        if (request.getParameter("description") != null) {
-            sticker.setDescription(request.getParameter("description"));
-        } else {
-            log.add("description must not be null");
-        }
-        if (request.getParameter("type_id") != null) {
-            sticker.setType_Id(request.getParameter("type_id"));
-        } else {
-            log.add("type_id must not be null");
+
         }
     }
 
-    public static boolean setAndSaveBuilding(BuildingComplexService buildingService, BulletinBoardService boardService, String address) {
+    public static void putFakeBuildingsToService(BuildingComplexService service) {
+        Collection<BuildingComplex> buildings = new LinkedList<BuildingComplex>();
+        addFewBuildingToTheCollection(buildings);
+        for (BuildingComplex bc : buildings) {
+            service.createBuildingComplex(bc);
+        }
+    }
+
+    public static boolean checkRequestSticker(Collection<String> log, Sticker req_stickers) {
+
+
+        if (req_stickers.getEmail() == null || req_stickers.getEmail().equalsIgnoreCase("")) {
+            log.add("email must not be null or empty");
+
+        }
+        if (req_stickers.getPassword() == null || req_stickers.getPassword().equalsIgnoreCase("")) {
+            log.add("password must not be null or empty");
+        }
+        if (req_stickers.getTitle() == null || req_stickers.getTitle().equalsIgnoreCase("")) {
+            log.add("title must not be null or empty");
+        }
+        if (req_stickers.getDescription() == null || req_stickers.getDescription().equalsIgnoreCase("")) {
+            log.add("description must not be null or empty");
+        }
+        if (req_stickers.getType_Id() == null || req_stickers.getType_Id().equalsIgnoreCase("")) {
+            log.add("type_id must not be null or empty");
+        }
+        if (log.size() > 0) {
+            return false;
+        }
+        return true;
+    }
+
+    public static boolean checkAndSaveNewBuilding(BuildingComplexService buildingService, BulletinBoardService boardService, String address) {
         try {
             BuildingComplex building = new BuildingComplex();
             building.setAddress(address);
-            String building_id = buildingService.createBuildingComplex(building);
+            String building_id;
+            if ((building_id = buildingService.createBuildingComplex(building)) == null) {
+                return false;
+            }
             BulletinBoard board = new BulletinBoard();
             boardService.createBulletinBoard(building_id);
         } catch (Exception ex) {
@@ -97,18 +97,30 @@ public class ControlTool {
         return true;
     }
 
-    public static void checkAndFillComment(Collection<String> log, WebRequest request, Comment comment) {
-        if (request.getParameter("commentor_name") != null) {
-            comment.setCommentor_name(request.getParameter("commentor_name"));
-        } else {
+    public static void checkRequestComment(Collection<String> log, Comment req_comment) {
+        if (req_comment.getCommentor_name() == null
+                || req_comment.getCommentor_name().equalsIgnoreCase("")) {
             log.add("commentor must not be null");
         }
-        if (request.getParameter("commentor_text") != null) {
-            comment.setComment_text(request.getParameter("commentor_text"));
-        } else {
+        if (req_comment.getComment_text() == null
+                || req_comment.getComment_text().equalsIgnoreCase("")) {
             log.add("comment text must not be null");
         }
-    }    
+    }
+
+    public static boolean stickerAuthenticationCheck(Collection<String> log, Sticker sticker, String[] auth) {
+        try {
+            String email = auth[0], password = auth[1];
+            if (sticker.getEmail().equalsIgnoreCase(email)
+                    && sticker.getPassword().equalsIgnoreCase(password)) {
+                return true;
+            }
+        } catch (Exception e) {
+            log.add("authentication failed");
+        }
+        return false;
+    }
+
     private static void addFewBuildingToTheCollection(Collection<BuildingComplex> col) {
         BuildingComplex nx1 = new BuildingComplex();
         nx1.setAddress("Juhana herttuan tie 3");
@@ -121,18 +133,18 @@ public class ControlTool {
         col.add(nx3);
 
     }
-    private static void addFewFakeStickerToTheCollection(Collection<Sticker> col){
-        for(int i = 0; i < 10; i++){
+
+    private static void addFewFakeStickerToTheCollection(Collection<Sticker> col) {
+        for (int i = 0; i < 10; i++) {
             Sticker st = new Sticker();
             st.setDescription("bal vava bnja b abb  babj bja a bjba bjab bbajsgh basja a djk");
             st.setTitle("tit titi tit ti");
             st.setSummary("this is very good summary of my sticker");
             st.setEmail("emad@email.com");
             st.setPassword("koskhobe");
-            st.setId("sample-id-"+i);
-            st.setType_Id("sample-type-id"+i);
+            st.setId("sample-id-" + i);
+            st.setType_Id("sample-type-id" + i);
             col.add(st);
         }
     }
-    
 }

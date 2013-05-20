@@ -14,6 +14,7 @@ import java.util.LinkedList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -44,24 +45,15 @@ public class RemoveController {
         boardService.removeBoardById(building_id);
         return log;
     }
-    @RequestMapping(value = "/sticker/{board_id}/{sticker_id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/sticker/{building_id}/{sticker_id}", method = RequestMethod.POST)
     public @ResponseBody
-    Collection<String> removeSticker(@PathVariable String board_id
-            ,@PathVariable String sticker_id,WebRequest request) {
+    Collection<String> removeSticker(@PathVariable String building_id
+            ,@PathVariable String sticker_id, @RequestBody String[] auth) {
         Collection<String> log = new LinkedList<String>();
+        String board_id = ControlTool.findBoardIdByBuilding(boardService.listAllBoards(), building_id);
         Sticker sticker =boardService.findStickerById(board_id, sticker_id); 
-        String email ="",password = "";
-        if(request.getParameter("email") == null){
-            log.add("authentication failed");
-            return log;
-        }else if(request.getParameter("password") == null){
-            log.add("authentication failed");
-            return log;
-        }
-        email = request.getParameter("email");
-        password = request.getParameter("password");               
-        if(sticker.getEmail().equalsIgnoreCase(email)&&
-             sticker.getPassword().equalsIgnoreCase(password) ){
+                  
+        if(ControlTool.stickerAuthenticationCheck(log,sticker,auth) ){
             boardService.removeStickerFromBoard(sticker);
             Collection<Sticker> stickerOfComments = new LinkedList<Sticker>();
             stickerOfComments.add(sticker);
@@ -88,4 +80,5 @@ public class RemoveController {
             commentService.removeComment(c);
         }
     }
+   
 }
