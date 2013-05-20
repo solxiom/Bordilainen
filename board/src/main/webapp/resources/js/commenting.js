@@ -1,102 +1,45 @@
+function insertCommentInputForm(stickerId) {
+        
+    $("#seq-" + stickerId).append("<br> <br> <div commentsTextBoxes> <table>\n\
+                                             <tr><td>Name:</td>\n\
+                                                 <td> <input type='text' id=commentsNameTextBox></td>\n\
+                                             </tr></table>");
+    $("#seq-" + stickerId).append("<table><tr> <td>Comment:</td>\n\
+                                        <td> <textarea id=commentText rows=5 cols=35></textarea></td>\n\
+                                   </tr> </table> </div>");
+    comment_object ={id:"",sticker_id:stickerId,
+                comment_text:$('#commentText').val(),commentor_name:$('#commentsNameTextBox').val()};
+    $("#seq-" + stickerId).append("<br> <div id='divCommentBtns' class='commentButtonsCentered'> <table> \n\
+                                <tr> <td> <button id=btnSendComment onclick=addCommentToSticker('" + stickerId + "', " + comment_object + ")> send </button> </td> \n\
+                                     <td> <button id=btnCancelComment onclick=closeCommentDialog()> Cancel </button> </td> \n\
+                                </tr> \n\
+                                </table> </div>");
+
+}
 
 
-//function commentOnSticker(ID){
-//    
-//  
-//    
-//    $('#mainForSticks div').remove();
-//    $("#mainForSticks").prepend("<div id= seq-"+ ID +" ></div>");
-//    $("#seq-"+ ID).html(existingStickers[ID-1]);
-//    $("#mainForSticks div").attr("class","commentSticker");
-//    $("#seq-"+ ID).append("<div><br><b>Comment:</b></br></div>");
-//    $("#seq-"+ ID).append("<div> <table>\n\
-//                                        <tr><td>Name:</td>\n\
-//                                            <td> <textarea id=NameOfCommentor rows=2 cols=25></textarea></td>\n\
-//                                        </tr>\n\
-//                          </div>//");
-//    
-//    $("#seq-"+ ID).append("<div> <table>\n\
-//                                        <tr><td>Comment:</td>\n\
-//                                            <td> <textarea id=ReceivedComment rows=2 cols=50></textarea></td>\n\
-//                                            <td><button id=addComment onclick=createSomething()> Save Comment </button></td>   \n\
-//                                        </tr>\n\
-//                          </div>//");
-//    
-//    
-//}
-//
-//function createCommentJSON(receivedComment, ID){
-//    jsonNewComment = {
-//        "receivedComment": receivedComment
-//    }
-//    saveComment(jsonNewComment,ID)
-//}
-//
-//
-//function saveComment(jsonNewComment, ID){
-//    
-//    $("#mainForComments").prepend("<div id= seq-"+ ID +" ></div>"); // Received Information from the user
-//    $("#mainForSticks").attr("class","div.hidden");      
-//    $("#seq-"+ ID).html(jsonNewComment.receivedComment);
-//}
-//
-//function createSomething(Comment){
-//    console.log(Comment);
-//}
+function closeCommentDialog() {
+    $('#mainForSticks div').remove();
+    listBuildingStickers(building_id);
+}
 
 function insertComment(stickerId) {
-    content = fetchStickerContents(stickerId);
+    console.log("within insertComment(); stickerID=" + stickerId);
+    content = sticker_values [stickerId];
+//    console.log(content);
+
     $('#mainForSticks div').remove();
     $("#mainForSticks").prepend("<div id= seq-" + stickerId + " ></div>");
     $("#mainForSticks div").attr("class", "newSticker");
     $("#seq-" + stickerId).html(content);
-    listStickersComments(stickerId);
-}
- 
 
- 
-function showComments(data) {
-    if (data.length > 0) {
-        for (i = 0; i < data.length; i++) {
-            commentsList[i] =
-                    "<div id=comment-seq-" + data[i].id + ">" +
-                    "<b>Name: </b> " + data[i].commentor_name + "</br>" +
-                    "<b> Comment: </b> " + data[i].comment_text + "</br>"
-                    + "</div>";
-            $("#seq-" + stickerId).append(commentsList[i]);
-        }
+    insertCommentInputForm(stickerId);
+
+    try {
+        listStickersComments(stickerId);
+    } catch (e) {
+        console.log("no comments received from the server.");
     }
- 
-    $("#seq-" + stickerId).append("<div> <table>\n\
-                                             <tr><td>Name:</td>\n\
-                                                 <td> <input type='text' id=name></td>\n\
-                                             </tr>\n\
-                                        </table> </div>");
-    $("#seq-" + ID).append("<div> <table>\n\
-                                      <tr><td>Comment:</td>\n\
-                                          <td> <textarea id=commentText rows=2 cols=50></textarea></td>\n\
-                                      </tr>\n\
-                                  </table> </div>");
-    $("#seq-" + ID).append("<div id='divBtnSendComment'> \n\
-                                <button id=btnSendComment onclick=insertComment()> send </button> </div>");
-}
- 
 
- 
 
- 
-function fetchStickerContents(stickerId) {
- 
-    for (var i = 0; i < stickerContents.length; i++)
-    {
-        if (stickerContents[i].sticker_id === stickerId)
-        {
-            stHtml = "<b>Title: </b>" + stickerContents[i].title + "<br>"
-                    + "<b>Summary: </b>" + stickerContents[i].summary + "<br>"
-                    + "<b>Description: </b>" + stickerContents[i].description + "<br>"
-                    + "<b>Expiration Date: </b>" + stickerContents[i].expire_date + "<br>"
-                    + "<b>email: </b>" + stickerContents[i].email + "<br>";
-            return stHtml;
-        }
-    }
 }

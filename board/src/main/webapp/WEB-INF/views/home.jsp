@@ -20,6 +20,7 @@
         <script src="resources/js/callbacks.js"></script>
         <script src="resources/js/removeSticker.js"></script>
         <script src="resources/js/server.js"></script>
+        <script src="resources/js/commenting.js"></script>
 
         <title>Bulletin Board</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
