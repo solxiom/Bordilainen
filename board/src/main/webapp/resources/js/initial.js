@@ -9,7 +9,9 @@ $(document).ready(function() {
 
             
         $('#chooseBuilding').load("resources/html/buildings.html");
-        $(document.body).css('background','none');
+        // $(document.body).css('background','none');
+        // $(document.body).css({'background':'url("/board/resources/img/bulletin_board2.jpg")','background-repeat': 'no-repeat'});
+        $(document.body).attr('class', 'firsPageBackground')
         listBuildings();
             
        

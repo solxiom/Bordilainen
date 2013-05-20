@@ -1,4 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<!--    Author: Emad Nikkhouy
+-->
 <!DOCTYPE html>
 
 <html>
@@ -29,7 +32,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
 
-    <!--     background="resources/img/BulletinBoard.jpg"-->
+    
     <body>
 
         
@@ -40,24 +43,6 @@
         <div id="buildings"  title="Add a Sticker"></div>
         <div id="dialogMain"> </div>
         
-
-        <!--        <div id="Comm"  title="Add Comment" class="hidden">
-                    <p>Please insert your comment:</p>
-                    <table>
-        
-                        <tr>
-                            <td>Comment:</td>
-                            <td> <textarea id="user_comment" rows="2" cols="47"></textarea> </td>
-                        </tr>
-                        <tr>
-                            <td><div id="mainForComments" ></div></td>
-                        </tr>
-        
-                    </table>
-        
-                </div>-->
-
-
 
     </body>
 </html>

@@ -21,7 +21,7 @@ function reportCounter(ID) {
 function loadDeleteStickerUI(sticker_id) {
     console.log("inside delete sticker");   
     $("#seq-" + sticker_id).load("resources/html/deleteSticker.html",function(){
-        $("#seq-"+sticker_id).attr("class","deleteSticker");
+      //  $("#seq-"+sticker_id).attr("class","deleteSticker");
         console.log("size --- " + $("#seq-"+sticker_id+" #delete_btn").length);
         $("#seq-"+sticker_id+" #delete_btn").click(function(){
             sendDeletedSticker(sticker_id);

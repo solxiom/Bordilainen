@@ -40,17 +40,18 @@ function addSticker() {
             title: $("#title").val(),
             description: $("#desc").val(), 
             expiration_date: $("#expiration").val()
-            };
+        };
         
         addStickerToBuilding(building_id, sticker);
         
         
-        
+        $('#mainForSticks div').remove();
         $("#innerDivNewSticker").remove();
-
+        
         console.log(sticker);
         console.log("addStickerToBuilding() called...");
-        $('#mainForSticks div').remove();
+        
+        
         listBuildingStickers(building_id);
     }
 }
