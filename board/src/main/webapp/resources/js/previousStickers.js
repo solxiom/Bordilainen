@@ -65,12 +65,6 @@ function loadPreviousStickers(data){
     for (i = 0; i < data.length; i++) {
         
         existingStickers[i] =  
-        
-        // "</br> <b>Bulletin Id:</b> "+ReceivedStickers.allStickers[i].bulletin_id +
-        // "</br> <b>Type Id:</b> "+ReceivedStickers.allStickers[i].type_id +
-    
-        // "</br> <b>password:</b> "+ReceivedStickers.allStickers[i].password +
-        // "</br> <b>report Count:</b> "+ReceivedStickers.allStickers[i].report_count +
         "<b>Title:</b> "+data[i].title +
         "</br> <b>Summary:</b> "+data[i].summary +
         "</br> <b>Description:</b> "+data[i].description;
@@ -80,9 +74,6 @@ function loadPreviousStickers(data){
         $("#mainForSticks").prepend("<div id= seq-"+ data[i].id +" ></div>"); 
         $("#seq-"+ data[i].id).attr("class","sticker");      
         $("#seq-"+ data[i].id).html(existingStickers[i]);
-        
-        $("#seq-"+ data[i].id).append("<div id=report><a class=link href=javascript:reportCounter("+ data[i].id +")>Report</a></div>"); // report  
-        $("#report").attr("class","reportText");
         
         $("#seq-"+ data[i].id).append("<div id=deleteSticker><a class=link href=javascript:void(0); onclick=loadDeleteStickerUI('" +data[i].id+ "')><b>X</b></a></div>"); // delete 
         $("#deleteSticker").attr("class","delSticker");
