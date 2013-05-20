@@ -1,4 +1,6 @@
-// Author : Emad Nikkhouy
+/* 
+ * Author : Emad Nikkhouy
+ */
 
 building_id = "";
 $(document).ready(function() {

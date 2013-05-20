@@ -51,18 +51,17 @@ function cancelDeleteSticker(sticker_id){
     
     
     $("#seq-"+ sticker_id).attr("class","sticker"); 
-   
     $("#seq-"+ sticker_id).html(sticker_values[sticker_id]);
-     $("#seq-"+ sticker_id).append("<div id=deleteSticker>\n\
- <a class=link href=javascript:void(0); onclick=loadDeleteStickerUI('" + sticker_id +"')><b>X</b></a></div>"); // delete 
+    
+    $("#seq-"+ sticker_id).append("<div id=deleteSticker><a class=link href=javascript:void(0); onclick=loadDeleteStickerUI('" + sticker_id +"')><b>X</b></a></div>"); // delete 
     $("#deleteSticker").attr("class","delSticker");
+    
     $("#seq-"+ sticker_id).append("<div id=report><a class=link href=javascript:reportCounter("+ sticker_id +")>Report</a></div>"); // report  
     $("#report").attr("class","reportText");
         
-    
-        
-    $("#seq-"+ sticker_id).append("<div id=comment><a id=commentLink class=link href=javascript:void(0); onclick=commentOnSticker('" +sticker_id+ "')><b>Comment</b></a></div>"); // comment 
+    $("#seq-"+ sticker_id).append("<div id=comment><a id=commentLink class=link href=javascript:void(0); onclick=insertComment('" +sticker_id+ "')><b>Comment</b></a></div>"); // comment 
     $("#comment").attr("class","commOnSticker");
+    
 }  
 
 
