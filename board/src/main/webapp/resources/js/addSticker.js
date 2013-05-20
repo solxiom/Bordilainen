@@ -41,15 +41,17 @@ function addSticker() {
             description: $("#desc").val(), 
             expiration_date: $("#expiration").val()
             };
+        
         addStickerToBuilding(building_id, sticker);
         
-        listBuildingStickers(building_id);
+        
         
         $("#innerDivNewSticker").remove();
 
         console.log(sticker);
         console.log("addStickerToBuilding() called...");
-
+        $('#mainForSticks div').remove();
+        listBuildingStickers(building_id);
     }
 }
 

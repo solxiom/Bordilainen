@@ -65,16 +65,15 @@ function loadPreviousStickers(data){
     
     for (i = 0; i < data.length; i++) {
         existingStickers[i] =  
-        "<b>Id:</b> "+data[i].id + 
+        
         // "</br> <b>Bulletin Id:</b> "+ReceivedStickers.allStickers[i].bulletin_id +
         // "</br> <b>Type Id:</b> "+ReceivedStickers.allStickers[i].type_id +
-        "</br> <b>email:</b> "+data[i].email +
+    
         // "</br> <b>password:</b> "+ReceivedStickers.allStickers[i].password +
         // "</br> <b>report Count:</b> "+ReceivedStickers.allStickers[i].report_count +
-        "</br> <b>summary:</b> "+data[i].summary +
-        "</br> <b>title:</b> "+data[i].title +
-        "</br> <b>description:</b> "+data[i].description +
-        "</br> <b>expire_date:</b> "+data[i].expire_date;
+        "<b>Title:</b> "+data[i].title +
+        "</br> <b>Summary:</b> "+data[i].summary +
+        "</br> <b>Description:</b> "+data[i].description;
         
         sticker_values [data[i].id] = existingStickers[i];
         
