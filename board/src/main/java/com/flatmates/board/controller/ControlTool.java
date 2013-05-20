@@ -12,6 +12,7 @@ import com.flatmates.board.domain.service.BuildingComplexService;
 import com.flatmates.board.domain.service.BulletinBoardService;
 import java.util.Collection;
 import java.util.LinkedList;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.context.request.WebRequest;
 
 /**
@@ -55,37 +56,29 @@ public class ControlTool {
         }
     }
 
-    public static void checkAndFillSticker(Collection<String> log, WebRequest request, Sticker sticker) {
-        if (request.getParameter("email") != null) {
-            sticker.setEmail(request.getParameter("email"));
-        } else {
-            log.add("email must not be null");
+    public static boolean checkRequestSticker(Collection<String> log, Sticker req_stickers) {
+        
+        
+        if (req_stickers.getEmail() == null || req_stickers.getEmail().equalsIgnoreCase("")) {
+            log.add("email must not be null or empty");
+            
         }
-        if (request.getParameter("password") != null) {
-            sticker.setPassword(request.getParameter("passwod"));
-        } else {
-            log.add("password must not be null");
+        if (req_stickers.getPassword() == null || req_stickers.getPassword().equalsIgnoreCase("")) {  
+            log.add("password must not be null or empty");
         }
-        if (request.getParameter("summary") != null) {
-            sticker.setSummary(request.getParameter("summary"));
-        } else {
-            //summary can be null!!
+        if (req_stickers.getTitle() == null || req_stickers.getTitle().equalsIgnoreCase("")) {
+            log.add("title must not be null or empty");
         }
-        if (request.getParameter("title") != null) {
-            sticker.setTitle(request.getParameter("title"));
-        } else {
-            log.add("title must not be null");
+        if (req_stickers.getDescription() == null || req_stickers.getDescription().equalsIgnoreCase("")) {
+            log.add("description must not be null or empty");
         }
-        if (request.getParameter("description") != null) {
-            sticker.setDescription(request.getParameter("description"));
-        } else {
-            log.add("description must not be null");
+        if (req_stickers.getType_Id() == null || req_stickers.getType_Id().equalsIgnoreCase("")) {
+            log.add("type_id must not be null or empty");
         }
-        if (request.getParameter("type_id") != null) {
-            sticker.setType_Id(request.getParameter("type_id"));
-        } else {
-            log.add("type_id must not be null");
+        if(log.size() > 0){
+            return false;
         }
+        return true;
     }
 
     public static boolean setAndSaveBuilding(BuildingComplexService buildingService, BulletinBoardService boardService, String address) {
@@ -101,14 +94,14 @@ public class ControlTool {
         return true;
     }
 
-    public static void checkAndFillComment(Collection<String> log, WebRequest request, Comment comment) {
-        if (request.getParameter("commentor_name") != null) {
-            comment.setCommentor_name(request.getParameter("commentor_name"));
+    public static void checkAndFillComment(Collection<String> log, HttpServletRequest request, Comment comment) {
+        if (request.getAttribute("commentor_name") != null) {
+            comment.setCommentor_name((String)request.getAttribute("commentor_name"));
         } else {
             log.add("commentor must not be null");
         }
-        if (request.getParameter("commentor_text") != null) {
-            comment.setComment_text(request.getParameter("commentor_text"));
+        if (request.getAttribute("commentor_text") != null) {
+            comment.setComment_text((String)request.getAttribute("commentor_text"));
         } else {
             log.add("comment text must not be null");
         }
