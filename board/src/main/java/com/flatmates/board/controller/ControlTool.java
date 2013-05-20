@@ -57,13 +57,13 @@ public class ControlTool {
     }
 
     public static boolean checkRequestSticker(Collection<String> log, Sticker req_stickers) {
-        
-        
+
+
         if (req_stickers.getEmail() == null || req_stickers.getEmail().equalsIgnoreCase("")) {
             log.add("email must not be null or empty");
-            
+
         }
-        if (req_stickers.getPassword() == null || req_stickers.getPassword().equalsIgnoreCase("")) {  
+        if (req_stickers.getPassword() == null || req_stickers.getPassword().equalsIgnoreCase("")) {
             log.add("password must not be null or empty");
         }
         if (req_stickers.getTitle() == null || req_stickers.getTitle().equalsIgnoreCase("")) {
@@ -75,17 +75,20 @@ public class ControlTool {
         if (req_stickers.getType_Id() == null || req_stickers.getType_Id().equalsIgnoreCase("")) {
             log.add("type_id must not be null or empty");
         }
-        if(log.size() > 0){
+        if (log.size() > 0) {
             return false;
         }
         return true;
     }
 
-    public static boolean setAndSaveBuilding(BuildingComplexService buildingService, BulletinBoardService boardService, String address) {
+    public static boolean checkAndSaveNewBuilding(BuildingComplexService buildingService, BulletinBoardService boardService, String address) {
         try {
             BuildingComplex building = new BuildingComplex();
             building.setAddress(address);
-            String building_id = buildingService.createBuildingComplex(building);
+            String building_id;
+            if ((building_id = buildingService.createBuildingComplex(building)) == null) {
+                return false;
+            }
             BulletinBoard board = new BulletinBoard();
             boardService.createBulletinBoard(building_id);
         } catch (Exception ex) {
@@ -94,34 +97,26 @@ public class ControlTool {
         return true;
     }
 
-    public static void checkAndFillComment(Collection<String> log, HttpServletRequest request, Comment comment) {
-        if (request.getAttribute("commentor_name") != null) {
-            comment.setCommentor_name((String)request.getAttribute("commentor_name"));
-        } else {
+    public static void checkRequestComment(Collection<String> log, Comment req_comment) {
+        if (req_comment.getCommentor_name() == null
+                || req_comment.getCommentor_name().equalsIgnoreCase("")) {
             log.add("commentor must not be null");
         }
-        if (request.getAttribute("commentor_text") != null) {
-            comment.setComment_text((String)request.getAttribute("commentor_text"));
-        } else {
+        if (req_comment.getComment_text() == null
+                || req_comment.getComment_text().equalsIgnoreCase("")) {
             log.add("comment text must not be null");
         }
     }
 
-    public static boolean stickerAuthenticationCheck(Sticker sticker, WebRequest request, Collection<String> log) {
-
-        String email = "", password = "";
-        if (request.getParameter("email") == null) {
+    public static boolean stickerAuthenticationCheck(Collection<String> log, Sticker sticker, String[] auth) {
+        try {
+            String email = auth[0], password = auth[1];
+            if (sticker.getEmail().equalsIgnoreCase(email)
+                    && sticker.getPassword().equalsIgnoreCase(password)) {
+                return true;
+            }
+        } catch (Exception e) {
             log.add("authentication failed");
-            return false;
-        } else if (request.getParameter("password") == null) {
-            log.add("authentication failed");
-            return false;
-        }
-        email = request.getParameter("email");
-        password = request.getParameter("password");
-        if (sticker.getEmail().equalsIgnoreCase(email)
-                && sticker.getPassword().equalsIgnoreCase(password)) {
-            return true;
         }
         return false;
     }

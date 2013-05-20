@@ -4,6 +4,7 @@
  */
 package com.flatmates.board.controller;
 
+import com.flatmates.board.domain.entity.BuildingComplex;
 import com.flatmates.board.domain.entity.Comment;
 import com.flatmates.board.domain.entity.Sticker;
 import com.flatmates.board.domain.service.BuildingComplexService;
@@ -49,14 +50,14 @@ public class AddController {
      */
     @RequestMapping(value = "/sticker/{building_id}", method = RequestMethod.POST)
     public @ResponseBody
-    Collection<String> addStickerToBuildingBoard(@PathVariable String building_id,@RequestBody Sticker req_sticker) {
+    Collection<String> addStickerToBuildingBoard(@PathVariable String building_id, @RequestBody Sticker req_sticker) {
 
         Collection<String> log = new LinkedList<String>();
         String boardId = ControlTool.findBoardIdByBuilding(boardService.listAllBoards(), building_id);
         Sticker sticker = new Sticker();
-        sticker.setBulletin_id(boardId);  
-        
-        if(ControlTool.checkRequestSticker(log, req_sticker)) {
+        sticker.setBulletin_id(boardId);
+
+        if (ControlTool.checkRequestSticker(log, req_sticker)) {
             boardService.addStickerToBoard(boardId, sticker);
             log.add("success!");
         }
@@ -65,13 +66,13 @@ public class AddController {
 
     @RequestMapping(value = "/comment/{sticker_id}", method = RequestMethod.POST)
     public @ResponseBody
-    Collection<String> addCommentToSticker(@PathVariable String sticker_id, HttpServletRequest request) {
+    Collection<String> addCommentToSticker(@PathVariable String sticker_id, @RequestBody Comment req_comment) {
         Collection<String> log = new LinkedList<String>();
-        Comment comment = new Comment();
-        comment.setSticker_id(sticker_id);
-        ControlTool.checkAndFillComment(log, request, comment);
+
+        req_comment.setSticker_id(sticker_id);
+        ControlTool.checkRequestComment(log, req_comment);
         if (log.size() == 0) {
-            commentService.saveComment(comment);
+            commentService.saveComment(req_comment);
             log.add("success!");
         }
         return log;
@@ -87,9 +88,9 @@ public class AddController {
 
     @RequestMapping(value = "/building/{address}", method = RequestMethod.POST)
     public @ResponseBody
-    Collection<String> addNewBuilding(@PathVariable String address, HttpServletRequest request) {
+    Collection<String> addNewBuilding(@PathVariable String address) {
         Collection<String> log = new LinkedList<String>();
-        if (ControlTool.setAndSaveBuilding(buildingService, boardService, address)) {
+        if (ControlTool.checkAndSaveNewBuilding(buildingService, boardService, address)) {
             log.add("success!");
         } else {
             log.add("failed!");
