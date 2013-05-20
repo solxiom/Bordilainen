@@ -16,10 +16,10 @@ function insertCommentInputForm(stickerId) {
     comment_object ={id:"",sticker_id:stickerId,
                 comment_text:$('#commentText').val(),commentor_name:$('#commentsNameTextBox').val()};
     $("#seq-" + stickerId).append("<br> <div id='divCommentBtns' class='commentButtonsCentered'> <table> \n\
-                                <tr> <td> <button id=btnSendComment onclick=addCommentToSticker('" + stickerId + "', " + comment_object + ")> send </button> </td> \n\
+                                <tr> <td> <button id=btnSendComment onclick='alert("+"Not Supported!"+")'> send </button> </td> \n\
                                      <td> <button id=btnCancelComment onclick=closeCommentDialog()> Cancel </button> </td> \n\
                                 </tr> \n\
-                                </table> </div>");
+                                </table> </div> <br> <div style='margin-top: 50px;'> <b> Commenting is not supported in this release. </b> </div>");
 
 }
 
