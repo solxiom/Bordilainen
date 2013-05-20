@@ -45,6 +45,7 @@ function showHome(){
  
     console.log("inside showHome()");
     $("#header").empty();
+    $('#mainForSticks').empty();
     
     $('#chooseBuilding').load("resources/html/buildings.html",function(){
            
