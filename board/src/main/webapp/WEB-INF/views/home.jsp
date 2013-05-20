@@ -17,13 +17,15 @@
         <link rel="stylesheet" type="text/css" href="resources/css/stickies.css" />
         <link rel="stylesheet" type="text/css" href="resources/css/dialog.css" />
         <link rel="stylesheet" type="text/css" href="resources/css/newSticker.css" />
+        <link rel="stylesheet" type="text/css" href="resources/css/commentButtons.css" />
+        
         
         <script src="resources/js/initial.js"></script>
         
         <script src="resources/js/previousStickers.js"></script>
         <script src="resources/js/addSticker.js"></script>
         <script src="resources/js/callbacks.js"></script>
-        <script src="resources/js/commenting.js"></script>
+        <!--<script src="resources/js/commenting.js"></script>-->
         <script src="resources/js/removeSticker.js"></script>
         <script src="resources/js/server.js"></script>
         <script src="resources/js/addSticker.js"></script>
