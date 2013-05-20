@@ -71,7 +71,7 @@ function removeBuilding(buildingId) {
     // UI does not support this    
 }
 
-function removeSticker(boardId, stickerId, email, password) {
+function removeSticker(building_id, confidential_data) {
 
 }
 
