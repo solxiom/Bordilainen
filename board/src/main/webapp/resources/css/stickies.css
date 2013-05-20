@@ -224,11 +224,11 @@ body{
     outline: none;
 }
 
-.firsPageBackground{
-/*    background: url("/board/resources/img/bulletin_board2.jpg");
-    background-repeat: no-repeat;
-    background-attachment:fixed;
-    background-position: center;*/
+.firstPageBackground{
+    /*    background: url("/board/resources/img/bulletin_board2.jpg");
+        background-repeat: no-repeat;
+        background-attachment:fixed;
+        background-position: center;*/
     background: none;
 }
 
@@ -242,4 +242,25 @@ body{
     top: 50%;
     width: 100%;
 
+}
+
+.dropdown {
+    width: 500px;
+    height: 50px;
+    overflow: hidden;
+    background: url(new_arrow.png) no-repeat right #ddd;
+    border: 1px solid #ccc;
+    text-indent: 150px;
+    font-size: larger;
+    font-weight: bold;
+    font-family: cursive;
+    color: #60b6f0;
+    
+    /*margin:auto;*/
+}
+
+.firstPageHeader{
+    font-family: cursive;
+    color: #3399FF;
+    
 }
