@@ -1,5 +1,5 @@
 /* 
- * Author: Emad Nikkhouy and Javad Sadeqzadeh Boroujeni 
+ * Author: Emad Nikkhouy 
  */
 
 function putStickersDataInUi(data) {
@@ -30,19 +30,6 @@ function addBuildingsToCombo(data) {
 
 }
 
-function showComments(stickerId, data) {
-    if (data.length > 0) {
-        for (i = 0; i < data.length; i++) {
-            commentsList[i] =
-                    "<div id=comment-seq-" + data[i].id + ">" +
-                    "<b>Name: </b> " + data[i].commentor_name + "</br>" +
-                    "<b> Comment: </b> " + data[i].comment_text + "</br>"
-                    + "</div>";
-            $("#seq-" + stickerId).append(commentsList[i]);
-        }
-    }
-
-}
 
 
 

@@ -48,7 +48,7 @@ public class HomeController {
         String testBoardId = boardService.createBulletinBoard(testbuilding.getId());
         String testBoardId2 = boardService.createBulletinBoard(testbuilding2.getId());
         String testBoardId3 = boardService.createBulletinBoard(testbuilding3.getId());
-        ControlTool.putFakeStickersToService(boardService, testBoardId);
+//        ControlTool.putFakeStickersToService(boardService, testBoardId);
         glob_board_id = testBoardId;
     }
 }

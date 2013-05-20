@@ -162,7 +162,7 @@
                 <artifactId>maven-war-plugin</artifactId>
                 <configuration>
                     <!-- 					<warName>shoppinglist</warName> -->
-                    <warName>mywebapp</warName>
+                    <warName>board</warName>
                 </configuration>
             </plugin>
             <plugin>
@@ -184,7 +184,7 @@
                         <!-- 							remoteTodir="ec2-user@${bas1.host}:${bas.deployDir}" trust="true" -->
                         <!-- 							keyfile="${sp.keyfile}" />							 -->
                         <scp
-                            localFile="${project.build.directory}/mywebapp.war"
+                            localFile="${project.build.directory}/board.war"
                             remoteTodir="ec2-user@${bas1.host}:${bas.deployDir}" trust="true"
                                                                                  keyfile="${sp.keyfile}" />
                     </target>

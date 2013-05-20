@@ -225,10 +225,7 @@ body{
 }
 
 .firstPageBackground{
-    /*    background: url("/board/resources/img/bulletin_board2.jpg");
-        background-repeat: no-repeat;
-        background-attachment:fixed;
-        background-position: center;*/
+   
     background: none;
 }
 
