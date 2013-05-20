@@ -34,12 +34,8 @@ function listStickersTypes() {
 }
 
 function addStickerToBuilding(buildingId,sticker) {
-//should be post method
-//buildingId part of URL
-//stickerDetails part of parameters 
-//$.param(sticker)
-console.log("hello from addStickerToBuilding()...");
-// receives log object
+
+//console.log("hello from addStickerToBuilding()...");
     $.ajax({
         type: "POST",
         url: "add/sticker/"+buildingId,
@@ -71,8 +67,18 @@ function removeBuilding(buildingId) {
     // UI does not support this    
 }
 
-function removeSticker(building_id, confidential_data) {
+function removeSticker(building_id,sticker_id, auth_array) {
 
+    $.ajax({
+        type: "POST",
+        url: "remove/sticker/"+building_id+"/"+sticker_id,
+        data: JSON.stringify(auth_array),
+        dataType: "json",
+        contentType: 'application/json; charset=utf-8',
+        success: function(msg){
+            console.log(msg);
+        }
+    });
 }
 
 

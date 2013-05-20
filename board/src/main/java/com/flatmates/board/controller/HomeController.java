@@ -25,16 +25,27 @@ public class HomeController {
     BuildingComplexService buildingService;
     @Autowired
     BulletinBoardService boardService;
+    String glob_board_id = "";
+    boolean init_state = true;
 
-    String glob_board_id ="";
     @RequestMapping(value = "/")
     public ModelAndView rootIndex(HttpServletResponse response) throws IOException {
-        ControlTool.putFakeBuildingsToService(buildingService);
-        BuildingComplex testbuilding = (BuildingComplex) (buildingService.listAll().toArray()[1]);
-        String testBoardId = boardService.createBulletinBoard(testbuilding.getId());
-        ControlTool.putFakeStickersToService(boardService, testBoardId);
-        glob_board_id = testBoardId;
+        if(init_state){
+            init();
+            init_state = false;
+        }
         return new ModelAndView("home.jsp");
     }
 
+    private void init() {
+        ControlTool.putFakeBuildingsToService(buildingService);
+        BuildingComplex testbuilding = (BuildingComplex) (buildingService.listAll().toArray()[0]);
+        BuildingComplex testbuilding2 = (BuildingComplex) (buildingService.listAll().toArray()[1]);
+        BuildingComplex testbuilding3 = (BuildingComplex) (buildingService.listAll().toArray()[2]);
+        String testBoardId = boardService.createBulletinBoard(testbuilding.getId());
+        String testBoardId2 = boardService.createBulletinBoard(testbuilding2.getId());
+        String testBoardId3 = boardService.createBulletinBoard(testbuilding3.getId());
+        ControlTool.putFakeStickersToService(boardService, testBoardId);
+        glob_board_id = testBoardId;
+    }
 }

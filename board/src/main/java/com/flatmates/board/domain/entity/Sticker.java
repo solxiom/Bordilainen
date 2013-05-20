@@ -67,6 +67,10 @@ public class Sticker {
         return reportCount;
     }
 
+    public void setReportCount(int reportCount) {
+        this.reportCount = reportCount;
+    }
+
     public void increaseReporCount() {
         this.reportCount++;
     }

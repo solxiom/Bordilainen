@@ -60,7 +60,9 @@ public class RemoveController {
             removeEveryStickerComments(stickerOfComments);
             log.add("success!");
         }else{
-            log.add("authentication failed");
+            log.add("authentication failed [auth email:"+ auth[0]
+                    +" password:"+auth[1]+"] \n [actual email:" +
+                    sticker.getEmail() + " password: " + sticker.getPassword()+"]");
         }
         return log;
     }

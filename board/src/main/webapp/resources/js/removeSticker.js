@@ -36,10 +36,14 @@ function loadDeleteStickerUI(sticker_id) {
 
 function sendDeletedSticker(sticker_id){
     console.log("Inside sendDeleteSticker()");
-    var username = $("#seq-"+sticker_id+" #delete_username").val();
+    var email = $("#seq-"+sticker_id+" #delete_username").val();
     var password = $("#seq-"+sticker_id+" #delete_password").val();
     console.log($("#seq-"+sticker_id+" #delete_username").val());
-// $("#seq-" + sticker_id).remove();
+    ar = [email,password];
+    removeSticker(building_id,sticker_id, ar);
+    $('#mainForSticks div').remove();
+    listBuildingStickers(building_id);
+
     
 }
 

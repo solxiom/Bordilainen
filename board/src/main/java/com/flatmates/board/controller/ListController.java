@@ -7,8 +7,9 @@ import com.flatmates.board.domain.entity.Sticker;
 import com.flatmates.board.domain.service.BuildingComplexService;
 import com.flatmates.board.domain.service.BulletinBoardService;
 import com.flatmates.board.domain.service.CommentService;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -43,12 +44,13 @@ public class ListController{
     }
     @RequestMapping(value = "/stickers/{building_id}", method = RequestMethod.GET)
     public @ResponseBody
-    Collection<Sticker> listBuildingStickers(@PathVariable String building_id) {
+    List<Sticker> listBuildingStickers(@PathVariable String building_id) {
         Collection<BulletinBoard> boards = boardService.listAllBoards();
         String boardId = ControlTool.findBoardIdByBuilding(boards, building_id);
-        Collection<Sticker> res = boardService.findAllStickers(boardId);
-        ControlTool.clearAuthenticationDataFromStickers(res);
-        return res;
+        Collection<Sticker> actual_result = boardService.findAllStickers(boardId);
+        List<Sticker> secured_list = ControlTool.clearAuthenticationDataFromStickers(actual_result);
+        
+        return secured_list;
     }
     @RequestMapping(value = "/comments/sticker_id", method = RequestMethod.GET)
     public @ResponseBody

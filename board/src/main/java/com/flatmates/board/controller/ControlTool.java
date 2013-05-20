@@ -10,10 +10,11 @@ import com.flatmates.board.domain.entity.Comment;
 import com.flatmates.board.domain.entity.Sticker;
 import com.flatmates.board.domain.service.BuildingComplexService;
 import com.flatmates.board.domain.service.BulletinBoardService;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
-import javax.servlet.http.HttpServletRequest;
-import org.springframework.web.context.request.WebRequest;
+import java.util.List;
 
 /**
  *
@@ -30,12 +31,15 @@ public class ControlTool {
         return null;
     }
 
-    public static void clearAuthenticationDataFromStickers(Collection<Sticker> sts) {
-
+    public static List<Sticker> clearAuthenticationDataFromStickers(Collection<Sticker> sts) {
+        List<Sticker> destList = new ArrayList<Sticker>();            
         for (Sticker st : sts) {
-            st.setEmail("secured");
-            st.setPassword("secured");
+            Sticker new_st = copySticker(st);
+            new_st.setEmail("secured");
+            new_st.setPassword("secured");
+            destList.add(new_st);
         }
+        return destList;
     }
 
     public static void putFakeStickersToService(BulletinBoardService service,
@@ -120,7 +124,20 @@ public class ControlTool {
         }
         return false;
     }
-
+    public static Sticker copySticker(Sticker actual){
+        Sticker cp = new Sticker();
+        cp.setId(actual.getId());
+        cp.setBulletin_id(actual.getBulletin_id());
+        cp.setEmail(actual.getEmail());
+        cp.setExpiration_date(actual.getExpiration_date());
+        cp.setPassword(actual.getPassword());
+        cp.setTitle(actual.getTitle());
+        cp.setDescription(actual.getDescription());
+        cp.setType_Id(actual.getType_Id());
+        cp.setReportCount(actual.getReportCount());
+        cp.setSummary(actual.getSummary());
+        return cp;
+    }
     private static void addFewBuildingToTheCollection(Collection<BuildingComplex> col) {
         BuildingComplex nx1 = new BuildingComplex();
         nx1.setAddress("Juhana herttuan tie 3");
@@ -140,11 +157,12 @@ public class ControlTool {
             st.setDescription("bal vava bnja b abb  babj bja a bjba bjab bbajsgh basja a djk");
             st.setTitle("tit titi tit ti");
             st.setSummary("this is very good summary of my sticker");
-            st.setEmail("emad@email.com");
-            st.setPassword("koskhobe");
+            st.setEmail("emad@emi.com");
+            st.setPassword("123");
             st.setId("sample-id-" + i);
             st.setType_Id("sample-type-id" + i);
             col.add(st);
         }
     }
+    
 }
