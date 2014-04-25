@@ -57,11 +57,11 @@ sampleData = [{
 }
 ]
 
-var sticker_values = new Object();
+
 stickerId = 1;
-existingStickers = new Array();
 function loadPreviousStickers(data){
-    
+    var sticker_values = new Object();
+    var existingStickers = new Array();
     for (i = 0; i < data.length; i++) {
         
         existingStickers[i] =  

@@ -6,6 +6,12 @@
  */
 
 
+function saveBuildingName(building_id){
+    $.getJSON('/board/address/' + building_id, function(data) {
+        new NavData().setBuildingName(data);
+        
+    });
+}
 function listBuildings() {
     $.getJSON('/board/list/buildings', function(data) {
         addBuildingsToCombo(data);
@@ -17,6 +23,7 @@ function listBuildings() {
 function listBuildingStickers(buildingId) {
     $.getJSON('/board/list/stickers/' + buildingId, function(data) {
         putStickersDataInUi(data);
+        
     });
 }
 

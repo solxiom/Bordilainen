@@ -21,6 +21,8 @@
         <script src="resources/js/removeSticker.js"></script>
         <script src="resources/js/server.js"></script>
         <script src="resources/js/commenting.js"></script>
+        <script src="resources/js/NavData.js"></script>
+        <script src="resources/js/Navigation.js"></script>
 
         <title>Bulletin Board</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -31,9 +33,11 @@
 
         <header></header>
         <div id="container">
-            <div id="header"></div>
+            
             <div id="mainBody">
                 <div id="body_wr">
+                    <div id="inner_header"></div>
+                    <div id="sideBar"></div>
                     <div id="chooseBuilding"></div>
                     <div id="newSticker">  </div>
                     <div id="mainForSticks"></div>
@@ -41,8 +45,9 @@
                     <div id="dialogMain"> </div>
                 </div>
             </div>
-            <footer></footer>
+             <footer></footer>
         </div>
+       
 
     </body>
 </html>

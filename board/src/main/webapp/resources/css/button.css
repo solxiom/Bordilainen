@@ -41,6 +41,7 @@
           -o-transition: All 0.5s ease;
           -ms-transition: All 0.5s ease;
           transition: All 0.5s ease;
+         
 }
 .button:hover{
     background-color: #ff3434;

@@ -19,6 +19,8 @@ function showDialog() {
 function addSticker() {
     console.log("within addSticker()...");
     var valid = UIvalidation();
+    var building_id = new NavData().getBuildingId();
+    var building_name = new NavData().getBuildingName();
     if (valid) {
 
 
@@ -44,7 +46,7 @@ function addSticker() {
         console.log("addStickerToBuilding() called...");
         
         
-        listBuildingStickers(building_id);
+        showDefaultBuildingView(building_id, building_name);
     }
 }
 
