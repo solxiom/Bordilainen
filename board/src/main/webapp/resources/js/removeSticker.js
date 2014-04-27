@@ -33,8 +33,9 @@ function loadDeleteStickerUI(sticker_id) {
 
     });
 }
-/*
+/**
  * backup
+ * @deprecated do not use this
  */
 function loadDeleteStickerUI_DELETE_THIS_FUNCTION(sticker_id) {
     console.log("inside delete sticker");
@@ -66,8 +67,9 @@ function sendDeletedSticker(sticker_id) {
 
 
 }
-/*
+/**
  * backup
+ * @deprecated do not use this
  */
 function sendDeletedSticker_DELETE_THIS_FUNCTION(sticker_id) {
     var building_id = new NavData().getBuildingId();
@@ -78,10 +80,7 @@ function sendDeletedSticker_DELETE_THIS_FUNCTION(sticker_id) {
     ar = [email, password];
     removeSticker(building_id, sticker_id, ar);
     $('#mainForSticks div').remove();
-
    showDefaultBuildingView(new NavData().getBuildingId(),new NavData().getBuildingName());
-
-
 }
 
 function cancelDeleteSticker(sticker_id) {

@@ -42,7 +42,6 @@ function BuildingView(view) {
         });
 
     }
-
     function adjustViewCss() {
         $(document.body).css('background', 'url("/board/resources/img/BulletinBoard.jpg")');
         $('#mainBody').css("overflow", "visible");
@@ -67,8 +66,7 @@ function BuildingView(view) {
                 append("</br> <b>Description:</b> " + sticker.description);
         return stick_view;
     }
-    function buildDeleteButton(id) {
-
+    function buildDeleteButton(id){
         var deleteButton = $("<div></div>").attr("id", "deleteSticker").
                 attr("class", "delSticker").
                 append("<b class='link'style='cursor:pointer'>X</b>").
@@ -77,12 +75,12 @@ function BuildingView(view) {
                 });
         return deleteButton;
     }
-    function buildCommentButton(id) {
+    function buildCommentButton(id){
         var commentButton = $("<div></div>").attr("id", "commentLink").
                 attr("class", "commOnSticker").
                 append("<b class='link'>Comment</b>").
                 click(function() {
-                    insertComment(id)
+                    insertComment(id);
                 });
         return commentButton;
     }
@@ -102,6 +100,5 @@ function BuildingView(view) {
         $("#cancelAddStickerBt").click(function() {
             params.close();
         });
-
     }
 }

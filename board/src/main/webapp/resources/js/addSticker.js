@@ -4,38 +4,38 @@
  * @author Javad Sadeqzadeh Boroujeni
  */
 
-function showDialog() {
-    console.log("inside here");
-    try {
-        $('#newSticker').load('resources/html/dialogDiv.html');
+//function showDialog() {
+//    console.log("inside here");
+//    try {
+//        $('#newSticker').load('resources/html/dialogDiv.html');
+//
+//        console.log("after loadStickerTypes()...");
+//    } catch (e) {
+//        console.log("failed to load dialogDiv.html! message: " + e.message);
+//    }
+//    $("#newSticker").css("display", "block");
+//}
 
-        console.log("after loadStickerTypes()...");
-    } catch (e) {
-        console.log("failed to load dialogDiv.html! message: " + e.message);
-    }
-    $("#newSticker").css("display", "block");
-}
-
-function addSticker() {
-    console.log("within addSticker()...");
-    var valid = UIvalidation();
-    if (valid) {
-        sticker = {
-            id: "",
-            email: $("#email").val(),
-            password: $("#pwd").val(),
-            type_Id: "general",
-            reportCount: "",
-            summary: $("#summary").val(),
-            title: $("#title").val(),
-            description: $("#desc").val(),
-            expiration_date: $("#expiration").val()
-        };
-        addStickerToBuilding(navData.getBuildingId(), sticker);
-        console.log(sticker);
-        console.log("addStickerToBuilding() called...");
-    }
-}
+//function addSticker() {
+//    console.log("within addSticker()...");
+//    var valid = UIvalidation();
+//    if (valid) {
+//        sticker = {
+//            id: "",
+//            email: $("#email").val(),
+//            password: $("#pwd").val(),
+//            type_Id: "general",
+//            reportCount: "",
+//            summary: $("#summary").val(),
+//            title: $("#title").val(),
+//            description: $("#desc").val(),
+//            expiration_date: $("#expiration").val()
+//        };
+//        addStickerToBuilding(navData.getBuildingId(), sticker);
+//        console.log(sticker);
+//        console.log("addStickerToBuilding() called...");
+//    }
+//}
 
 function closeDialog() {
     console.log("within closeDialog()...");

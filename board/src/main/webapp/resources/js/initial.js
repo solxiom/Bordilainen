@@ -28,7 +28,6 @@ function init() {
     } catch (e) {
         console.log("code emad rid");
     }
-    loadFooter();
 }
 function openAddDialog(params){
     new BuildingView(new View()).showAddDialog(params);
@@ -36,20 +35,7 @@ function openAddDialog(params){
 function useCloseAddDialog(){
     new BuildingView(new View()).closeAddDialog();
 }
-function addhandlerToCombo() {
 
-    $('#buildingComboBox').change(function() {
-        var selectedBuilding_name = $('#buildingComboBox :selected').text();
-        var building_id = $('#buildingComboBox').val();
-        if (building_id !== undefined && building_id !== "undefined") {
-            navData.setBuildingId(building_id);
-        }
-        if (selectedBuilding_name !== undefined && selectedBuilding_name !== "undefined" && selectedBuilding_name !== "") {
-            navData.setBuildingName(selectedBuilding_name);
-        }
-        showDefaultBuildingView(building_id, selectedBuilding_name);
-    });
-}
 function showBuildingView(building_id) {
     if (building_id !== undefined || building_id !== "undefined" || building_id !== null
             || building_id !== "") {
@@ -84,7 +70,22 @@ function useHomeView(){
     $.getJSON('/board/list/buildings', function(data) {
         hview.update(data);
     });
-}      
+    
+}   
+//function addhandlerToCombo() {
+//
+//    $('#buildingComboBox').change(function() {
+//        var selectedBuilding_name = $('#buildingComboBox :selected').text();
+//        var building_id = $('#buildingComboBox').val();
+//        if (building_id !== undefined && building_id !== "undefined") {
+//            navData.setBuildingId(building_id);
+//        }
+//        if (selectedBuilding_name !== undefined && selectedBuilding_name !== "undefined" && selectedBuilding_name !== "") {
+//            navData.setBuildingName(selectedBuilding_name);
+//        }
+//        showDefaultBuildingView(building_id, selectedBuilding_name);
+//    });
+//}
 //function showHome() {
 //    navData.setCurrentPage("home");
 //    $("header").empty();
@@ -106,11 +107,10 @@ function useHomeView(){
 //    loadFooter();
 //    $(document.body).attr('class', 'firstPageBackground');
 //}
-
-function loadFooter() {
-    $('footer').load("/board/resources/html/footer.html");
-
-}
+//function loadFooter() {
+//    $('footer').load("/board/resources/html/footer.html");
+//
+//}
 //function showDefaultBuildingView(building_id, selectedBuildingName) {
 //
 //    if (navData.getBuildingId() === undefined || navData.getBuildingId() === "undefined") {
