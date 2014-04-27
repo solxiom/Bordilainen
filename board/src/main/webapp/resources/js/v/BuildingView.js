@@ -1,11 +1,21 @@
-/* 
- * Author : Kavan Soleimanbeigi
- * 
+
+/**
+ * @class This class will create and update the building view
+ * all dialogs and parts of the building view can be accessed with this class
+ * @param {type} view an instance of View class
+ * @returns {BuildingView}
+ * @author Kavan Soleimanbeigi
  */
 'use strict';
 function BuildingView(view) {
     //public interface
-    
+    /**
+     * This will clear and then rebuild whole view
+     * @param {type} params must be an object with values params.stickers, params.address and
+     *  params.handlers in which handlers.home(): a function for switching to home view
+     *  params.dialog(): a function for showing the add new sticker dialog
+     * @returns {undefined}
+     */
     this.update = function(params) {
         view.clear();
         loadViewStaticElements(params.address, function() {
@@ -14,15 +24,32 @@ function BuildingView(view) {
             adjustViewCss();
         });
     }
+    /**
+     * Update the title of building view
+     * @param {type} building_name or address as title for this view
+     * @returns {undefined}
+     */
     this.updateBuildingName = function(building_name) {
         $('header').empty();
         $('header').load("resources/html/header1.html", function() {
             $('#headerTitle').text(building_name);
         });
     }
+    /**
+     * This will clear and and rebuild the stickers section
+     * @param {type} all stickers belong to this building
+     * @returns {undefined}
+     */
     this.updateStickers = function(stickers) {
         putStickersInUI(stickers);
     }
+    /**
+     * add new sticker dialog will be showed by this function
+     * @param {type} params an object with following values,
+     * params.save(): a function for saving new sticker
+     * params:close: a function for closing the dialog 
+     * @returns {undefined}
+     */
     this.openAddDialog = function(params) {
         $('#newSticker').load('resources/html/dialogDiv.html', function() {
             $("#newSticker").css("display", "block");
@@ -30,6 +57,10 @@ function BuildingView(view) {
 
         });
     }
+    /**
+     * This will close the add new sticker dialog
+     * @returns {undefined}
+     */
     this.closeAddDialog = function() {
         $("#innerDivNewSticker").remove();
     }

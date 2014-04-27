@@ -1,6 +1,10 @@
-/* 
- * Author : Kavan Soleimanbeigi
- * 
+
+/**
+ * @class This class will create and update the home view
+ * all dialogs and parts of the home view can be accessed with this class
+ * @param {type} view an instance of View class
+ * @returns {HomeView}
+ * @author Kavan Soleimanbeigi
  */
 'use strict';
 function HomeView(view) {
@@ -11,10 +15,10 @@ function HomeView(view) {
      * @param {Array[Building]} name list of buildings
      * @returns {undefined}
      */
-    this.update = function(buildings) {
+    this.update = function(params) {
         view.clear();
         loadViewStaticElements(function() {
-            putBuildingsInCombo(buildings);
+            putBuildingsInCombo(params);
             adjustViewCSS();
         });
     }
@@ -37,7 +41,6 @@ function HomeView(view) {
     //private stuff
     /**
      * Loads all static html in external files needed for creating this view 
-     * @class HomeView
      * @returns {undefined}
      */
     function loadViewStaticElements(callback) {
@@ -55,35 +58,23 @@ function HomeView(view) {
     }
     /**
      * Create and set buildings combolist in Home view 
-     * @class HomeView
-     * @param {buildings} name list of buildings
+     * @param {type} params an object with following values,
+     * params.buildings(): a list of buildings
+     * params.switch_view(building_id): a function for changing the view after click the list items
      * @returns {undefined}
      */
-    function putBuildingsInCombo(buildings) {
+    function putBuildingsInCombo(params) {
         var list = "";
         var select = $("#buildingComboBox");
         list = "<option value=Nothing >Select Your Building</option>";
-        for (var i = 0; i < buildings.length; i++) {
-            list += "<option value=" + buildings[i].id + " >" + buildings[i].address + "</option>";
+        for (var i = 0; i < params.buildings.length; i++) {
+            list += "<option value=" + params.buildings[i].id + " >" + params.buildings[i].address + "</option>";
         }
         $(select).html(list);
         $(select).change(function() {
             var building_id = select.val();
-            navData.setBuildingId(building_id);
-            showBuildingView(building_id);
-
+            params.switch_view(building_id);          
         });
-//        $('#buildingComboBox').change(function() {
-//            var selectedBuilding_name = $('#buildingComboBox :selected').text();
-//            var building_id = $('#buildingComboBox').val();
-//            if (building_id !== undefined && building_id !== "undefined") {
-//                navData.setBuildingId(building_id);
-//            }
-//            if (selectedBuilding_name !== undefined && selectedBuilding_name !== "undefined" && selectedBuilding_name !== "") {
-//                navData.setBuildingName(selectedBuilding_name);
-//            }
-//            showDefaultBuildingView(building_id, selectedBuilding_name);
-//        })
     }
     /**
      * Set and adjust needed CSS dynamicly for Home view 

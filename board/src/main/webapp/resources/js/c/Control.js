@@ -1,9 +1,9 @@
-/* 
- * Author : Kavan Soleimanbeigi
- * 
- */
-'use strict';
 
+'use strict';
+/**
+ * 
+ * @returns {Controller}
+ */
 function Controller() {
     this.setCurrentPage = function(name) {
         sessionStorage.setItem("current_page", current_page);

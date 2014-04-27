@@ -3,12 +3,14 @@
  * Modified by: Kavan Soleimanbeigi
  */
 var navData = undefined;
+var view = undefined;
 $(document).ready(function() {
     console.log("Document is ready");
     init();
 });
 function init() {
     navData = new NavData();
+    view = new View();
     var current_page = navData.getCurrentPage();
     var building_id = navData.getBuildingId();
     var building_name = navData.getBuildingName();
@@ -29,13 +31,6 @@ function init() {
         console.log("code emad rid");
     }
 }
-//function openAddDialog(params){
-//    new BuildingView(new View()).showAddDialog(params);
-//}
-//function useCloseAddDialog(){
-//    new BuildingView(new View()).closeAddDialog();
-//}
-
 function showBuildingView(building_id) {
     if (building_id !== undefined || building_id !== "undefined" || building_id !== null
             || building_id !== "") {
@@ -57,14 +52,13 @@ function useBuildingView(building_id, building_name) {
             $.getScript("resources/js/v/View.js"),
             $.getScript("resources/js/v/HomeView.js")
             ).done(function() {
-        var view = new View();
-        var bview = new BuildingView(view);
+        var bview = view.board;
         $.getJSON('/board/list/stickers/' + building_id, function(data) {
             var d_params = {
-                save:function(){
+                save: function() {
                     console.log("sticker saved");
                 },
-                close:function(){
+                close: function() {
                     console.log(bview.closeAddDialog());
                 }
             };
@@ -83,10 +77,16 @@ function useBuildingView(building_id, building_name) {
     });
 }
 function useHomeView() {
-    var view = new View();
-    var hview = new HomeView(view);
+    var hview = view.home;
     $.getJSON('/board/list/buildings', function(data) {
-        hview.update(data);
+        var params = {
+            buildings: data,
+            switch_view: function(b_id) {
+                navData.setBuildingId(b_id);
+                showBuildingView(b_id);
+            }
+        };
+        hview.update(params);
     });
 
 }
