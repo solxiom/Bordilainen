@@ -14,13 +14,13 @@ function init() {
     var building_name = navData.getBuildingName();
     try {
 //        $('#chooseBuilding').load("resources/html/buildings.html");
-        if (current_page === "home" || current_page === null || current_page === undefined || current_page === ""){
-          
+        if (current_page === "home" || current_page === null || current_page === undefined || current_page === "") {
+
             showHomeView();
         } else if (current_page === "defaultBuildingView" && building_id !== undefined && building_id !== null && building_id !== "undefined") {
 //            showDefaultBuildingView(building_id, building_name);
             showBuildingView(building_id);
-        }else{
+        } else {
             console.log("Error: current page data not found");
         }
         $(document.body).attr('class', 'firstPageBackground');
@@ -29,12 +29,12 @@ function init() {
         console.log("code emad rid");
     }
 }
-function openAddDialog(params){
-    new BuildingView(new View()).showAddDialog(params);
-}
-function useCloseAddDialog(){
-    new BuildingView(new View()).closeAddDialog();
-}
+//function openAddDialog(params){
+//    new BuildingView(new View()).showAddDialog(params);
+//}
+//function useCloseAddDialog(){
+//    new BuildingView(new View()).closeAddDialog();
+//}
 
 function showBuildingView(building_id) {
     if (building_id !== undefined || building_id !== "undefined" || building_id !== null
@@ -43,13 +43,13 @@ function showBuildingView(building_id) {
         useBuildingView(building_id, building_name);
         navData.setCurrentPage("defaultBuildingView");
         navData.setBuildingId(building_id);
-    }else{
+    } else {
         console.log("Error: building id is " + building_id);
     }
 }
-function showHomeView(){
-        navData.setCurrentPage("home");
-        useHomeView();
+function showHomeView() {
+    navData.setCurrentPage("home");
+    useHomeView();
 
 }
 function useBuildingView(building_id, building_name) {
@@ -60,18 +60,36 @@ function useBuildingView(building_id, building_name) {
         var view = new View();
         var bview = new BuildingView(view);
         $.getJSON('/board/list/stickers/' + building_id, function(data) {
-            bview.update(building_name, data);
+            var d_params = {
+                save:function(){
+                    console.log("sticker saved");
+                },
+                close:function(){
+                    console.log(bview.closeAddDialog());
+                }
+            };
+            var bt_params = {
+                home: function() {
+                    showHomeView();
+                },
+                dialog: function() {
+                    bview.openAddDialog(d_params);
+                }
+            };
+            var params = {stickers: data, address: building_name,
+            };
+            bview.update({address: building_name, stickers: data, handlers: bt_params});
         });
     });
 }
-function useHomeView(){
+function useHomeView() {
     var view = new View();
     var hview = new HomeView(view);
     $.getJSON('/board/list/buildings', function(data) {
         hview.update(data);
     });
-    
-}   
+
+}
 //function addhandlerToCombo() {
 //
 //    $('#buildingComboBox').change(function() {

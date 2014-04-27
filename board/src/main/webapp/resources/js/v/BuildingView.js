@@ -5,11 +5,12 @@
 'use strict';
 function BuildingView(view) {
     //public interface
-    this.update = function(building_name, stickers) {
+    
+    this.update = function(params) {
         view.clear();
-        loadViewStaticElements(building_name, function() {
-            addHandlerToSideButtons();
-            putStickersInUI(stickers);
+        loadViewStaticElements(params.address, function() {
+            addHandlerToSideButtons(params.handlers);
+            putStickersInUI(params.stickers);
             adjustViewCss();
         });
     }
@@ -22,7 +23,7 @@ function BuildingView(view) {
     this.updateStickers = function(stickers) {
         putStickersInUI(stickers);
     }
-    this.showAddDialog = function(params) {
+    this.openAddDialog = function(params) {
         $('#newSticker').load('resources/html/dialogDiv.html', function() {
             $("#newSticker").css("display", "block");
             addHandlerToAddDialog(params);
@@ -51,7 +52,6 @@ function BuildingView(view) {
         $('#mainForSticks').empty();
         for (var i = 0; i < sticks.length; i++) {
             var id = sticks[i].id;
-// var id = "seq-" + sticks[i].id; old version
             var nextStick = buildStickerView(sticks[i], id);
             nextStick.append(buildDeleteButton(id));
             nextStick.append(buildCommentButton(id));
@@ -84,13 +84,12 @@ function BuildingView(view) {
                 });
         return commentButton;
     }
-    function addHandlerToSideButtons() {
+    function addHandlerToSideButtons(params) {
         $("#homeButton").click(function() {
-            showHomeView();
+              params.home();
         });
-        $("#addButton").click(function() {
-            openAddDialog({save:function(){console.log("saved!")},
-                close:function(){useCloseAddDialog()}});
+        $("#addButton").click(function() { 
+            params.dialog();
         });
     }
     function addHandlerToAddDialog(params) {
