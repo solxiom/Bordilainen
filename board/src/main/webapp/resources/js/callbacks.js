@@ -18,7 +18,7 @@ function showStickerDataWithComments(data) {
 function addBuildingsToCombo(data) {
 
     var listBuildings = "";
-    var select = $("#buidlingComboBox");
+    var select = $("#buildingComboBox");
     listBuildings += "<option value=Nothing >Select Your Building</option>";
     for (var i = 0; i < data.length; i++) {
         listBuildings += "<option value=" + data[i].id + " >" + data[i].address + "</option>";

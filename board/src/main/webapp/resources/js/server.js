@@ -7,7 +7,7 @@
 
 
 function saveBuildingName(building_id){
-    $.getJSON('/board/address/' + building_id, function(data) {
+    $.getJSON('/board/list/address/' + building_id, function(data) {
         new NavData().setBuildingName(data);
         
     });

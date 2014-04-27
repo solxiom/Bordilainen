@@ -19,34 +19,21 @@ function showDialog() {
 function addSticker() {
     console.log("within addSticker()...");
     var valid = UIvalidation();
-    var building_id = new NavData().getBuildingId();
-    var building_name = new NavData().getBuildingName();
     if (valid) {
-
-
         sticker = {
-            id: "", 
-            email: $("#email").val(), 
-            password: $("#pwd").val(), 
+            id: "",
+            email: $("#email").val(),
+            password: $("#pwd").val(),
             type_Id: "general",
-            reportCount: "", 
-            summary: $("#summary").val(), 
+            reportCount: "",
+            summary: $("#summary").val(),
             title: $("#title").val(),
-            description: $("#desc").val(), 
+            description: $("#desc").val(),
             expiration_date: $("#expiration").val()
         };
-        
-        addStickerToBuilding(building_id, sticker);
-        
-        
-        $('#mainForSticks div').remove();
-        $("#innerDivNewSticker").remove();
-        
+        addStickerToBuilding(navData.getBuildingId(), sticker);
         console.log(sticker);
         console.log("addStickerToBuilding() called...");
-        
-        
-        showDefaultBuildingView(building_id, building_name);
     }
 }
 
@@ -78,21 +65,21 @@ function validate(email, pwd, pwdConf, title, desc, expiration) {
     bValid = true;
 
     bValid = bValid &&
-    checkRegexp(email, /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i, "Please enter your email address correctly.");
+            checkRegexp(email, /^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i, "Please enter your email address correctly.");
     bValid = bValid &&
-    checkRegexp(pwd, /^\s*\S.*$/, "Please enter a password.");
+            checkRegexp(pwd, /^\s*\S.*$/, "Please enter a password.");
     bValid = bValid &&
-    checkRegexp(pwdConf, /^\s*\S.*$/, "Please confirm your password.");
+            checkRegexp(pwdConf, /^\s*\S.*$/, "Please confirm your password.");
     bValid = bValid &&
-    checkPasswordMatch(pwd, pwdConf, "Password mismatch.");
+            checkPasswordMatch(pwd, pwdConf, "Password mismatch.");
     bValid = bValid &&
-    checkRegexp(title, /^\s*\S.*$/, "Please enter a title.");
+            checkRegexp(title, /^\s*\S.*$/, "Please enter a title.");
     bValid = bValid &&
-    checkRegexp(desc, /^\s*\S.*$/, "Please enter a description.");
+            checkRegexp(desc, /^\s*\S.*$/, "Please enter a description.");
     bValid = bValid &&
-    checkRegexp(expiration, /^\s*\S.*$/, "Please specify a lifetime for your sticker.");
+            checkRegexp(expiration, /^\s*\S.*$/, "Please specify a lifetime for your sticker.");
     bValid = bValid &&
-    checkRegexp(expiration, /^([1-9]|[1-9][0-9]|[1][0-7][0-9]|180)$/, "Please eneter a number in the range 1-180");
+            checkRegexp(expiration, /^([1-9]|[1-9][0-9]|[1][0-7][0-9]|180)$/, "Please eneter a number in the range 1-180");
 
     return bValid;
 }
@@ -131,29 +118,29 @@ function loadStickerTypes() {
     console.log("loadStickerTypes()...");
     jsontype = {
         "typeIds": [{
-            "typeId": "2",
-            "type": "Selling Ad"
-        },
-        {
-            "typeId": "3",
-            "type": "Buying Ad"
-        },
-        {
-            "typeId": "4",
-            "type": "Event Announcement"
-        },
-        {
-            "typeId": "5",
-            "type": "Subrent Ad"
-        },
-        {
-            "typeId": "6",
-            "type": "Lost Stuff"
-        },
-        {
-            "typeId": "7",
-            "type": "Job Ad"
-        }]
+                "typeId": "2",
+                "type": "Selling Ad"
+            },
+            {
+                "typeId": "3",
+                "type": "Buying Ad"
+            },
+            {
+                "typeId": "4",
+                "type": "Event Announcement"
+            },
+            {
+                "typeId": "5",
+                "type": "Subrent Ad"
+            },
+            {
+                "typeId": "6",
+                "type": "Lost Stuff"
+            },
+            {
+                "typeId": "7",
+                "type": "Job Ad"
+            }]
     }
     var listTypes = "";
     el = $("#typeId");

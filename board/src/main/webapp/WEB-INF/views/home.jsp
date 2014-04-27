@@ -23,7 +23,9 @@
         <script src="resources/js/commenting.js"></script>
         <script src="resources/js/NavData.js"></script>
         <script src="resources/js/Navigation.js"></script>
-
+        <script src="resources/js/v/BuildingView.js"></script>
+        <script src="resources/js/v/View.js"></script>
+        <script src="resources/js/v/HomeView.js"></script>
         <title>Bulletin Board</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>

@@ -49,8 +49,6 @@ function insertComment(stickerId) {
 
 
 }
-
-
 function showComments(stickerId, data) {
     if (data.length > 0) {
         for (i = 0; i < data.length; i++) {
