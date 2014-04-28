@@ -53,13 +53,21 @@ function useBuildingView(building_id, building_name) {
             $.getScript("resources/js/v/HomeView.js")
             ).done(function() {
         var bview = view.board;
+        
         $.getJSON('/board/list/stickers/' + building_id, function(data) {
             var d_params = {
-                save: function() {
+                save: function(params) {
                     console.log("sticker saved");
+                    console.log(params);
+                    params.building_id = navData.getBuildingId();
+                    params.model = new Model();
+                    var sticker = new Sticker(params);
+                    sticker.save();
+//                    bview.closeAddDialog();
+                    showBuildingView(params.building_id);
                 },
                 close: function() {
-                    console.log(bview.closeAddDialog());
+                    bview.closeAddDialog();
                 }
             };
             var bt_params = {

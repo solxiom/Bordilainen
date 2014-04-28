@@ -39,10 +39,11 @@ function Sticker(params) {
      */
     this.save = function() {
         var b_id = this.building_id;
+        var pars = this;
         var sv_params = {
             url: "add/sticker/" + b_id,
             async: false,
-            object: getServerModel()
+            object: getServerModel(pars)
         };
 
         model.server.postJSONObject(sv_params);
@@ -63,12 +64,12 @@ function Sticker(params) {
             model.server.postJSONObject(rm_params);
     }
     //private stuff
-    function getServerModel() {
-        return {id: this.id, mail: this.mail,
-            password: this.password, title: this.title,
-            summary: this.summary,
-            description: this.description,
-            expiration: this.expiration_date};
+    function getServerModel(par) {
+        return {id: par.id, mail: par.mail,
+            password: par.password, title:par.title,
+            summary: par.summary,
+            description: par.description,
+            expiration: par.expiration_date};
     }
 }
 

@@ -97,7 +97,7 @@ function BuildingView(view) {
                 append("</br> <b>Description:</b> " + sticker.description);
         return stick_view;
     }
-    function buildDeleteButton(id){
+    function buildDeleteButton(id) {
         var deleteButton = $("<div></div>").attr("id", "deleteSticker").
                 attr("class", "delSticker").
                 append("<b class='link'style='cursor:pointer'>X</b>").
@@ -106,7 +106,7 @@ function BuildingView(view) {
                 });
         return deleteButton;
     }
-    function buildCommentButton(id){
+    function buildCommentButton(id) {
         var commentButton = $("<div></div>").attr("id", "commentLink").
                 attr("class", "commOnSticker").
                 append("<b class='link'>Comment</b>").
@@ -117,18 +117,33 @@ function BuildingView(view) {
     }
     function addHandlerToSideButtons(params) {
         $("#homeButton").click(function() {
-              params.home();
+            params.home();
         });
-        $("#addButton").click(function() { 
+        $("#addButton").click(function() {
             params.dialog();
         });
     }
     function addHandlerToAddDialog(params) {
         $("#addStickerBt").click(function() {
-            params.save();
+            var dialog_obj = createObjectFromAddmDialog(); 
+            params.save(dialog_obj);
         });
         $("#cancelAddStickerBt").click(function() {
             params.close();
         });
+    }
+    function createObjectFromAddmDialog() {
+        return {
+            id: "",
+            email: $("#email").val(),
+            password: $("#pwd").val(),
+            type_Id: "general",
+            reportCount: "",
+            summary: $("#summary").val(),
+            title: $("#title").val(),
+            description: $("#desc").val(),
+            expiration_date: $("#expiration").val()
+        };
+
     }
 }
