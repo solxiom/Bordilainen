@@ -19,6 +19,7 @@
         <sp.keyfile>/cs/fs/home/bakharzy/codecamp/cc17-ssh.key</sp.keyfile>
         <bas.deployDir>/opt/openinfinity/2.0.0/tomcat/webapps</bas.deployDir>
         <org.slf4j-version>1.5.10</org.slf4j-version>
+        <org.jackson-mapper>1.9.13</org.jackson-mapper>
     </properties>
 
     <dependencies>
@@ -27,7 +28,7 @@
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-mapper-asl</artifactId>
-            <version>1.9.12</version>
+            <version>${org.jackson-mapper}</version>
         </dependency>
             
         <!-- spring data-->
@@ -186,7 +187,7 @@
                         <scp
                             localFile="${project.build.directory}/board.war"
                             remoteTodir="ec2-user@${bas1.host}:${bas.deployDir}" trust="true"
-                                                                                 keyfile="${sp.keyfile}" />
+                            keyfile="${sp.keyfile}" />
                     </target>
                 </configuration>
                 <dependencies>

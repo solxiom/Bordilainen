@@ -45,11 +45,11 @@ function HomeView(view) {
      */
     function loadViewStaticElements(callback) {
 
-        $('#inner_header').load("resources/html/default_header.html", function() {
+        $('#inner_header').load(root_path+"/resources/html/default_header.html", function() {
 
-            $('#chooseBuilding').load("resources/html/buildings.html", function() {
+            $('#chooseBuilding').load(root_path+"/resources/html/buildings.html", function() {
 
-                $('footer').load("/board/resources/html/footer.html", function() {
+                $('footer').load(root_path+"/resources/html/footer.html", function() {
                     callback();
 
                 });

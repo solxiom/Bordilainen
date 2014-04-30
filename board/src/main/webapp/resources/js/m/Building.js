@@ -39,7 +39,7 @@ function Building(params) {
      * @returns {undefined}
      */
     this.refreshStickers = function() {
-        var urlstr = "/board/list/stickers/" + this.id;
+        var urlstr = root_path+"/list/stickers/" + this.id;
         this.stickers = [];
         var stick_data = model.server.getJSONObject({
             url: urlstr,
@@ -52,7 +52,7 @@ function Building(params) {
      * @returns {undefined}
      */
     this.refreshAddress = function() {
-        var urlstr = "/board/list/address/" + this.id;
+        var urlstr = root_path+"/list/address/" + this.id;
         var data = model.server.getJSONData({
             url: urlstr,
             async: false

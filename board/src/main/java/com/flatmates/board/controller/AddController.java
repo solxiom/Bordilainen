@@ -4,15 +4,14 @@
  */
 package com.flatmates.board.controller;
 
-import com.flatmates.board.domain.entity.BuildingComplex;
 import com.flatmates.board.domain.entity.Comment;
 import com.flatmates.board.domain.entity.Sticker;
 import com.flatmates.board.domain.service.BuildingComplexService;
 import com.flatmates.board.domain.service.BulletinBoardService;
 import com.flatmates.board.domain.service.CommentService;
 import java.util.Collection;
+import java.util.LinkedHashMap;
 import java.util.LinkedList;
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,10 +47,27 @@ public class AddController {
      * @param request
      * @return
      */
+    @RequestMapping(value = "/sticker/test/{building_id}", method = RequestMethod.POST)
+    public @ResponseBody
+    Collection<String> addStickerToBuildingBoard2(@PathVariable String building_id, @RequestBody Sticker sticker) {
+        Collection<String> log = new LinkedList<String>();
+        
+
+        log.add(building_id);
+        log.add(sticker.toString());
+
+        return log;
+    }
+
+    /**
+     *
+     * @param building_id
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "/sticker/{building_id}", method = RequestMethod.POST)
     public @ResponseBody
     Collection<String> addStickerToBuildingBoard(@PathVariable String building_id, @RequestBody Sticker req_sticker) {
-
         Collection<String> log = new LinkedList<String>();
         String boardId = ControlTool.findBoardIdByBuilding(boardService.listAllBoards(), building_id);
         req_sticker.setBulletin_id(boardId);

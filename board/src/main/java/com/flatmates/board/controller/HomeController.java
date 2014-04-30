@@ -1,12 +1,9 @@
 package com.flatmates.board.controller;
 
 import com.flatmates.board.domain.entity.BuildingComplex;
-import com.flatmates.board.domain.entity.BulletinBoard;
-import com.flatmates.board.domain.entity.Sticker;
 import com.flatmates.board.domain.service.BuildingComplexService;
 import com.flatmates.board.domain.service.BulletinBoardService;
 import java.io.IOException;
-import java.util.Collection;
 
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
 /**
  *
  * @author kavan soleimanbeigi
@@ -33,11 +31,33 @@ public class HomeController {
 
     @RequestMapping(value = "/")
     public ModelAndView rootIndex(HttpServletResponse response) throws IOException {
-        if(init_state){
+        if (init_state) {
             init();
             init_state = false;
         }
+        response.addHeader("Access-Control-Allow-Origin", "*");
         return new ModelAndView("home.jsp");
+    }
+    @RequestMapping(value = "/view/building/{building_id}")
+    public ModelAndView viewBuildingIndex(HttpServletResponse response) throws IOException {
+        if (init_state) {
+            init();
+            init_state = false;
+        }
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        return new ModelAndView("home.jsp");
+    }
+    @RequestMapping(value = "/address/{building_id}", method = RequestMethod.GET)
+    public @ResponseBody
+    String getBuildingAddress(@PathVariable String building_id, HttpServletResponse response) {
+        BuildingComplex building = buildingService.findBuildingById(building_id);
+        String building_address = "buildingComplex not found!";
+        if (building != null) {
+            building_address = building.getAddress();
+        }
+
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        return building_address;
     }
 
     private void init() {

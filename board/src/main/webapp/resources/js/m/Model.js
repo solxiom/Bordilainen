@@ -11,7 +11,7 @@ function Model() {
     this.server = new ModelServer();
     this.buildings = [];
     this.refreshBuildings = function(model) {
-        var list = this.server.getJSONObject({url:"/board/list/buildings",async: false});
+        var list = this.server.getJSONObject({url:root_path+"/list/buildings",async: false});
         this.buildings = [];// making sure the array is empty
         var buildings_ar = this.buildings;
         $.each(list,function(){

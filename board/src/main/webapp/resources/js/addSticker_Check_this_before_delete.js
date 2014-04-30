@@ -7,7 +7,7 @@
 function showDialog() {
     console.log("inside here");
     try {
-        $('#newSticker').load('resources/html/dialogDiv.html');
+        $('#newSticker').load(root_path+'/resources/html/dialogDiv.html');
 
         console.log("after loadStickerTypes()...");
     } catch (e) {

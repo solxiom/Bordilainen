@@ -31,7 +31,7 @@ NavData.prototype.getBuildingName = function() {
             && building_id !== "undefined") {
         address = $.ajax({
             type: "GET",
-            url: "/board/list/address/" + navData.getBuildingId(),
+            url: root_path+"/address/" + navData.getBuildingId(),
             dataType: "json",
             async: false,
             contentType: 'application/json; charset=utf-8',

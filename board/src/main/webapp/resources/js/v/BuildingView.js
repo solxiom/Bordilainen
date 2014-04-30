@@ -31,7 +31,7 @@ function BuildingView(view) {
      */
     this.updateBuildingName = function(building_name) {
         $('header').empty();
-        $('header').load("resources/html/header1.html", function() {
+        $('header').load(root_path+"/resources/html/header1.html", function() {
             $('#headerTitle').text(building_name);
         });
     }
@@ -51,7 +51,7 @@ function BuildingView(view) {
      * @returns {undefined}
      */
     this.openAddDialog = function(params) {
-        $('#newSticker').load('resources/html/dialogDiv.html', function() {
+        $('#newSticker').load(root_path+'/resources/html/dialogDiv.html', function() {
             $("#newSticker").css("display", "block");
             addHandlerToAddDialog(params);
 
@@ -64,10 +64,39 @@ function BuildingView(view) {
     this.closeAddDialog = function() {
         $("#innerDivNewSticker").remove();
     }
+    /**
+     * 
+     * @param {type} params.sticker_id
+     * @returns {undefined}
+     */
+    this.openDeleteDialog = function(params) {
+        $("#" + params.sticker.id).load(root_path+"/resources/html/deleteSticker.html", function() {
+            //  $("#seq-"+sticker_id).attr("class","deleteSticker");
+            $("#" + params.sticker.id + " #delete_btn").click(function() {
+                params.delete(params.sticker);
+            });
+
+            $("#" + params.sticker.id + " #cancel_btn").click(function() {
+                params.cancel(params.sticker);
+            });
+
+        });
+    }
+    /**
+     * 
+     * @param {type} sticker
+     * @returns {undefined}
+     */
+    this.closeDeleteDialog = function(sticker) {
+        $("#" + sticker.id).empty();
+        $("#" + sticker.id).html(buildStickerView(sticker).html())
+                .append(buildDeleteButton(sticker))
+                .append(buildCommentButton(sticker.id));
+    }
     //private stuff
     function loadViewStaticElements(building_name, callback) {
-        $('#sideBar').load("resources/html/buttons.html", function() {
-            $('header').load("resources/html/header1.html", function() {
+        $('#sideBar').load(root_path+"/resources/html/buttons.html", function() {
+            $('header').load(root_path+"/resources/html/header1.html", function() {
                 $('#headerTitle').text(building_name);
                 callback();
             });
@@ -75,7 +104,8 @@ function BuildingView(view) {
 
     }
     function adjustViewCss() {
-        $(document.body).css('background', 'url("/board/resources/img/BulletinBoard.jpg")');
+        var url_str = 'url("'+root_path+'/resources/img/BulletinBoard.jpg")';
+        $(document.body).css('background',url_str );
         $('#mainBody').css("overflow", "visible");
         $("#mainBody").css("margin-top", "100px");
     }
@@ -83,27 +113,25 @@ function BuildingView(view) {
         $('#mainForSticks').empty();
         for (var i = 0; i < sticks.length; i++) {
             var id = sticks[i].id;
-            var nextStick = buildStickerView(sticks[i], id);
-            nextStick.append(buildDeleteButton(id));
+            var nextStick = buildStickerView(sticks[i]);
+            nextStick.append(buildDeleteButton(sticks[i]));
             nextStick.append(buildCommentButton(id));
             $("#mainForSticks").prepend(nextStick);
         }
     }
-    function buildStickerView(sticker, id) {
-        var stick_view = $("<div></div>").attr("id", id).
+    function buildStickerView(sticker) {
+        var stick_view = $("<div></div>").attr("id", sticker.id).
                 attr("class", "sticker").
                 append("<b>Title:</b> " + sticker.title).
                 append("</br> <b>Summary:</b> " + sticker.summary).
                 append("</br> <b>Description:</b> " + sticker.description);
         return stick_view;
     }
-    function buildDeleteButton(id) {
-        var deleteButton = $("<div></div>").attr("id", "deleteSticker").
+    function buildDeleteButton(sticker) {
+        var deleteButton = $("<div></div>").attr("id", "delete-" + sticker.id).
                 attr("class", "delSticker").
-                append("<b class='link'style='cursor:pointer'>X</b>").
-                click(function() {
-                    loadDeleteStickerUI(id)
-                });
+                append("<b class='link'style='cursor:pointer'>X</b>")
+                .click(function(){sticker.showDeleteDialog(sticker)});
         return deleteButton;
     }
     function buildCommentButton(id) {
@@ -125,7 +153,7 @@ function BuildingView(view) {
     }
     function addHandlerToAddDialog(params) {
         $("#addStickerBt").click(function() {
-            var dialog_obj = createObjectFromAddmDialog(); 
+            var dialog_obj = createObjectFromAddmDialog();
             params.save(dialog_obj);
         });
         $("#cancelAddStickerBt").click(function() {

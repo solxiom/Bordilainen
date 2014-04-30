@@ -109,4 +109,10 @@ public class Sticker {
     public void setExpiration_date(String expiration_date) {
         this.expiration_date = expiration_date;
     }
+
+    @Override
+    public String toString() {
+        return "Sticker{" + "id=" + id + ", bulletin_id=" + bulletin_id + ", type_Id=" + type_Id + ", email=" + email + ", password=" + password + ", reportCount=" + reportCount + ", summary=" + summary + ", title=" + title + ", description=" + description + ", expiration_date=" + expiration_date + '}';
+    }
+    
 }

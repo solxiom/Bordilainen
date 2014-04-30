@@ -7,10 +7,9 @@ import com.flatmates.board.domain.entity.Sticker;
 import com.flatmates.board.domain.service.BuildingComplexService;
 import com.flatmates.board.domain.service.BulletinBoardService;
 import com.flatmates.board.domain.service.CommentService;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -42,13 +41,7 @@ public class ListController {
         return "what do you want to list?";
     }
 
-    @RequestMapping(value = "/address/{building_id}", method = RequestMethod.GET)
-    public @ResponseBody
-    String getBuildingAddress(@PathVariable String building_id) {
-        String building_address = buildingService.findBuildingById(building_id).getAddress();
-
-        return building_address;
-    }
+    
 
     @RequestMapping(value = "/buildings", method = RequestMethod.GET)
     public @ResponseBody
@@ -59,12 +52,14 @@ public class ListController {
 
     @RequestMapping(value = "/stickers/{building_id}", method = RequestMethod.GET)
     public @ResponseBody
-    List<Sticker> listBuildingStickers(@PathVariable String building_id) {
+    List<Sticker> listBuildingStickers(@PathVariable String building_id, HttpServletResponse response) {
         Collection<BulletinBoard> boards = boardService.listAllBoards();
         String boardId = ControlTool.findBoardIdByBuilding(boards, building_id);
         Collection<Sticker> actual_result = boardService.findAllStickers(boardId);
         List<Sticker> secured_list = ControlTool.clearAuthenticationDataFromStickers(actual_result);
-
+        
+        response.addHeader("Access-Control-Allow-Origin", "*");
+        
         return secured_list;
     }
 

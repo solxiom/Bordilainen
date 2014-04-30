@@ -1,44 +1,38 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <!--    Author: Emad Nikkhouy
+        Modified: Kavan Soleimanbeigi
 -->
 <!DOCTYPE html>
 
 <html>
     <head>
-        <link rel="stylesheet" type="text/css" href="resources/css/button.css" />
-        <link rel="stylesheet" type="text/css" href="resources/css/stickies.css" />
-        <link rel="stylesheet" type="text/css" href="resources/css/dialog.css" />
-        <link rel="stylesheet" type="text/css" href="resources/css/newSticker.css" />
-        <link rel="stylesheet" type="text/css" href="resources/css/commentButtons.css" />
-        <link rel="stylesheet" type="text/css" href="resources/css/footer_header.css" />
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/button.css" />
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/stickies.css" />
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/dialog.css" />
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/newSticker.css" />
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/commentButtons.css" />
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/footer_header.css" />
 
         <!--Scripts start-->
         <!-- external -->
         <script src="http://code.jquery.com/jquery-1.9.1.js"></script><!--required for jquery 2.x-->
         <script src="http://code.jquery.com/jquery-2.0.0.js"></script>
         <!-- model -->
-        <script src="resources/js/m/Model.js"></script>
-        <script src="resources/js/m/Sticker.js"></script>
-        <script src="resources/js/m/Building.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/js/m/Model.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/js/m/Sticker.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/js/m/Building.js"></script>
         <!-- view -->
-        <script src="resources/js/v/View.js"></script>
-        <script src="resources/js/v/BuildingView.js"></script>
-        <script src="resources/js/v/HomeView.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/js/v/View.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/js/v/BuildingView.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/js/v/HomeView.js"></script>
         <!-- control -->
         <!-- server -->
-        <script src="resources/js/server/ModelServer.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/js/server/ModelServer.js"></script>
         <!--departed codes but still in use-->
-        <script src="resources/js/previousStickers.js"></script>
-        <script src="resources/js/addSticker.js"></script>
-        <script src="resources/js/callbacks.js"></script>
-        <script src="resources/js/removeSticker.js"></script>
-        <script src="resources/js/server.js"></script>
-        <script src="resources/js/commenting.js"></script>
-        <script src="resources/js/NavData.js"></script>
-        <script src="resources/js/Navigation.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/js/NavData.js"></script>
         <!-- initial -->
-        <script src="resources/js/initial.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/js/initial.js"></script>
         <!--Scripts end-->
 
 
