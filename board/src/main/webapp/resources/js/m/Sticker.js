@@ -72,7 +72,7 @@ function Sticker(params) {
      * @param {type} par
      * @returns {StickerModel} the server model for sticker
      */
-    function getServerModelXX(par) {
+    function getServerModelXX(par) {// delete the test function and use this one instead
         return {"id": this.id, "bulletin_id": "", "email": this.email,
             "password": this.password, "title": this.title,
             "summary": this.summary, "type_Id": this.type_Id,

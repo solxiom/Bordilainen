@@ -39,13 +39,13 @@ public class HomeController {
         return new ModelAndView("home.jsp");
     }
     @RequestMapping(value = "/view/building/{building_id}")
-    public ModelAndView viewBuildingIndex(HttpServletResponse response) throws IOException {
+    public String viewBuildingIndex(@PathVariable String building_id,HttpServletResponse response) throws IOException {
         if (init_state) {
             init();
             init_state = false;
         }
         response.addHeader("Access-Control-Allow-Origin", "*");
-        return new ModelAndView("home.jsp");
+        return "redirect:/#!building/"+building_id+"?key="+456+"&name=roxine";
     }
     @RequestMapping(value = "/address/{building_id}", method = RequestMethod.GET)
     public @ResponseBody

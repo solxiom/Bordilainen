@@ -7,27 +7,29 @@
  */
 'use strict';
 function Model() {
-    
-    this.server = new ModelServer();
-    this.buildings = [];
-    this.refreshBuildings = function(model) {
-        var list = this.server.getJSONObject({url:root_path+"/list/buildings",async: false});
-        this.buildings = [];// making sure the array is empty
-        var buildings_ar = this.buildings;
-        $.each(list,function(){
+
+    var _self = this;
+    _self.server = new ModelServer();
+    _self.buildings = [];
+    _self.refreshBuildings = function() {
+        var list = _self.server.getJSONObject({url: root_path + "/list/buildings", async: false});
+
+        _self.buildings = [];// making sure the array is empty
+        $.each(list, function() {
             /*
              * notice: in this function the "this" no longer points to the Model class
              * but to the iterator item
              */
-            this.model = model;// adding the model for each building item
+
+            this.model = _self;// adding the model for each building item
             var b = new Building(this);// "this" : {id: ,address: ,model: }
             b.refreshStickers();
             b.refreshAddress();
-            buildings_ar.push(b);
-            
+            _self.buildings.push(b);
+
         });
-        this.buildings = buildings_ar;
-        console.table(this.buildings);
+
+        console.table(_self.buildings);
     }
 }
 

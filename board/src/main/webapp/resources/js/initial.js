@@ -3,7 +3,7 @@
  * Modified by: Kavan Soleimanbeigi
  */
 var navData = undefined;
-var root_path = location.protocol+"//"+location.host+"/board";
+var root_path = location.protocol + "//" + location.host + "/board";
 var view = undefined;
 $(document).ready(function() {
     console.log("Document is ready");
@@ -49,39 +49,46 @@ function showHomeView() {
 
 }
 function useBuildingView(building_id, building_name) {
-    
-        var bview = view.board;
 
-        $.getJSON(root_path+'/list/stickers/' + building_id, function(data) {
-            data = dataToStickers(data);//convertion
-            console.table(data);
-            var d_params = {
-                save: function(params) {
+    var bview = view.board;
+
+    $.getJSON(root_path + '/list/stickers/' + building_id, function(data) {
+        data = dataToStickers(data);//convertion
+        console.table(data);
+        var d_params = {
+            save: function(params) {
 //            
-                    params.building_id = navData.getBuildingId();
-                    params.model = new Model();
-                    var sticker = new Sticker(params);
-                    sticker.save();
+                params.building_id = navData.getBuildingId();
+                params.model = new Model();
+                var sticker = new Sticker(params);
+                sticker.save();
 //                    bview.closeAddDialog();
-                    bview.closeAddDialog();
-                    showBuildingView(params.building_id);
-                },
-                close: function() {
-                    bview.closeAddDialog();
-                }
-            };
-            var bt_params = {
-                home: function() {
-                    showHomeView();
-                },
-                dialog: function() {
-                    bview.openAddDialog(d_params);
-                }
-            };
-            var params = {stickers: data, address: building_name,
-            };
-            bview.update({address: building_name, stickers: data, handlers: bt_params});
-        });
+                bview.closeAddDialog();
+                /*
+                 * implement refresh stickers and uncomment below lines
+                 */
+//                var building = new Building({id: params.building_id, address: "",model:new Model()});
+//                building.refreshStickers();
+
+//                bview.updateStickers(building.stickers);
+                showBuildingView(params.building_id);
+            },
+            close: function() {
+                bview.closeAddDialog();
+            }
+        };
+        var bt_params = {
+            home: function() {
+                showHomeView();
+            },
+            dialog: function() {
+                bview.openAddDialog(d_params);
+            }
+        };
+        var params = {stickers: data, address: building_name,
+        };
+        bview.update({address: building_name, stickers: data, handlers: bt_params});
+    });
 }
 function dataToStickers(data) {
     var sticks = [];
@@ -108,7 +115,7 @@ function dataToStickers(data) {
 }
 function useHomeView() {
     var hview = view.home;
-    $.getJSON(root_path+'/list/buildings', function(data) {
+    $.getJSON(root_path + '/list/buildings', function(data) {
         var params = {
             buildings: data,
             switch_view: function(b_id) {
@@ -118,7 +125,6 @@ function useHomeView() {
         };
         hview.update(params);
     });
-
 }
 
 

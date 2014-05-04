@@ -45,6 +45,7 @@ function Building(params) {
             url: urlstr,
             async: false
         });
+        console.log("[Building class] notice: refresh stickers is not implemented");
         //to be continued...
     }
     /**
@@ -52,7 +53,7 @@ function Building(params) {
      * @returns {undefined}
      */
     this.refreshAddress = function() {
-        var urlstr = root_path+"/list/address/" + this.id;
+        var urlstr = root_path+"/address/" + this.id;
         var data = model.server.getJSONData({
             url: urlstr,
             async: false

@@ -27,6 +27,8 @@
         <script src="<%=request.getContextPath()%>/resources/js/v/BuildingView.js"></script>
         <script src="<%=request.getContextPath()%>/resources/js/v/HomeView.js"></script>
         <!-- control -->
+        <script src="<%=request.getContextPath()%>/resources/js/c/Controller.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/js/c/URLData.js"></script>
         <!-- server -->
         <script src="<%=request.getContextPath()%>/resources/js/server/ModelServer.js"></script>
         <!--departed codes but still in use-->
@@ -34,8 +36,6 @@
         <!-- initial -->
         <script src="<%=request.getContextPath()%>/resources/js/initial.js"></script>
         <!--Scripts end-->
-
-
         <title>Bulletin Board</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
@@ -53,7 +53,7 @@
                     <div id="chooseBuilding"></div>
                     <div id="newSticker">  </div>
                     <div id="mainForSticks"></div>
-                    <div id="buildings"  title="Add a Sticker"></div>
+                    <div id="buildings"></div>
                     <div id="dialogMain"> </div>
                 </div>
             </div>
