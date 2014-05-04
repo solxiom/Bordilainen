@@ -30,12 +30,10 @@
         <script src="<%=request.getContextPath()%>/resources/js/c/Controller.js"></script>
         <!-- server -->
         <script src="<%=request.getContextPath()%>/resources/js/server/ModelServer.js"></script>
-        <!--departed codes but still in use-->
-        <script src="<%=request.getContextPath()%>/resources/js/NavData.js"></script>
         <!-- initial -->
         <script src="<%=request.getContextPath()%>/resources/js/URLData.js"></script>
         <script src="<%=request.getContextPath()%>/resources/js/App.js"></script>
-        <script src="<%=request.getContextPath()%>/resources/js/initial.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/js/init.js"></script>
         <!--Scripts end-->
         <title>Bulletin Board</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
