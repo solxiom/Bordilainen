@@ -54,9 +54,6 @@ function Building(params) {
             this.stickers.push(next);
             
         }
-        console.log("[Building class] notice: refresh stickers is not implemented");
-        console.table(stick_data);
-        console.table(this.stickers);
         //to be continued...
     }
     /**

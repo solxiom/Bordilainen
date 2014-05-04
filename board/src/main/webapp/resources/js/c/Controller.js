@@ -22,7 +22,6 @@ function Controller(params) {
      * root of the url path for the application
      */
     _self.root = params.root;
-
     _self.navigateHome = function() {
         /*
          * at first the buildings array is empty, so we should
@@ -54,7 +53,15 @@ function Controller(params) {
         _self.view.board.update({address: building.address,
             stickers: building.stickers,
             handlers: buttons_handlers});
-        window.location = _self.root + "/#!building/" + building.id;
+        /*
+         * used with reload button of the browser
+         */
+        if (params.dialogIsOpen !== undefined && params.dialogIsOpen === true) {
+            _self.view.board.openAddDialog(dialog_handlers);
+            window.location = _self.root + "/#!building/" + building.id + "?dialog=open";
+        } else {
+            window.location = _self.root + "/#!building/" + building.id;
+        }
     }
     //private stuff
     function buildDialogHandlers(building) {
@@ -68,12 +75,10 @@ function Controller(params) {
                 building.refreshStickers();
                 _self.view.board.updateStickers(building.stickers);
                 window.location = _self.root + "/#!building/" + building.id;
-
             },
             close: function() {
                 _self.view.board.closeAddDialog();
                 window.location = _self.root + "/#!building/" + building.id;
-
             }
         };
     }

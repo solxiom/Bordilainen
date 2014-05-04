@@ -1,11 +1,10 @@
 
-'use strict'
 /**
  * 
  * @returns {NavigationData}
  * @author Kavan Soleimanbeigi
  */
-
+'use strict'
 function URLData() {
 //public interface
     this.root_path = location.protocol + "//" + location.host + "/board";
@@ -23,8 +22,8 @@ function URLData() {
     this.getHashValue = function() {
         return extractHashValue();
     };
- 
-    this.getHashArray = function(){
+
+    this.getHashArray = function() {
         return buildHashArray();
     };
     //private stuff
@@ -33,13 +32,19 @@ function URLData() {
     }
     function buildParamMap() {
         var params = {};
-        var str_ar = window.location.href.split("?")[1];
-        str_ar = str_ar.split("&");
-        for (var i = 0; i < str_ar.length; i++) {
-            var next_key = str_ar[i].split("=")[0];
-            var next_value = str_ar[i].split("=")[1];
-            params[next_key] = next_value;
-        }
+        try{
+            var str_ar = window.location.href.split("?")[1];
+            str_ar = str_ar.split("&");
+            for (var i = 0; i < str_ar.length; i++) {
+                var next_key = str_ar[i].split("=")[0];
+                var next_value = str_ar[i].split("=")[1];
+                params[next_key] = next_value;
+            }
+        }catch(e){
+            console.log(e);
+            console.log("url params is null!");
+            params = {};
+        }     
         return params;
     }
     function extractHashValue() {
