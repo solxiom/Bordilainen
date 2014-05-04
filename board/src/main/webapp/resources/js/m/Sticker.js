@@ -15,6 +15,7 @@
 function Sticker(params) {
     this.building_id = params.building_id;
     this.id = params.id;
+    this.bulletin_id = params.bulletin_id;
     this.email = params.email;
     this.password = params.password;
     this.title = params.title;
@@ -31,7 +32,7 @@ function Sticker(params) {
      * @returns {undefined}
      */
     this.refresh = function() {
-
+        console.log("[Sticker] function refresh not implemented!");
     }
     /**
      * Saving new sticker if it not already exists. 

@@ -85,8 +85,6 @@ function useBuildingView(building_id, building_name) {
                 bview.openAddDialog(d_params);
             }
         };
-        var params = {stickers: data, address: building_name,
-        };
         bview.update({address: building_name, stickers: data, handlers: bt_params});
     });
 }
@@ -118,9 +116,9 @@ function useHomeView() {
     $.getJSON(root_path + '/list/buildings', function(data) {
         var params = {
             buildings: data,
-            switch_view: function(b_id) {
-                navData.setBuildingId(b_id);
-                showBuildingView(b_id);
+            switch_view: function(params) {
+                navData.setBuildingId(params.building_id);
+                showBuildingView(params.building_id);
             }
         };
         hview.update(params);

@@ -8,11 +8,20 @@
  */
 'use strict';
 function View() {
+    var _self = this;
+    /**
+     * the home view
+     */
+    _self.home = new HomeView(_self);
+    /**
+     * the board/building view
+     */
+    _self.board = new BuildingView(_self);
     /**
      * clear and reset all the elements to their the default mode. It works for any view in the application
      * @returns {undefined}
      */
-    this.clear = function() {
+    _self.clear = function() {
         $("#chooseBuilding").empty();
         $('#mainBody').css("background", "none");
         $('footer').css("display", "none");
@@ -22,14 +31,7 @@ function View() {
         $('#sideBar').empty();
         $('body').css('background-image', 'none');
     }
-    /**
-     * the home view
-     */
-    this.home = new HomeView(this);
-    /**
-     * the board/building view
-     */
-    this.board = new BuildingView(this);
+
 }
 
 

@@ -51,16 +51,19 @@ ModelServer.prototype.getJSONObject = function(params) {
     return object;
 }
 ModelServer.prototype.getJSONData = function(params) {
-    var data = $.ajax({
+     $.ajax({
         type: "GET",
         url: params.url,
         dataType: "json",
         async: params.async,
-        contentType: 'application/json; charset=utf-8'
+        contentType: 'application/json; charset=utf-8',
+        complete:function(data){
+            params.data = data.responseText;
+        }
 
-    }).responseText;
+    });
 
-    return data;
+    return params.data;
 }
 ModelServer.prototype.postJSONObject = function(params) {
 //    console.log(params.object);

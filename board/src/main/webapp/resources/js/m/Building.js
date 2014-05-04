@@ -12,6 +12,7 @@
 'use strict';
 function Building(params) {
     //public interface
+//    this = this;
     this.id = params.id;
     this.address = params.address;
     this.stickers = params.stickers;
@@ -24,7 +25,7 @@ function Building(params) {
      * @returns {undefined}
      */
     this.updateAddress = function(address) {
-
+        this.address = address;
     }
     /**
      * This will cause a [GET] server call values for
@@ -39,13 +40,23 @@ function Building(params) {
      * @returns {undefined}
      */
     this.refreshStickers = function() {
-        var urlstr = root_path+"/list/stickers/" + this.id;
+        var urlstr = root_path + "/list/stickers/" + this.id;
         this.stickers = [];
         var stick_data = model.server.getJSONObject({
             url: urlstr,
             async: false
         });
+        for(var i=0; i < stick_data.length;i++){
+            
+            var next = new Sticker(stick_data[i]);
+            next.model = params.model;
+            next.building_id = this.id;
+            this.stickers.push(next);
+            
+        }
         console.log("[Building class] notice: refresh stickers is not implemented");
+        console.table(stick_data);
+        console.table(this.stickers);
         //to be continued...
     }
     /**
@@ -53,14 +64,38 @@ function Building(params) {
      * @returns {undefined}
      */
     this.refreshAddress = function() {
-        var urlstr = root_path+"/address/" + this.id;
+        var urlstr = root_path + "/address/" + this.id;
         var data = model.server.getJSONData({
             url: urlstr,
             async: false
         });
+//        data = new String(data.toString().getBytes("ISO-8859-1"), "UTF-8")
         this.address = data;
     }
     //private stuff
+    function dataToStickersTest(data) {
+        var sticks = [];
+        var bview = new BuildingView(new View());
+        for (var i = 0; i < data.length; i++) {
+            var sticker = new Sticker(data[i]);
+            //adding a function for showing delete dialog
+            sticker.showDeleteDialog = function(stick) {
+                var d_params = {
+                    sticker: stick,
+                    delete: function(st) {
+                        console.log("deleting this sticker");
+                        console.log(st);
+                    },
+                    cancel: function(st) {
+                        bview.closeDeleteDialog(st);
+                    }
+                }
+                bview.openDeleteDialog(d_params);
+            }
+            sticks.push(sticker);
+        }
+        return sticks;
+    }
 }
 
 

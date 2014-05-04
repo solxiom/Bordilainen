@@ -8,7 +8,7 @@
 
 function URLData() {
 //public interface
- 
+    this.root_path = location.protocol + "//" + location.host + "/board";
     /**
      * 
      * @returns {unresolved}

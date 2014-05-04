@@ -72,8 +72,7 @@ function HomeView(view) {
         }
         $(select).html(list);
         $(select).change(function() {
-            var building_id = select.val();
-            params.switch_view(building_id);          
+            params.switch_view({building_id: select.val()});          
         });
     }
     /**

@@ -11,6 +11,7 @@ function Model() {
     var _self = this;
     _self.server = new ModelServer();
     _self.buildings = [];
+
     _self.refreshBuildings = function() {
         var list = _self.server.getJSONObject({url: root_path + "/list/buildings", async: false});
 
@@ -23,15 +24,17 @@ function Model() {
 
             this.model = _self;// adding the model for each building item
             var b = new Building(this);// "this" : {id: ,address: ,model: }
-            b.refreshStickers();
             b.refreshAddress();
             _self.buildings.push(b);
 
         });
-
         console.table(_self.buildings);
     }
+
+
+
 }
+
 
 
 
