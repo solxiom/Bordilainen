@@ -4,8 +4,8 @@
  * @returns {NavigationData}
  * @author Kavan Soleimanbeigi
  */
-'use strict'
 function URLData() {
+    'use strict';
 //public interface
     this.root_path = location.protocol + "//" + location.host + "/board";
     /**
@@ -32,7 +32,7 @@ function URLData() {
     }
     function buildParamMap() {
         var params = {};
-        try{
+        try {
             var str_ar = window.location.href.split("?")[1];
             str_ar = str_ar.split("&");
             for (var i = 0; i < str_ar.length; i++) {
@@ -40,11 +40,11 @@ function URLData() {
                 var next_value = str_ar[i].split("=")[1];
                 params[next_key] = next_value;
             }
-        }catch(e){
+        } catch (e) {
             console.log(e);
             console.log("url params is null!");
             params = {};
-        }     
+        }
         return params;
     }
     function extractHashValue() {

@@ -1,13 +1,11 @@
 
-'use strict';
 /**
  * 
  * @returns {Model}
  * @author Kavan Soleimanbeigi
  */
-'use strict';
 function Model() {
-
+    'use strict';
     var _self = this;
     _self.server = new ModelServer();
     _self.buildings = [];
@@ -28,7 +26,6 @@ function Model() {
             _self.buildings.push(b);
 
         });
-        console.table(_self.buildings);
     }
 
 

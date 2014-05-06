@@ -11,8 +11,8 @@
  * @returns {Sticker}
  * @author Kavan Soleimanbeigi
  */
-'use strict';
 function Sticker(params) {
+    'use strict';
     this.building_id = params.building_id;
     this.id = params.id;
     this.bulletin_id = params.bulletin_id;

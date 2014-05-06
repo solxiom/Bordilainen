@@ -6,8 +6,8 @@
  * @returns {HomeView}
  * @author Kavan Soleimanbeigi
  */
-'use strict';
 function HomeView(view) {
+    'use strict';
 
     //public interface
     /**
@@ -45,11 +45,11 @@ function HomeView(view) {
      */
     function loadViewStaticElements(callback) {
 
-        $('#inner_header').load(root_path+"/resources/html/default_header.html", function() {
+        $('#inner_header').load(root_path + "/resources/html/default_header.html", function() {
 
-            $('#chooseBuilding').load(root_path+"/resources/html/buildings.html", function() {
+            $('#chooseBuilding').load(root_path + "/resources/html/buildings.html", function() {
 
-                $('footer').load(root_path+"/resources/html/footer.html", function() {
+                $('footer').load(root_path + "/resources/html/footer.html", function() {
                     callback();
 
                 });
@@ -72,7 +72,7 @@ function HomeView(view) {
         }
         $(select).html(list);
         $(select).change(function() {
-            params.switch_view({building_id: select.val()});          
+            params.switch_view({building_id: select.val()});
         });
     }
     /**

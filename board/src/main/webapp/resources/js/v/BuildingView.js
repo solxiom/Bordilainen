@@ -6,8 +6,8 @@
  * @returns {BuildingView}
  * @author Kavan Soleimanbeigi
  */
-'use strict';
 function BuildingView(view) {
+    'use strict';
     //public interface
     /**
      * This will clear and then rebuild whole view

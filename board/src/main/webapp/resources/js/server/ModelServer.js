@@ -1,14 +1,11 @@
 
-'use strict';
 /**
  * 
  * @returns {undefined}
  * @author Kavan Soleimanbeigi
  */
-'use strict';
 function ModelServer() {
-
-
+    'use strict';
     this.testAdd = function() {
         var object = {"id": "", "bulletin_id": "", "email": "k@k.k",
             "password": "1234", "title": "new sticker title",
@@ -16,7 +13,7 @@ function ModelServer() {
             "reportCount": "",
             "description": "sdafhgfh safhgsdf safahf asfdahsd",
             "expiration_date": "23/6/2014"};
-        var url = root_path+"/add/sticker/test/1cc14ca8xbb4bx4397xb42cx83202c3688d1";
+        var url = root_path + "/add/sticker/test/1cc14ca8xbb4bx4397xb42cx83202c3688d1";
         var async = false;
         $.ajax({
             type: "POST",
@@ -51,13 +48,13 @@ ModelServer.prototype.getJSONObject = function(params) {
     return object;
 }
 ModelServer.prototype.getJSONData = function(params) {
-     $.ajax({
+    $.ajax({
         type: "GET",
         url: params.url,
         dataType: "json",
         async: params.async,
         contentType: 'application/json; charset=utf-8',
-        complete:function(data){
+        complete: function(data) {
             params.data = data.responseText;
         }
 

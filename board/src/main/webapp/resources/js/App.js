@@ -3,8 +3,8 @@
  * @returns {App}
  * @author Kavan Soleimanbeigi
  */
-'use strict';
 function App() {
+    'use strict';
     var _self = this;
     _self.model = new Model();
     _self.view = new View();

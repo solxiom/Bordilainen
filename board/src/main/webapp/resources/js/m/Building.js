@@ -9,8 +9,8 @@
  * @returns {Building}
  * @author Kavan Soleimanbeigi
  */
-'use strict';
 function Building(params) {
+    'use strict';
     //public interface
 //    this = this;
     this.id = params.id;
@@ -46,13 +46,13 @@ function Building(params) {
             url: urlstr,
             async: false
         });
-        for(var i=0; i < stick_data.length;i++){
-            
+        for (var i = 0; i < stick_data.length; i++) {
+
             var next = new Sticker(stick_data[i]);
             next.model = params.model;
             next.building_id = this.id;
             this.stickers.push(next);
-            
+
         }
         //to be continued...
     }

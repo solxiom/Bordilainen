@@ -14,27 +14,32 @@
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/commentButtons.css" />
         <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/resources/css/footer_header.css" />
 
-        <!--Scripts start-->
+        <!--Development Scripts start -->
         <!-- external -->
-        <script src="http://code.jquery.com/jquery-1.9.1.js"></script><!--required for jquery 2.x-->
-        <script src="http://code.jquery.com/jquery-2.0.0.js"></script>
-        <!-- model -->
-        <script src="<%=request.getContextPath()%>/resources/js/m/Model.js"></script>
-        <script src="<%=request.getContextPath()%>/resources/js/m/Sticker.js"></script>
-        <script src="<%=request.getContextPath()%>/resources/js/m/Building.js"></script>
-        <!-- view -->
-        <script src="<%=request.getContextPath()%>/resources/js/v/View.js"></script>
-        <script src="<%=request.getContextPath()%>/resources/js/v/BuildingView.js"></script>
-        <script src="<%=request.getContextPath()%>/resources/js/v/HomeView.js"></script>
-        <!-- control -->
-        <script src="<%=request.getContextPath()%>/resources/js/c/Controller.js"></script>
-        <!-- server -->
-        <script src="<%=request.getContextPath()%>/resources/js/server/ModelServer.js"></script>
-        <!-- initial -->
-        <script src="<%=request.getContextPath()%>/resources/js/URLData.js"></script>
-        <script src="<%=request.getContextPath()%>/resources/js/App.js"></script>
-        <script src="<%=request.getContextPath()%>/resources/js/init.js"></script>
-        <!--Scripts end-->
+                <!--<script src="<%=request.getContextPath()%>/resources/js/lib/jquery-1.9.1.min.js"></script>-->
+                <script src="<%=request.getContextPath()%>/resources/js/lib/jquery-2.0.0.min.js"></script>
+                 <!--model--> 
+                <script src="<%=request.getContextPath()%>/resources/js/m/Model.js"></script>
+                <script src="<%=request.getContextPath()%>/resources/js/m/Sticker.js"></script>
+                <script src="<%=request.getContextPath()%>/resources/js/m/Building.js"></script>
+                 <!--view--> 
+                <script src="<%=request.getContextPath()%>/resources/js/v/View.js"></script>
+                <script src="<%=request.getContextPath()%>/resources/js/v/BuildingView.js"></script>
+                <script src="<%=request.getContextPath()%>/resources/js/v/HomeView.js"></script>
+                 <!--control--> 
+                <script src="<%=request.getContextPath()%>/resources/js/c/Controller.js"></script>
+                <script src="<%=request.getContextPath()%>/resources/js/c/ModulControl.js"></script>
+                 <!--server--> 
+                <script src="<%=request.getContextPath()%>/resources/js/server/ModelServer.js"></script>
+                 <!--initial--> 
+                <script src="<%=request.getContextPath()%>/resources/js/URLData.js"></script>
+                <script src="<%=request.getContextPath()%>/resources/js/App.js"></script>
+                <script src="<%=request.getContextPath()%>/resources/js/init.js"></script>
+                
+        
+        <!--Development Scripts end-->
+        <!-- production scripts -->
+        <!--<script src="<%=request.getContextPath()%>/resources/js/compressedApp_version-1.0.1.js"></script>-->
         <title>Bulletin Board</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>

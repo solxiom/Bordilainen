@@ -6,8 +6,8 @@
  * @returns {View}
  * @author Kavan Soleimanbeigi
  */
-'use strict';
 function View() {
+    'use strict';
     var _self = this;
     /**
      * the home view
