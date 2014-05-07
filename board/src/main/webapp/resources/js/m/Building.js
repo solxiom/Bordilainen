@@ -14,7 +14,6 @@
     CoderLeopard.BoardApp.model.Building = function(params) {
         'use strict';
         var _self = this;
-        var _sticker = params.sticker;//full reference to Sticker model, use this by new
         //public interface
         _self.id = params.id;
         _self.address = params.address;
@@ -28,7 +27,7 @@
          * @returns {undefined}
          */
         _self.updateAddress = function(address) {
-            _self.address = address;
+            console.log("[Building.updateAddress] this method is not implemented");
         }
         /**
          * This will cause a [GET] server call values for
@@ -36,13 +35,26 @@
          * @returns {undefined}
          */
         _self.refresh = function() {
-
+            _refreshAddress();
+            _refreshStickers();
         }
         /**
          * This will cause a [GET] server call, sticker list will be reloaded from the server
          * @returns {undefined}
          */
         _self.refreshStickers = function() {
+            _refreshStickers();
+
+        }
+        /**
+         * This will cause a [GET] server call, the address value will be reloaded from the server
+         * @returns {undefined}
+         */
+        _self.refreshAddress = function() {
+            _refreshAddress();
+        }
+        //private stuff
+        function _refreshStickers() {
             var urlstr = root_path + "/list/stickers/" + _self.id;
             _self.stickers = [];
             var stick_data = model.server.getJSONObject({
@@ -53,47 +65,18 @@
 
                 var next = new model._sticker(stick_data[i]);
                 next.model = params.model;
-                next.building_id = this.id;
+                next.building_id = _self.id;
                 _self.stickers.push(next);
 
             }
-            //to be continued...
         }
-        /**
-         * This will cause a [GET] server call, the address value will be reloaded from the server
-         * @returns {undefined}
-         */
-        _self.refreshAddress = function() {
+        function _refreshAddress() {
             var urlstr = root_path + "/address/" + _self.id;
             var data = model.server.getStringData({
                 url: urlstr,
                 async: false
             });
             _self.address = data;
-        }
-        //private stuff
-        function dataToStickersTest(data) {
-            var sticks = [];
-            var bview = new BuildingView(new View());
-            for (var i = 0; i < data.length; i++) {
-                var sticker = new model._sticker(data[i]);
-                //adding a function for showing delete dialog
-                sticker.showDeleteDialog = function(stick) {
-                    var d_params = {
-                        sticker: stick,
-                        delete: function(st) {
-                            console.log("deleting this sticker");
-                            console.log(st);
-                        },
-                        cancel: function(st) {
-                            bview.closeDeleteDialog(st);
-                        }
-                    }
-                    bview.openDeleteDialog(d_params);
-                }
-                sticks.push(sticker);
-            }
-            return sticks;
         }
     }
 

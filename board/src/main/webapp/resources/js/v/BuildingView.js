@@ -82,6 +82,7 @@
                 $("#" + params.sticker.id + " #cancel_btn").click(function() {
                     params.cancel(params.sticker);
                 });
+                $("#" + params.sticker.id + " .deleteSticker").css("background-color",$("#"+ params.sticker.id).css("background-color"));
 
             });
         }
@@ -117,7 +118,7 @@
             for (var i = 0; i < sticks.length; i++) {
                 var id = sticks[i].id;
                 var nextStick = buildStickerView(sticks[i]);
-                nextStick.append(buildDeleteButton(sticks[i]));
+                nextStick.append(buildDeleteButton(sticks[i], $("#" + sticks[i].id)));
                 nextStick.append(buildCommentButton(id));
                 $("#mainForSticks").prepend(nextStick);
             }
@@ -130,12 +131,13 @@
                     append("</br> <b>Description:</b> " + sticker.description);
             return stick_view;
         }
-        function buildDeleteButton(sticker) {
+        function buildDeleteButton(sticker, el) {
+
             var deleteButton = $("<div></div>").attr("id", "delete-" + sticker.id).
                     attr("class", "delSticker").
                     append("<b class='link'style='cursor:pointer'>X</b>")
                     .click(function() {
-                        sticker.showDeleteDialog(sticker)
+                        sticker.showDeleteDialog(sticker);
                     });
             return deleteButton;
         }

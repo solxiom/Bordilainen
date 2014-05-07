@@ -43,6 +43,7 @@
             var building = new _building({id: params.building_id, model: _self.model});
             building.refreshAddress();
             building.refreshStickers();
+            buildDeleteStickerHandler(building);
             var dialog_handlers = buildDialogHandlers(building);
             var buttons_handlers = {
                 home: function() {
@@ -84,6 +85,24 @@
                     window.location = _self.root + "/#!building/" + building.id;
                 }
             };
+        }
+        function buildDeleteStickerHandler(building) {
+            for (var i = 0; i < building.stickers.length; i++) {
+                var nextSticker = building.stickers[i];
+                nextSticker.showDeleteDialog = function(stick) {
+                    _self.view.board.openDeleteDialog({sticker: stick,
+                        delete: function(st) {
+                            console.log("deleting sticker: ");
+                            console.log(st);
+                        },
+                        cancel: function(st) {
+                            _self.view.board.closeDeleteDialog(st);
+                        }
+                    });
+                }
+            }
+            
+
         }
 
     }
