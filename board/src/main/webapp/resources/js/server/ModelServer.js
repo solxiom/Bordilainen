@@ -49,15 +49,16 @@ CoderLeopard.BoardApp.server.ModelServer.prototype.getJSONObject = function(para
     }
     return object;
 }
-CoderLeopard.BoardApp.server.ModelServer.prototype.getJSONData = function(params) {
+CoderLeopard.BoardApp.server.ModelServer.prototype.getStringData = function(params) {
     $.ajax({
         type: "GET",
         url: params.url,
-        dataType: "json",
+        dataType: "string",
         async: params.async,
-        contentType: 'application/json; charset=utf-8',
+        contentType: 'application/json; charset=utf-16',
         complete: function(data) {
             params.data = data.responseText;
+            
         }
 
     });

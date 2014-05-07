@@ -65,11 +65,10 @@
          */
         _self.refreshAddress = function() {
             var urlstr = root_path + "/address/" + _self.id;
-            var data = model.server.getJSONData({
+            var data = model.server.getStringData({
                 url: urlstr,
                 async: false
             });
-//        data = new String(data.toString().getBytes("ISO-8859-1"), "UTF-8")
             _self.address = data;
         }
         //private stuff
