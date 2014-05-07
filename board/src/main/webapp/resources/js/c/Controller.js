@@ -1,15 +1,18 @@
 
-//(function(app, $) {
+(function($) {
 
+    CoderLeopard.package("BoardApp.control");
     /**
      * 
      * @returns {Controller}
      * @author Kavan Soleimanbeigi
      */
-    function Controller(params) {
+    CoderLeopard.BoardApp.control.Controller = function(params) {
         'use strict';
         //public interface
         var _self = this;
+        var _building = params.building;//full reference to Building model, use this by new
+        var _sticker = params.sticker;// full reference to Sticker model, use this by new
         /**
          * this one will intialized by constructure parameter params.model
          */
@@ -37,7 +40,7 @@
             window.location = _self.root + "/#!home";
         }
         _self.navigateBuildingView = function(params) {
-            var building = new Building({id: params.building_id, model: _self.model});
+            var building = new _building({id: params.building_id, model: _self.model});
             building.refreshAddress();
             building.refreshStickers();
             var dialog_handlers = buildDialogHandlers(building);
@@ -69,7 +72,7 @@
                 save: function(stick_params) {
                     stick_params.building_id = building.id;
                     stick_params.model = _self.model;
-                    var sticker = new Sticker(stick_params);
+                    var sticker = new _sticker(stick_params);
                     sticker.save();
                     _self.view.board.closeAddDialog();
                     building.refreshStickers();
@@ -84,6 +87,4 @@
         }
 
     }
-
-//    app.controller = new Controller();
-//})(BoardApp || {}, jQuery);
+}(jQuery));

@@ -16,27 +16,28 @@
 
         <!--Development Scripts start -->
         <!-- external -->
-                <!--<script src="<%=request.getContextPath()%>/resources/js/lib/jquery-1.9.1.min.js"></script>-->
-                <script src="<%=request.getContextPath()%>/resources/js/lib/jquery-2.0.0.min.js"></script>
-                 <!--model--> 
-                <script src="<%=request.getContextPath()%>/resources/js/m/Model.js"></script>
-                <script src="<%=request.getContextPath()%>/resources/js/m/Sticker.js"></script>
-                <script src="<%=request.getContextPath()%>/resources/js/m/Building.js"></script>
-                 <!--view--> 
-                <script src="<%=request.getContextPath()%>/resources/js/v/View.js"></script>
-                <script src="<%=request.getContextPath()%>/resources/js/v/BuildingView.js"></script>
-                <script src="<%=request.getContextPath()%>/resources/js/v/HomeView.js"></script>
-                 <!--control--> 
-                <script src="<%=request.getContextPath()%>/resources/js/c/Controller.js"></script>
-                <script src="<%=request.getContextPath()%>/resources/js/c/ModulControl.js"></script>
-                 <!--server--> 
-                <script src="<%=request.getContextPath()%>/resources/js/server/ModelServer.js"></script>
-                 <!--initial--> 
-                <script src="<%=request.getContextPath()%>/resources/js/URLData.js"></script>
-                <script src="<%=request.getContextPath()%>/resources/js/App.js"></script>
-                <script src="<%=request.getContextPath()%>/resources/js/init.js"></script>
-                
-        
+        <script src="<%=request.getContextPath()%>/resources/js/lib/jquery-2.0.0.min.js"></script>
+        <!--root require. keep this on top! -->
+        <script src="<%=request.getContextPath()%>/resources/js/root.js"></script>
+        <!--model--> 
+        <script src="<%=request.getContextPath()%>/resources/js/m/Model.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/js/m/Sticker.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/js/m/Building.js"></script>
+        <!--view--> 
+        <script src="<%=request.getContextPath()%>/resources/js/v/View.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/js/v/BuildingView.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/js/v/HomeView.js"></script>
+        <!--control--> 
+        <script src="<%=request.getContextPath()%>/resources/js/c/Controller.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/js/c/ModulControl.js"></script>
+        <!--server--> 
+        <script src="<%=request.getContextPath()%>/resources/js/server/ModelServer.js"></script>
+        <!--initial--> 
+        <script src="<%=request.getContextPath()%>/resources/js/URLData.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/js/App.js"></script>
+        <script src="<%=request.getContextPath()%>/resources/js/init.js"></script>
+
+
         <!--Development Scripts end-->
         <!-- production scripts -->
         <!--<script src="<%=request.getContextPath()%>/resources/js/compressedApp_version-1.0.1.js"></script>-->

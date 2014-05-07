@@ -1,12 +1,14 @@
-
+(function($){
+    CoderLeopard.package("BoardApp.server");
 /**
  * 
  * @returns {undefined}
  * @author Kavan Soleimanbeigi
  */
-function ModelServer() {
+CoderLeopard.BoardApp.server.ModelServer = function() {
     'use strict';
-    this.testAdd = function() {
+    var _self = this;
+    _self.testAdd = function() {
         var object = {"id": "", "bulletin_id": "", "email": "k@k.k",
             "password": "1234", "title": "new sticker title",
             "summary": "basjsjh ashgs sgh", "type_Id": "general",
@@ -30,7 +32,7 @@ function ModelServer() {
     }
 }
 
-ModelServer.prototype.getJSONObject = function(params) {
+CoderLeopard.BoardApp.server.ModelServer.prototype.getJSONObject = function(params) {
     var object = undefined;
     var data = $.ajax({
         type: "GET",
@@ -47,7 +49,7 @@ ModelServer.prototype.getJSONObject = function(params) {
     }
     return object;
 }
-ModelServer.prototype.getJSONData = function(params) {
+CoderLeopard.BoardApp.server.ModelServer.prototype.getJSONData = function(params) {
     $.ajax({
         type: "GET",
         url: params.url,
@@ -62,10 +64,7 @@ ModelServer.prototype.getJSONData = function(params) {
 
     return params.data;
 }
-ModelServer.prototype.postJSONObject = function(params) {
-//    console.log(params.object);
-//    console.log(JSON.stringify(params.object));
-
+CoderLeopard.BoardApp.server.ModelServer.prototype.postJSONObject = function(params) {
     $.ajax({
         type: "POST",
         url: params.url,
@@ -82,3 +81,4 @@ ModelServer.prototype.postJSONObject = function(params) {
     });
 
 }
+}(jQuery));

@@ -25,8 +25,8 @@
             console.log("Hello from view!");
         }
     }
-    
-    if(window.TestApp === undefined){
+//    console.log("jQuery: " + $);
+    if(typeof window.TestApp === undefined){
         window.TestApp = {};
     }
     window.TestApp.view = new TestView();

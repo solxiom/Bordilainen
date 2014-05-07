@@ -1,10 +1,8 @@
+(function($){
 /* 
  * Author : Kavan Soleimanbeigi
  */
 $(document).ready(function() {
-    init();
+    new CoderLeopard.BoardApp.App().start();
 });
-function init(){
-    window.BoardApp = new App();
-    BoardApp.start();
-}
+}(jQuery));
