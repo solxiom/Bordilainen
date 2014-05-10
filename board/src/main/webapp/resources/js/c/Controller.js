@@ -1,13 +1,13 @@
 
 (function($) {
 
-    CoderLeopard.package("BoardApp.control");
+    CoderLeopard.package("boardApp.control");
     /**
      * 
      * @returns {Controller}
      * @author Kavan Soleimanbeigi
      */
-    CoderLeopard.BoardApp.control.Controller = function(params) {
+    CoderLeopard.boardApp.control.Controller = function(params) {
         'use strict';
         //public interface
         var _self = this;
@@ -25,6 +25,7 @@
          * root of the url path for the application
          */
         _self.root = params.root;
+        
         _self.navigateHome = function() {
             /*
              * at first the buildings array is empty, so we should
@@ -106,4 +107,5 @@
         }
 
     }
+
 }(jQuery));

@@ -1,6 +1,6 @@
 
 (function($) {
-    CoderLeopard.package("BoardApp.model");
+    CoderLeopard.package("boardApp.model");
     /**
      * For relaoding data of the model from the server please use the refresh functions.
      * @class The Building Model. 
@@ -11,7 +11,7 @@
      * @returns {Building}
      * @author Kavan Soleimanbeigi
      */
-    CoderLeopard.BoardApp.model.Building = function(params) {
+    CoderLeopard.boardApp.model.Building = function(params) {
         'use strict';
         var _self = this;
         //public interface
@@ -55,7 +55,7 @@
         }
         //private stuff
         function _refreshStickers() {
-            var urlstr = root_path + "/list/stickers/" + _self.id;
+            var urlstr = CoderLeopard.boardApp.root_path + "/list/stickers/" + _self.id;
             _self.stickers = [];
             var stick_data = model.server.getJSONObject({
                 url: urlstr,
@@ -71,7 +71,7 @@
             }
         }
         function _refreshAddress() {
-            var urlstr = root_path + "/address/" + _self.id;
+            var urlstr = CoderLeopard.boardApp.root_path + "/address/" + _self.id;
             var data = model.server.getStringData({
                 url: urlstr,
                 async: false

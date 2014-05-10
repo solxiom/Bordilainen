@@ -3,6 +3,6 @@
  * Author : Kavan Soleimanbeigi
  */
 $(document).ready(function() {
-    new CoderLeopard.BoardApp.App().start();
+    new CoderLeopard.boardApp.App().start();
 });
 }(jQuery));

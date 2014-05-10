@@ -29,7 +29,6 @@
         <script src="<%=request.getContextPath()%>/resources/js/v/HomeView.js"></script>
         <!--control--> 
         <script src="<%=request.getContextPath()%>/resources/js/c/Controller.js"></script>
-        <script src="<%=request.getContextPath()%>/resources/js/c/ModulControl.js"></script>
         <!--server--> 
         <script src="<%=request.getContextPath()%>/resources/js/server/ModelServer.js"></script>
         <!--initial--> 

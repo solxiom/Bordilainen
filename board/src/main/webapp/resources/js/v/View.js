@@ -1,5 +1,5 @@
 (function($) {
-    CoderLeopard.package("BoardApp.view");
+    CoderLeopard.package("boardApp.view");
     /**
      * @class the main class for the view package. All view moduls can be accessed from this class.
      * all classes of the package will need an instance of this class. 
@@ -7,7 +7,7 @@
      * @returns {View}
      * @author Kavan Soleimanbeigi
      */
-    CoderLeopard.BoardApp.view.View = function(params) {
+    CoderLeopard.boardApp.view.View = function(params) {
         'use strict';
         var _self = this;
         /**

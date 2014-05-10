@@ -1,15 +1,16 @@
 (function($) {
-    CoderLeopard.package("BoardApp")
+    CoderLeopard.package("boardApp")
     /**
      * 
      * @returns {NavigationData}
      * @author Kavan Soleimanbeigi
      */
-    CoderLeopard.BoardApp.URLData = function() {
+    CoderLeopard.boardApp.URLData = function() {
         'use strict';
         var _self = this;
         //public interface
         _self.root_path = location.protocol + "//" + location.host + "/board";
+        window.CoderLeopard.boardApp.root_path = _self.root_path;// adding global variable root_path
         /**
          * 
          * @returns {unresolved}

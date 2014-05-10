@@ -1,5 +1,5 @@
 (function($) {
-    CoderLeopard.package("BoardApp.model");
+    CoderLeopard.package("boardApp.model");
     /**
      * 
      * @param {type} id
@@ -12,7 +12,7 @@
      * @returns {Sticker}
      * @author Kavan Soleimanbeigi
      */
-    CoderLeopard.BoardApp.model.Sticker = function(params) {
+    CoderLeopard.boardApp.model.Sticker = function(params) {
         'use strict';
         //public interface
         var _self = this;
@@ -46,7 +46,7 @@
         _self.save = function() {
             var b_id = _self.building_id;
             var sv_params = {
-                url: root_path + "/add/sticker/" + b_id,
+                url: CoderLeopard.boardApp.root_path + "/add/sticker/" + b_id,
                 async: false,
                 object: getServerModel()
             };
@@ -62,7 +62,7 @@
             var b_id = _self.building_id;
             var s_id = _self.id;
             var rm_params = {
-                url: root_path + "/remove/sticker/" + b_id + "/" + s_id,
+                url: CoderLeopard.boardApp.root_path + "/remove/sticker/" + b_id + "/" + s_id,
                 async: false,
                 object: auth_array
             }
