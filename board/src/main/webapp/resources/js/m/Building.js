@@ -11,73 +11,71 @@
      * @returns {Building}
      * @author Kavan Soleimanbeigi
      */
-    CoderLeopard.boardApp.model.Building = function(params) {
+    var _building = CoderLeopard.boardApp.model.Building = function(params) {
         'use strict';
         var _self = this;
         //public interface
         _self.id = params.id;
         _self.address = params.address;
         _self.stickers = params.stickers;
-        var model = params.model;
+        _self.model = params.model;
 
+    }
+    /**
+     * This will cause a [POST] server call 
+     * @param {type} address any string as new address for the building
+     * @returns {undefined}
+     */
+    _building.prototype.updateAddress = function(address) {
+        'use strict';
+        console.log("[Building.updateAddress] this method is not implemented");
+    }
+    /**
+     * This will cause a [GET] server call values for
+     * both address and stickers will be reloaded from the server
+     * @returns {undefined}
+     */
+    _building.prototype.refresh = function() {
+       'use strict';
+        var _self = this;
+        _self.refreshAddress();
+        _self.refreshStickers();
+    }
+    /**
+     * This will cause a [GET] server call, sticker list will be reloaded from the server
+     * @returns {undefined}
+     */
+    _building.prototype.refreshStickers = function() {
+        'use strict';
+        var _self = this;
+        var urlstr = CoderLeopard.boardApp.root_path + "/list/stickers/" + _self.id;
+        _self.stickers = [];
+        var stick_data = _self.model.server.getJSONObject({
+            url: urlstr,
+            async: false
+        });
+        for (var i = 0; i < stick_data.length; i++) {
 
-        /**
-         * This will cause a [POST] server call 
-         * @param {type} address any string as new address for the building
-         * @returns {undefined}
-         */
-        _self.updateAddress = function(address) {
-            console.log("[Building.updateAddress] this method is not implemented");
-        }
-        /**
-         * This will cause a [GET] server call values for
-         * both address and stickers will be reloaded from the server
-         * @returns {undefined}
-         */
-        _self.refresh = function() {
-            _refreshAddress();
-            _refreshStickers();
-        }
-        /**
-         * This will cause a [GET] server call, sticker list will be reloaded from the server
-         * @returns {undefined}
-         */
-        _self.refreshStickers = function() {
-            _refreshStickers();
+            var next = new _self.model._sticker(stick_data[i]);
+            next.model = _self.model;
+            next.building_id = _self.id;
+            _self.stickers.push(next);
 
         }
-        /**
-         * This will cause a [GET] server call, the address value will be reloaded from the server
-         * @returns {undefined}
-         */
-        _self.refreshAddress = function() {
-            _refreshAddress();
-        }
-        //private stuff
-        function _refreshStickers() {
-            var urlstr = CoderLeopard.boardApp.root_path + "/list/stickers/" + _self.id;
-            _self.stickers = [];
-            var stick_data = model.server.getJSONObject({
-                url: urlstr,
-                async: false
-            });
-            for (var i = 0; i < stick_data.length; i++) {
-
-                var next = new model._sticker(stick_data[i]);
-                next.model = params.model;
-                next.building_id = _self.id;
-                _self.stickers.push(next);
-
-            }
-        }
-        function _refreshAddress() {
-            var urlstr = CoderLeopard.boardApp.root_path + "/address/" + _self.id;
-            var data = model.server.getStringData({
-                url: urlstr,
-                async: false
-            });
-            _self.address = data;
-        }
+    }
+    /**
+     * This will cause a [GET] server call, the address value will be reloaded from the server
+     * @returns {undefined}
+     */
+    _building.prototype.refreshAddress = function() {
+        'use strict';
+        var _self = this;
+        var urlstr = CoderLeopard.boardApp.root_path + "/address/" + _self.id;
+        var data = _self.model.server.getStringData({
+            url: urlstr,
+            async: false
+        });
+        _self.address = data;
     }
 
 

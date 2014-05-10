@@ -8,10 +8,10 @@
      * @returns {BuildingView}
      * @author Kavan Soleimanbeigi
      */
-    CoderLeopard.boardApp.view.BuildingView = function(view) {
+    var _buildingView = CoderLeopard.boardApp.view.BuildingView = function(view) {
         'use strict';
         var _self = this;
-
+        this.view = view;
         //public interface
         /**
          * This will clear and then rebuild whole view
@@ -183,4 +183,5 @@
 
         }
     }
+    
 }(jQuery));

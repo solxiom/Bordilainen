@@ -12,7 +12,7 @@
      * @returns {Sticker}
      * @author Kavan Soleimanbeigi
      */
-    CoderLeopard.boardApp.model.Sticker = function(params) {
+    var _sticker = CoderLeopard.boardApp.model.Sticker = function(params) {
         'use strict';
         //public interface
         var _self = this;
@@ -27,54 +27,13 @@
         _self.expiration_date = params.expiration_date;
         _self.reportCount = "";
         _self.type_Id = "general";
-        var model = params.model;
-
-        /**
-         *  This will cause a [GET] server call. 
-         *  Using this will reload sticker from the server
-         * @returns {undefined}
-         */
-        _self.refresh = function() {
-            console.log("[Sticker] function refresh not implemented!");
-        }
-        /**
-         * Saving new sticker if it not already exists. 
-         * Otherwise it will update existing sticker.
-         * this will cause a [POST] call 
-         * @returns {undefined}
-         */
-        _self.save = function() {
-            var b_id = _self.building_id;
-            var sv_params = {
-                url: CoderLeopard.boardApp.root_path + "/add/sticker/" + b_id,
-                async: false,
-                object: getServerModel()
-            };
-
-            model.server.postJSONObject(sv_params);
-        }
-        /**
-         * This will cause a [DELETE/POST] server call. 
-         * The sticker will be removed from the server
-         * @returns {undefined}
-         */
-        _self.remove = function(auth_array) {
-            var b_id = _self.building_id;
-            var s_id = _self.id;
-            var rm_params = {
-                url: CoderLeopard.boardApp.root_path + "/remove/sticker/" + b_id + "/" + s_id,
-                async: false,
-                object: auth_array
-            }
-            model.server.postJSONObject(rm_params);
-        }
-        //private stuff
+        _self.model = params.model;
         /**
          * be careful with this JSON structure.
          *  Even small typo can cause a 400 BAD REQUEST error on server
          * @returns {StickerModel} the server model for sticker
          */
-        function getServerModelXX() {// delete the test function and use this one instead
+        _self.getServerModelXX = function() {// delete the test function and use this one instead
             return {"id": _self.id, "bulletin_id": "", "email": _self.email,
                 "password": _self.password, "title": _self.title,
                 "summary": _self.summary, "type_Id": _self.type_Id,
@@ -82,7 +41,7 @@
                 "description": _self.description,
                 "expiration_date": ""};
         }
-        function getServerModel() {
+        _self.getServerModel = function() {
             return {"id": "", "bulletin_id": "", "email": "solxiom@gmail.com",
                 "password": "1234", "title": "test title",
                 "summary": "suydsu sdfyudsf sf sdf", "type_Id": "general",
@@ -91,6 +50,50 @@
                 "expiration_date": ""};
         }
 
+    }
+    /**
+     *  This will cause a [GET] server call. 
+     *  Using this will reload sticker from the server
+     * @returns {undefined}
+     */
+    _sticker.prototype.refresh = function() {
+        'use strict';
+        console.log("[Sticker] function refresh not implemented!");
+    }
+    /**
+     * Saving new sticker if it not already exists. 
+     * Otherwise it will update existing sticker.
+     * this will cause a [POST] call 
+     * @returns {undefined}
+     */
+    _sticker.prototype.save = function() {
+        'use strict';
+        var _self = this;
+        var b_id = _self.building_id;
+        var sv_params = {
+            url: CoderLeopard.boardApp.root_path + "/add/sticker/" + b_id,
+            async: false,
+            object: _self.getServerModel()
+        };
+
+        _self.model.server.postJSONObject(sv_params);
+    }
+    /**
+     * This will cause a [DELETE/POST] server call. 
+     * The sticker will be removed from the server
+     * @returns {undefined}
+     */
+    _sticker.prototype.remove = function(auth_array) {
+        'use strict';
+        var _self = this;
+        var b_id = _self.building_id;
+        var s_id = _self.id;
+        var rm_params = {
+            url: CoderLeopard.boardApp.root_path + "/remove/sticker/" + b_id + "/" + s_id,
+            async: false,
+            object: auth_array
+        }
+        _self.model.server.postJSONObject(rm_params);
     }
 }(jQuery));
 

@@ -7,7 +7,7 @@
      * @returns {View}
      * @author Kavan Soleimanbeigi
      */
-    CoderLeopard.boardApp.view.View = function(params) {
+    var _view = CoderLeopard.boardApp.view.View = function(params) {
         'use strict';
         var _self = this;
         /**
@@ -18,21 +18,20 @@
          * the board/building view
          */
         _self.board = params.board(_self);
-        /**
-         * clear and reset all the elements to their the default mode. It works for any view in the application
-         * @returns {undefined}
-         */
-        _self.clear = function() {
-            $("#chooseBuilding").empty();
-            $('#mainBody').css("background", "none");
-            $('footer').css("display", "none");
-            $("#inner_header").css("display", "none");
-            $("header").empty();
-            $('#mainForSticks').empty();
-            $('#sideBar').empty();
-            $('body').css('background-image', 'none');
-        }
-
+    }
+    /**
+     * clear and reset all the elements to their the default mode. It works for any view in the application
+     * @returns {undefined}
+     */
+    _view.prototype.clear = function() {
+        $("#chooseBuilding").empty();
+        $('#mainBody').css("background", "none");
+        $('footer').css("display", "none");
+        $("#inner_header").css("display", "none");
+        $("header").empty();
+        $('#mainForSticks').empty();
+        $('#sideBar').empty();
+        $('body').css('background-image', 'none');
     }
 }(jQuery));
 
