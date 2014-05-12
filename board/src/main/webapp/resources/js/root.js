@@ -61,7 +61,7 @@
     };
     /**
      * 
-     * @returns {Controller.extractHashValue}
+     * @returns {unresolved}
      */
     _urlData.prototype.getHashValue = function() {
         'use strict';
@@ -71,7 +71,7 @@
     };
     /**
      * 
-     * @returns {Controller.getHashArray}
+     * @returns {_L5._urlData.prototype@call;getHashValue@call;split}
      */
     _urlData.prototype.getHashArray = function() {
         'use strict';
@@ -117,6 +117,8 @@
     if (typeof jQuery !== "undefined") {
 
         jQuery.extend({board: new board()});
+    }else{
+        console.log("[boardApp /root.js] jQuery is undefind! Can't extend jQuery!")
     }
 }());
 

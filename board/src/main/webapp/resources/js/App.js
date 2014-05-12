@@ -21,7 +21,6 @@
                 return new CoderLeopard.boardApp.view.BuildingView(view);
             }
         });
-//        _self.url = new CoderLeopard.boardApp.URLData();
         _self.url = $.board.url;
         _self.controller = new CoderLeopard.boardApp.control.Controller({
             view: _self.view,
