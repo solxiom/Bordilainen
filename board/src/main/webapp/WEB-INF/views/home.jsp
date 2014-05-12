@@ -32,7 +32,6 @@
         <!--server--> 
         <script src="<%=request.getContextPath()%>/resources/js/server/ModelServer.js"></script>
         <!--initial--> 
-        <script src="<%=request.getContextPath()%>/resources/js/URLData.js"></script>
         <script src="<%=request.getContextPath()%>/resources/js/App.js"></script>
         <script src="<%=request.getContextPath()%>/resources/js/init.js"></script>
 

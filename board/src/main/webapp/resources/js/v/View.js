@@ -1,5 +1,5 @@
 (function($) {
-    CoderLeopard.package("boardApp.view");
+     $.board.package("boardApp.view");
     /**
      * @class the main class for the view package. All view moduls can be accessed from this class.
      * all classes of the package will need an instance of this class. 

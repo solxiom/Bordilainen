@@ -1,7 +1,7 @@
 
 (function($) {
 
-    CoderLeopard.package("boardApp.control");
+    $.board.package("boardApp.control");
     /**
      * 
      * @returns {Controller}
@@ -87,7 +87,7 @@
                 }
             };
         }
-        function buildDeleteStickerHandler(building) {
+        function buildDeleteStickerHandler(building){
             for (var i = 0; i < building.stickers.length; i++) {
                 var nextSticker = building.stickers[i];
                 nextSticker.showDeleteDialog = function(stick) {
@@ -102,10 +102,6 @@
                     });
                 }
             }
-            
-
         }
-
     }
-
 }(jQuery));

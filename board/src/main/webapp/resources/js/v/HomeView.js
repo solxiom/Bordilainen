@@ -1,5 +1,5 @@
 (function($) {
-    CoderLeopard.package("boardApp.view");
+     $.board.package("boardApp.view");
     /**
      * @class This class will create and update the home view
      * all dialogs and parts of the home view can be accessed with this class

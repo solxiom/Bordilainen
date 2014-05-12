@@ -1,5 +1,5 @@
 (function($) {
-    CoderLeopard.package("boardApp.model");
+     $.board.package("boardApp.model");
     /**
      * 
      * @param {type} id

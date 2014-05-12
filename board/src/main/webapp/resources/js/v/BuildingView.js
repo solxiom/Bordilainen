@@ -1,6 +1,6 @@
 (function($) {
 
-    CoderLeopard.package("boardApp.view");
+     $.board.package("boardApp.view");
     /**
      * @class This class will create and update the building view
      * all dialogs and parts of the building view can be accessed with this class

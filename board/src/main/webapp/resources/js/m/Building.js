@@ -1,6 +1,6 @@
 
 (function($) {
-    CoderLeopard.package("boardApp.model");
+     $.board.package("boardApp.model");
     /**
      * For relaoding data of the model from the server please use the refresh functions.
      * @class The Building Model. 
@@ -19,7 +19,6 @@
         _self.address = params.address;
         _self.stickers = params.stickers;
         _self.model = params.model;
-
     }
     /**
      * This will cause a [POST] server call 

@@ -1,6 +1,6 @@
 
 (function($) {
-    CoderLeopard.package("boardApp.model");
+     $.board.package("boardApp.model");
     /**
      * 
      * @returns {Model}

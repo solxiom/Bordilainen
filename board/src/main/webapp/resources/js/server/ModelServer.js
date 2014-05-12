@@ -1,5 +1,5 @@
 (function($) {
-    CoderLeopard.package("boardApp.server");
+     $.board.package("boardApp.server");
     /**
      * 
      * @returns {undefined}
