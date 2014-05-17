@@ -101,6 +101,7 @@
     };
     board.prototype.publish = function(params) {
         'use strict';
+        
         if (typeof params === "undefined" || typeof params.key === "undefined") {
             return;
         }
@@ -109,7 +110,11 @@
         }
         for (var i = 0; i < this.subscription[params.key].length; i++) {
             if (typeof this.subscription[params.key][i] === "function") {
-                this.subscription[params.key][i](params.data);
+                if (typeof params.data !== "undefined") {
+                    this.subscription[params.key][i](params.data);
+                }else{
+                    this.subscription[params.key][i]();
+                }
             }
         }
     };
@@ -117,7 +122,7 @@
     if (typeof jQuery !== "undefined") {
 
         jQuery.extend({board: new board()});
-    }else{
+    } else {
         console.log("[boardApp /root.js] jQuery is undefind! Can't extend jQuery!")
     }
 }());

@@ -1,6 +1,6 @@
 (function($) {
 
-     $.board.package("boardApp.view");
+    $.board.package("boardApp.view");
     /**
      * @class This class will create and update the building view
      * all dialogs and parts of the building view can be accessed with this class
@@ -8,7 +8,7 @@
      * @returns {BuildingView}
      * @author Kavan Soleimanbeigi
      */
-    var _buildingView = CoderLeopard.boardApp.view.BuildingView = function(view) {
+    CoderLeopard.boardApp.view.BuildingView = function(view) {
         'use strict';
         var _self = this;
         this.view = view;
@@ -35,7 +35,7 @@
          */
         _self.updateBuildingName = function(building_name) {
             $('header').empty();
-            $('header').load(CoderLeopard.boardApp.root_path + "/resources/html/header1.html", function() {
+            $('header').load($.board.url.root_path + "/resources/html/header1.html", function() {
                 $('#headerTitle').text(building_name);
             });
         }
@@ -55,7 +55,7 @@
          * @returns {undefined}
          */
         _self.openAddDialog = function(params) {
-            $('#newSticker').load(CoderLeopard.boardApp.root_path + '/resources/html/dialogDiv.html', function() {
+            $('#newSticker').load($.board.url.root_path + '/resources/html/dialogDiv.html', function() {
                 $("#newSticker").css("display", "block");
                 addHandlerToAddDialog(params);
 
@@ -74,7 +74,7 @@
          * @returns {undefined}
          */
         _self.openDeleteDialog = function(params) {
-            $("#" + params.sticker.id).load(CoderLeopard.boardApp.root_path + "/resources/html/deleteSticker.html", function() {
+            $("#" + params.sticker.id).load($.board.url.root_path + "/resources/html/deleteSticker.html", function() {
                 //  $("#seq-"+sticker_id).attr("class","deleteSticker");
                 $("#" + params.sticker.id + " #delete_btn").click(function() {
                     params.delete(params.sticker);
@@ -100,8 +100,8 @@
         }
         //private stuff
         function loadViewStaticElements(building_name, callback) {
-            $('#sideBar').load(CoderLeopard.boardApp.root_path + "/resources/html/buttons.html", function() {
-                $('header').load(CoderLeopard.boardApp.root_path + "/resources/html/header1.html", function() {
+            $('#sideBar').load($.board.url.root_path + "/resources/html/buttons.html", function() {
+                $('header').load($.board.url.root_path + "/resources/html/header1.html", function() {
                     $('#headerTitle').text(building_name);
                     callback();
                 });
@@ -109,7 +109,7 @@
 
         }
         function adjustViewCss() {
-            var url_str = 'url("' + CoderLeopard.boardApp.root_path + '/resources/img/BulletinBoard.jpg")';
+            var url_str = 'url("' + $.board.url.root_path + '/resources/img/BulletinBoard.jpg")';
             $(document.body).css('background', url_str);
             $('#mainBody').css("overflow", "visible");
             $("#mainBody").css("margin-top", "100px");
@@ -183,5 +183,5 @@
 
         }
     }
-    
+
 }(jQuery));

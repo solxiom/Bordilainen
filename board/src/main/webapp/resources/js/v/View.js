@@ -1,5 +1,5 @@
 (function($) {
-     $.board.package("boardApp.view");
+    $.board.package("boardApp.view");
     /**
      * @class the main class for the view package. All view moduls can be accessed from this class.
      * all classes of the package will need an instance of this class. 
@@ -18,6 +18,89 @@
          * the board/building view
          */
         _self.board = params.board(_self);
+        /**
+         * publish and subscribe
+         */
+        $.board.subscribe("update-home-view", function(data) {
+            var params = {buildings: data.buildings,
+                switch_view: function(params) {
+                    $.board.publish({key: "building-request", data: params.building_id});
+                }
+            };
+            _self.home.update(params);
+            window.location = $.board.url.root_path + "/#!home";
+        });
+        $.board.subscribe("update-building-view", function(data) {
+            var dialog_handlers = buildDialogHandlers(data);
+            var buttons_handlers = buildButtonHandlers(dialog_handlers, data);
+            addDeleteHandlersToStickers(data.stickers);
+            _self.board.update({address: data.address,
+                stickers: data.stickers,
+                handlers: buttons_handlers});
+            /*
+             * used with reload button of the browser
+             */
+            var dialogIsAlreadyOpen = false;
+            if($.board.url.getURLParams().dialog !== undefined 
+                    &&
+                    $.board.url.getURLParams().dialog === "open") {
+                dialogIsAlreadyOpen = true;
+            }
+            if (dialogIsAlreadyOpen) {
+                _self.board.openAddDialog(dialog_handlers);
+                window.location = $.board.url.root_path + "/#!building/" + data.id + "?dialog=open";
+            } else {
+                window.location = $.board.url.root_path + "/#!building/" + data.id;
+            }
+        });
+        $.board.subscribe("stickers-updated",function(stickers){
+            addDeleteHandlersToStickers(stickers);
+            _self.board.updateStickers(stickers);
+        });
+        //private stuff
+        function buildButtonHandlers(dialog_handlers, building) {
+            return {
+                home: function() {
+                    $.board.publish({key: "home-request", data: undefined});
+                },
+                dialog: function() {
+                    _self.board.openAddDialog(dialog_handlers);
+                    window.location = $.board.url.root_path + "/#!building/" + building.id + "?dialog=open";
+                }
+            };
+        }
+        function addDeleteHandlersToStickers(stickers) {
+            for (var i = 0; i < stickers.length; i++) {
+                var nextSticker = stickers[i];
+                nextSticker.showDeleteDialog = function(stick) {
+                    _self.board.openDeleteDialog({sticker: stick,
+                        delete: function(st) {
+                            console.log("deleting sticker: ");
+                            console.log(st);
+                        },
+                        cancel: function(st) {
+                            _self.board.closeDeleteDialog(st);
+                        }
+                    });
+                }
+            }
+        }
+        function buildDialogHandlers(building) {
+            return {
+                save: function(stick_params) {
+                    stick_params.building_id = building.id;
+                    $.board.publish({key:"save-new-sticker",data:stick_params});
+                    _self.board.closeAddDialog();
+//                    building.refreshStickers();
+//                    _self.board.updateStickers(building.stickers);
+                    window.location = $.board.url.root_path + "/#!building/" + building.id;
+                },
+                close: function() {
+                    _self.board.closeAddDialog();
+                    window.location = $.board.url.root_path + "/#!building/" + building.id;
+                }
+            };
+        }
     }
     /**
      * clear and reset all the elements to their the default mode. It works for any view in the application
@@ -25,6 +108,7 @@
      */
     _view.prototype.clear = function() {
         $("#chooseBuilding").empty();
+        $("#newSticker").css("display","none");
         $('#mainBody').css("background", "none");
         $('footer').css("display", "none");
         $("#inner_header").css("display", "none");
