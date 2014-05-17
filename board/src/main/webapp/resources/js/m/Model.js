@@ -31,9 +31,15 @@
             params.model = _self;
             var sticker = new _self._sticker(params);
             sticker.save();
-            var building = new _self._building({id: params.building_id,model:_self});
+            var building = new _self._building({id: params.building_id, model: _self});
             building.refreshStickers();
-            $.board.publish({key:"stickers-updated",data:building.stickers});
+            $.board.publish({key: "stickers-updated", data: building.stickers});
+        });
+        $.board.subscribe("delete-sticker", function(sticker) {
+            var building = new _self._building({id: sticker.building_id, model: _self});
+            sticker.remove(sticker.auth_array);
+            building.refreshStickers();
+            $.board.publish({key: "stickers-updated", data: building.stickers});
         });
         var refreshBuildings = function() {
             var list = _self.server.getJSONObject({url: CoderLeopard.boardApp.root_path + "/list/buildings", async: false});

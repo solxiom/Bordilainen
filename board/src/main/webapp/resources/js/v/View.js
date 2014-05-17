@@ -75,8 +75,7 @@
                 nextSticker.showDeleteDialog = function(stick) {
                     _self.board.openDeleteDialog({sticker: stick,
                         delete: function(st) {
-                            console.log("deleting sticker: ");
-                            console.log(st);
+                            $.board.publish({key:"delete-sticker",data:st});
                         },
                         cancel: function(st) {
                             _self.board.closeDeleteDialog(st);
@@ -91,8 +90,6 @@
                     stick_params.building_id = building.id;
                     $.board.publish({key:"save-new-sticker",data:stick_params});
                     _self.board.closeAddDialog();
-//                    building.refreshStickers();
-//                    _self.board.updateStickers(building.stickers);
                     window.location = $.board.url.root_path + "/#!building/" + building.id;
                 },
                 close: function() {

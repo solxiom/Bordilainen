@@ -77,6 +77,9 @@
             $("#" + params.sticker.id).load($.board.url.root_path + "/resources/html/deleteSticker.html", function() {
                 //  $("#seq-"+sticker_id).attr("class","deleteSticker");
                 $("#" + params.sticker.id + " #delete_btn").click(function() {
+                    var auth_array = [$("#" + params.sticker.id + " #delete_username").val(),
+                        $("#" + params.sticker.id + " #delete_password").val()];
+                    params.sticker.auth_array = auth_array;
                     params.delete(params.sticker);
                 });
 
