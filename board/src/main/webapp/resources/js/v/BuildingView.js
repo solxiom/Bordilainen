@@ -1,6 +1,6 @@
 (function($) {
 
-     $.board.package("boardApp.view");
+    $.board.package("boardApp.view");
     /**
      * @class This class will create and update the building view
      * all dialogs and parts of the building view can be accessed with this class
@@ -8,7 +8,7 @@
      * @returns {BuildingView}
      * @author Kavan Soleimanbeigi
      */
-    var _buildingView = CoderLeopard.boardApp.view.BuildingView = function(view) {
+    CoderLeopard.boardApp.view.BuildingView = function(view) {
         'use strict';
         var _self = this;
         this.view = view;
@@ -183,5 +183,5 @@
 
         }
     }
-    
+
 }(jQuery));
