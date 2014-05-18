@@ -11,6 +11,7 @@ import com.flatmates.board.domain.service.BulletinBoardService;
 import com.flatmates.board.domain.service.CommentService;
 import java.util.Collection;
 import java.util.LinkedList;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,7 +49,7 @@ public class RemoveController {
     @RequestMapping(value = "/sticker/{building_id}/{sticker_id}", method = RequestMethod.POST)
     public @ResponseBody
     Collection<String> removeSticker(@PathVariable String building_id
-            ,@PathVariable String sticker_id, @RequestBody String[] auth) {
+            ,@PathVariable String sticker_id, @RequestBody String[] auth,HttpServletResponse response ) {
         Collection<String> log = new LinkedList<String>();
         String board_id = ControlTool.findBoardIdByBuilding(boardService.listAllBoards(), building_id);
         Sticker sticker =boardService.findStickerById(board_id, sticker_id); 
@@ -59,10 +60,10 @@ public class RemoveController {
             stickerOfComments.add(sticker);
             removeEveryStickerComments(stickerOfComments);
             log.add("success!");
+            response.setStatus(200);
         }else{
-            log.add("authentication failed [auth email:"+ auth[0]
-                    +" password:"+auth[1]+"] \n [actual email:" +
-                    sticker.getEmail() + " password: " + sticker.getPassword()+"]");
+            log.add("removing not possible, authentication failed!");
+            response.setStatus(401);
         }
         return log;
     }

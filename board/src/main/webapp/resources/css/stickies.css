@@ -121,10 +121,15 @@ div.hidden
 
 
 }
-
-body{
-
+.sticker_notif{
+    position:absolute;
+    background-color: silver;
+    color: red;
+    /*width:75%;*/
+    padding:10px;
+    border-radius: 10px;
 }
+
 
 .headerTitle{
     font-family: cursive;

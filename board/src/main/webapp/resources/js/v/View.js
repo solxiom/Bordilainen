@@ -57,6 +57,16 @@
             addDeleteHandlersToStickers(stickers);
             _self.board.updateStickers(stickers);
         });
+        $.board.subscribe("sticker-notification",function(params){
+            var message = params.message;
+            $("#"+params.sticker_id+ " .sticker_notif").remove();//remove the old one is exists
+            $("#"+params.sticker_id).prepend("<span class='sticker_notif'>"+message+"<span>");
+            if(params.mode !== undefined && params.mode === "delete"){
+                $("#"+params.sticker_id + " input").css("border","dashed");
+                $("#"+params.sticker_id + " input").css("border-color","red");
+            }
+           
+        })
         //private stuff
         function buildButtonHandlers(dialog_handlers, building) {
             return {

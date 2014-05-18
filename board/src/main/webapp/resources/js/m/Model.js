@@ -37,9 +37,31 @@
         });
         $.board.subscribe("delete-sticker", function(sticker) {
             var building = new _self._building({id: sticker.building_id, model: _self});
-            sticker.remove(sticker.auth_array);
-            building.refreshStickers();
-            $.board.publish({key: "stickers-updated", data: building.stickers});
+            sticker.remove({
+                auth: sticker.auth_array,
+                success: function() {
+                    building.refreshStickers();
+                    $.board.publish({key: "stickers-updated", data: building.stickers});
+                },
+                fail: function(msg) {
+                    if (msg !== undefined && msg.status !== undefined) {
+                        if (msg.status === 401) {
+                            $.board.publish({key: "sticker-notification",
+                                data: {sticker_id:sticker.id,
+                                    message:"Can't remove this! Unauthorized attempt!",
+                                    mode:"delete"}
+                            });
+                        } else {
+                            console.log("Error:");
+                            console.log(msg);
+                        }
+
+                    } else {
+                        console.log("[Model delete-sticker] Uknown Error!!");
+                    }
+
+                }
+            });
         });
         var refreshBuildings = function() {
             var list = _self.server.getJSONObject({url: CoderLeopard.boardApp.root_path + "/list/buildings", async: false});

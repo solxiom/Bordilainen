@@ -1,5 +1,5 @@
 (function($) {
-     $.board.package("boardApp.server");
+    $.board.package("boardApp.server");
     /**
      * 
      * @returns {undefined}
@@ -56,10 +56,27 @@
             complete: function(msg) {
                 if (typeof params.callback !== undefined &&
                         typeof params.callback === 'function') {
+                    /**
+                     * don't use callback use success and fail, find all bad uses and after that remove this part
+                     */
                     params.callback(msg);
+                    console.log("Hi, it use params.callback you should remove it and use success or fail instead, comon!");
+                }
+                if (msg.status === 200 ||
+                        msg.status === 201 || msg.status === 202
+                        || msg.status === 203 || msg.status === 204) {
+                    if (typeof params !== "undefined" && typeof params.success === "function") {
+                        params.success();
+                    }
+                } else {
+                    if (typeof params !== "undefined" && typeof params.fail === "function") {
+                        params.fail(msg);
+                    }
                 }
             }
         });
+
+
 
     }
 

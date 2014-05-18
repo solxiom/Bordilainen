@@ -66,7 +66,7 @@
      * this will cause a [POST] call 
      * @returns {undefined}
      */
-    _sticker.prototype.save = function() {
+    _sticker.prototype.save = function(params) {
         'use strict';
         var _self = this;
         var b_id = _self.building_id;
@@ -75,15 +75,21 @@
             async: false,
             object: _self.getServerModel()
         };
-
         _self.model.server.postJSONObject(sv_params);
+        if(typeof params !== "undefined" && typeof params.complete === "function"){
+            if(params.complete_params !== "undefined"){
+                complete(params.complete_params);
+            }else{
+                complete();
+            }
+        }
     }
     /**
      * This will cause a [DELETE/POST] server call. 
      * The sticker will be removed from the server
      * @returns {undefined}
      */
-    _sticker.prototype.remove = function(auth_array) {
+    _sticker.prototype.remove = function(params) {
         'use strict';
         var _self = this;
         var b_id = _self.building_id;
@@ -91,7 +97,9 @@
         var rm_params = {
             url: CoderLeopard.boardApp.root_path + "/remove/sticker/" + b_id + "/" + s_id,
             async: false,
-            object: auth_array
+            object: params.auth,
+            success: params.success,
+            fail: params.fail
         }
         _self.model.server.postJSONObject(rm_params);
     }
