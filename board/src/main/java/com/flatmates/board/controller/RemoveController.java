@@ -53,7 +53,11 @@ public class RemoveController {
         Collection<String> log = new LinkedList<String>();
         String board_id = ControlTool.findBoardIdByBuilding(boardService.listAllBoards(), building_id);
         Sticker sticker =boardService.findStickerById(board_id, sticker_id); 
-                  
+        try{
+        Thread.sleep(5000L);
+        }catch(Exception e){
+            log.add("error on server sleep");
+        }
         if(ControlTool.stickerAuthenticationCheck(log,sticker,auth) ){
             boardService.removeStickerFromBoard(sticker);
             Collection<Sticker> stickerOfComments = new LinkedList<Sticker>();

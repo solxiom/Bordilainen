@@ -90,13 +90,13 @@
      * @returns {undefined}
      */
     _sticker.prototype.remove = function(params) {
-        'use strict';
+        'use strict';     
         var _self = this;
         var b_id = _self.building_id;
         var s_id = _self.id;
         var rm_params = {
             url: CoderLeopard.boardApp.root_path + "/remove/sticker/" + b_id + "/" + s_id,
-            async: false,
+            async: true,
             object: params.auth,
             success: params.success,
             fail: params.fail

@@ -41,7 +41,7 @@
              * used with reload button of the browser
              */
             var dialogIsAlreadyOpen = false;
-            if($.board.url.getURLParams().dialog !== undefined 
+            if ($.board.url.getURLParams().dialog !== undefined
                     &&
                     $.board.url.getURLParams().dialog === "open") {
                 dialogIsAlreadyOpen = true;
@@ -53,21 +53,33 @@
                 window.location = $.board.url.root_path + "/#!building/" + data.id;
             }
         });
-        $.board.subscribe("stickers-updated",function(stickers){
+        $.board.subscribe("stickers-updated", function(stickers) {
             addDeleteHandlersToStickers(stickers);
             _self.board.updateStickers(stickers);
         });
-        $.board.subscribe("sticker-notification",function(params){
+        $.board.subscribe("sticker-notification", function(params) {
             var message = params.message;
-            $("#"+params.sticker_id+ " .sticker_notif").remove();//remove the old one is exists
-            $("#"+params.sticker_id).prepend("<span class='sticker_notif'>"+message+"<span>");
-            if(params.mode !== undefined && params.mode === "delete"){
-                $("#"+params.sticker_id + " input").css("border","dashed");
-                $("#"+params.sticker_id + " input").css("border-color","red");
-            }
-           
+            $("#" + params.sticker_id + " .sticker_notif").remove();//remove the old one is exists
+            $("#" + params.sticker_id).prepend("<span class='sticker_notif'>" + message + "<span>");
+            actOnstickerNoteMode(params.sticker_id, params.mode);
         })
         //private stuff
+        function actOnstickerNoteMode(st_id, mode) {
+            if (mode === undefined || st_id === undefined) {
+                return;
+            }
+            if (mode === "unauthorized-remove-attempt") {
+                $("#" + st_id + " input").css("border", "dashed");
+                $("#" + st_id + " input").css("border-color", "red");
+                $("#" + st_id + " input").removeAttr("disabled");
+                $("#" + st_id + " button").removeAttr("disabled");
+            }
+            if (mode === "removing-progress") {
+                $("#" + st_id + " input").attr("disabled", "disabled");
+                $("#" + st_id + " button").attr("disabled", "disabled");
+//                $("#" + st_id + " input").css("border-color", "red");
+            }
+        }
         function buildButtonHandlers(dialog_handlers, building) {
             return {
                 home: function() {
@@ -85,7 +97,7 @@
                 nextSticker.showDeleteDialog = function(stick) {
                     _self.board.openDeleteDialog({sticker: stick,
                         delete: function(st) {
-                            $.board.publish({key:"delete-sticker",data:st});
+                            $.board.publish({key: "delete-sticker", data: st});
                         },
                         cancel: function(st) {
                             _self.board.closeDeleteDialog(st);
@@ -98,7 +110,7 @@
             return {
                 save: function(stick_params) {
                     stick_params.building_id = building.id;
-                    $.board.publish({key:"save-new-sticker",data:stick_params});
+                    $.board.publish({key: "save-new-sticker", data: stick_params});
                     _self.board.closeAddDialog();
                     window.location = $.board.url.root_path + "/#!building/" + building.id;
                 },
@@ -115,7 +127,7 @@
      */
     _view.prototype.clear = function() {
         $("#chooseBuilding").empty();
-        $("#newSticker").css("display","none");
+        $("#newSticker").css("display", "none");
         $('#mainBody').css("background", "none");
         $('footer').css("display", "none");
         $("#inner_header").css("display", "none");

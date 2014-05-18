@@ -49,7 +49,7 @@
                             $.board.publish({key: "sticker-notification",
                                 data: {sticker_id:sticker.id,
                                     message:"Can't remove this! Unauthorized attempt!",
-                                    mode:"delete"}
+                                    mode:"unauthorized-remove-attempt"}
                             });
                         } else {
                             console.log("Error:");
@@ -62,6 +62,11 @@
 
                 }
             });
+            $.board.publish({key: "sticker-notification",
+                                data: {sticker_id:sticker.id,
+                                    message:"Removing...",
+                                    mode:"removing-progress"}
+                            });
         });
         var refreshBuildings = function() {
             var list = _self.server.getJSONObject({url: CoderLeopard.boardApp.root_path + "/list/buildings", async: false});
