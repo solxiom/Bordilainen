@@ -58,28 +58,9 @@
             _self.board.updateStickers(stickers);
         });
         $.board.subscribe("sticker-notification", function(params) {
-            var message = params.message;
-            $("#" + params.sticker_id + " .sticker_notif").remove();//remove the old one is exists
-            $("#" + params.sticker_id).prepend("<span class='sticker_notif'>" + message + "<span>");
-            actOnstickerNoteMode(params.sticker_id, params.mode);
+            _self.board.setStickerNotification(params);
         })
         //private stuff
-        function actOnstickerNoteMode(st_id, mode) {
-            if (mode === undefined || st_id === undefined) {
-                return;
-            }
-            if (mode === "unauthorized-remove-attempt") {
-                $("#" + st_id + " input").css("border", "dashed");
-                $("#" + st_id + " input").css("border-color", "red");
-                $("#" + st_id + " input").removeAttr("disabled");
-                $("#" + st_id + " button").removeAttr("disabled");
-            }
-            if (mode === "removing-progress") {
-                $("#" + st_id + " input").attr("disabled", "disabled");
-                $("#" + st_id + " button").attr("disabled", "disabled");
-//                $("#" + st_id + " input").css("border-color", "red");
-            }
-        }
         function buildButtonHandlers(dialog_handlers, building) {
             return {
                 home: function() {

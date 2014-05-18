@@ -1,6 +1,7 @@
 /* 
     Author: Emad Nikkhouy
     Email: emad.nikkhouy@gmail.com
+    Modified: Kavan Soleimanbeigi
 */
 
 .sticker{
@@ -25,13 +26,7 @@
     -o-transform: rotate(-5deg);
     -moz-transform:rotate(-5deg);
 }
-del.sticker{
 
-
-    width:0;
-    height:0;
-
-}
 .sticker:nth-child(even){
     -o-transform:rotate(4deg);
     -webkit-transform:rotate(4deg);
@@ -97,9 +92,6 @@ div.hidden
     visibility: hidden;
 }
 
-
-
-
 .commentSticker{
 
     box-shadow:10px 10px 7px rgba(0,0,0,.7);
@@ -136,6 +128,28 @@ div.hidden
     font-size: xx-large;
     font-weight: bold;
     color: blue;
+
+}
+.delete_progress input{
+    background-color:silver;
+    border:none;
+}
+.delete_progress button{
+    background: #000;
+    color: #666;
+}
+
+.unauthorized_delete input{
+    border:dashed;
+    border-color:red;
+    background-color:white;
+}
+.unauthorized_delete button{
+     background: #65a9d7;
+}
+del.sticker{
+    width:0;
+    height:0;
 
 }
 

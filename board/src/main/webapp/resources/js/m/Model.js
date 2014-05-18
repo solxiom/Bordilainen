@@ -37,6 +37,8 @@
         });
         $.board.subscribe("delete-sticker", function(sticker) {
             var building = new _self._building({id: sticker.building_id, model: _self});
+            var request_denied = false;
+            var notif_msg = "removing";
             sticker.remove({
                 auth: sticker.auth_array,
                 success: function() {
@@ -47,26 +49,31 @@
                     if (msg !== undefined && msg.status !== undefined) {
                         if (msg.status === 401) {
                             $.board.publish({key: "sticker-notification",
-                                data: {sticker_id:sticker.id,
-                                    message:"Can't remove this! Unauthorized attempt!",
-                                    mode:"unauthorized-remove-attempt"}
+                                data: {sticker_id: sticker.id,
+                                    message: "Can't remove this! Unauthorized attempt!",
+                                    mode: "unauthorized-remove-attempt"}
                             });
+                        } else if (msg.status === 403) {//already in progress
+                            request_denied = true;
                         } else {
                             console.log("Error:");
                             console.log(msg);
                         }
-
                     } else {
                         console.log("[Model delete-sticker] Uknown Error!!");
                     }
 
                 }
             });
+            if (request_denied) {
+                notif_msg = "be patient...multiple request not allowd!"
+            } 
             $.board.publish({key: "sticker-notification",
-                                data: {sticker_id:sticker.id,
-                                    message:"Removing...",
-                                    mode:"removing-progress"}
-                            });
+                data: {sticker_id: sticker.id,
+                    message: notif_msg,
+                    mode: "removing-in-progress"}
+            });
+
         });
         var refreshBuildings = function() {
             var list = _self.server.getJSONObject({url: CoderLeopard.boardApp.root_path + "/list/buildings", async: false});

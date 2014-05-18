@@ -8,7 +8,7 @@
      * @returns {BuildingView}
      * @author Kavan Soleimanbeigi
      */
-    CoderLeopard.boardApp.view.BuildingView = function(view) {
+    var _buildingView = CoderLeopard.boardApp.view.BuildingView = function(view) {
         'use strict';
         var _self = this;
         this.view = view;
@@ -102,7 +102,12 @@
             $("#" + sticker.id).html(buildStickerView(sticker).html())
                     .append(buildDeleteButton(sticker))
                     .append(buildCommentButton(sticker.id));
+            $("#" + sticker.id).removeClass("delete_progress");
+            $("#" + sticker.id).removeClass("unauthorized_delete");
+
+
         }
+
         //private stuff
         function loadViewStaticElements(building_name, callback) {
             $('#sideBar').load($.board.url.root_path + "/resources/html/buttons.html", function() {
@@ -188,5 +193,30 @@
 
         }
     }
+    _buildingView.prototype.setStickerNotification = function(params) {
+        var message = params.message;
+        $("#" + params.sticker_id + " .sticker_notif").remove();//remove the old notification if exists
+        $("#" + params.sticker_id).prepend("<span class='sticker_notif'>" + message + "<span>");
+        var v = $("#" + params.sticker_id+ " .sticker_notif").val();
+        this.actOnStickerNotifMode(params.sticker_id, params.mode);
+    }
+    _buildingView.prototype.actOnStickerNotifMode = function(st_id, mode) {
+        if (mode === undefined || st_id === undefined) {
+            return;
+        }
+        if (mode === "unauthorized-remove-attempt") {
+            $("#" + st_id + " input").removeAttr("disabled");
+            $("#" + st_id + " button").removeAttr("disabled");
+            $("#" + st_id).removeClass("delete_progress");
+            $("#" + st_id).addClass("unauthorized_delete");
+        }
+        if (mode === "removing-in-progress") {
+            $("#" + st_id + " input").attr("disabled", "disabled");
+//            $("#" + st_id + " button").attr("disabled", "disabled");
+            $("#" + st_id).removeClass("unauthorized_delete");
+            $("#" + st_id).addClass("delete_progress");
+        }
+    }
+
 
 }(jQuery));

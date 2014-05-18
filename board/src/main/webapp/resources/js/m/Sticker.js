@@ -1,5 +1,5 @@
 (function($) {
-     $.board.package("boardApp.model");
+    $.board.package("boardApp.model");
     /**
      * 
      * @param {type} id
@@ -76,10 +76,10 @@
             object: _self.getServerModel()
         };
         _self.model.server.postJSONObject(sv_params);
-        if(typeof params !== "undefined" && typeof params.complete === "function"){
-            if(params.complete_params !== "undefined"){
+        if (typeof params !== "undefined" && typeof params.complete === "function") {
+            if (params.complete_params !== "undefined") {
                 complete(params.complete_params);
-            }else{
+            } else {
                 complete();
             }
         }
@@ -90,13 +90,15 @@
      * @returns {undefined}
      */
     _sticker.prototype.remove = function(params) {
-        'use strict';     
+        'use strict';
         var _self = this;
         var b_id = _self.building_id;
         var s_id = _self.id;
         var rm_params = {
             url: CoderLeopard.boardApp.root_path + "/remove/sticker/" + b_id + "/" + s_id,
             async: true,
+            cacheKey: "remove_sticker",
+            cacheValue: s_id,
             object: params.auth,
             success: params.success,
             fail: params.fail

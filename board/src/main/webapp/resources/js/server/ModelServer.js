@@ -7,6 +7,48 @@
      */
     var _modelServer = CoderLeopard.boardApp.server.ModelServer = function() {
         'use strict';
+        var _self = this;
+        var _serverCatch = {};
+
+        _self.isInServerCatch = function(params) {
+            if (typeof params.key === "undefined"
+                    || typeof params.value === "undefined") {
+                return false;
+            }
+            createArrayForCatchKeyIfNotExist(params.key);
+            var values = _serverCatch[params.key];
+            for (var i = 0; i < values.length; i++) {
+                if (values[i] === params.value)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        _self.addToServerCatch = function(params) {
+            if (typeof params.key === "undefined"
+                    || typeof params.value === "undefined") {
+                return;
+            }
+            createArrayForCatchKeyIfNotExist(params.key);
+            _serverCatch[params.key].push(params.value);
+        }
+        _self.removeFromServerCatch = function(params) {
+            if (typeof params.key === "undefined"
+                    || typeof params.value === "undefined") {
+                return;
+            }
+            createArrayForCatchKeyIfNotExist(params.key);
+            _serverCatch[params.key].splice($.inArray(params.value, _serverCatch[params.key]), 1);
+        }
+        _self.getServerCatch = function() {
+            return _serverCatch;
+        }
+        function createArrayForCatchKeyIfNotExist(key) {
+            if (typeof _serverCatch[key] === "undefined") {
+                _serverCatch[key] = [];
+            }
+        }
     }
 
     _modelServer.prototype.getJSONObject = function(params) {
@@ -46,6 +88,20 @@
     }
     _modelServer.prototype.postJSONObject = function(params) {
         'use strict';
+        var accept_request = true;
+        var _self = this; // referes to this _modelServer
+        if (_self.isInServerCatch({key: params.cacheKey, value: params.cacheValue})) {
+            accept_request = false;//already in progress deny multiple request
+        } else {
+            // add request to server catch     
+            _self.addToServerCatch({key: params.cacheKey, value: params.cacheValue})
+        }
+        if (!accept_request) {
+            if (typeof params !== "undefined" && typeof params.fail === "function") {
+                params.fail({status: 403, statusText: "Forbidden", responseText: "multiple request not allowed for the same resource"});
+            }
+            return;
+        }
         $.ajax({
             type: "POST",
             url: params.url,
@@ -73,11 +129,14 @@
                         params.fail(msg);
                     }
                 }
+                // remove it fromthe catch
+                // $.inArray return the index of object in array
+                _self.removeFromServerCatch({
+                    key: params.cacheKey,
+                    value: params.cacheValue
+                });
             }
         });
-
-
-
     }
 
 }(jQuery));
